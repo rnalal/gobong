@@ -1,0 +1,28 @@
+properties editor 직접 설치하기(오프라인 환경)
+
+아래의 첨부파일을 다운로드하고 설치할 환경으로 옮긴 뒤, 압축을 풀어주세요.
+
+propedit.zip
+0.18MB
+
+1. jar file 복사 & 붙여넣기
+파일명 : jp.gr.java_conf.ussiy.app.propedit_6.0.5.jar
+이동 경로 : 선생님이 주신 sts압축푼것 > sts어쩌구Release > plugins폴더
+
+위 jar파일을 plugin 폴더에 복사하여 붙여넣기 합니다
+
+
+2. bundles.info 파일 수정(plugin install)
+파일 경로 : 선생님이 주신 sts압축푼것 > sts어쩌구Release > configuration > org.eclipse.equinox.simpleconfigurator 에 들어가면
+bundles.info라는 파일을 메모장으로 실행
+
+파일명 : bundles.info
+
+위 파일을 아래의 형식에 맡게 기입하여 설정파일 하단에 추가 합니다.
+
+식별자,버전,파일경로 및 파일명,4,false
+우리가 추가할것)
+
+jp.gr.java_conf.ussiy.app.propedit,6.0.5,plugins/jp.gr.java_conf.ussiy.app.propedit_6.0.5.jar,4,false
+
+저장 후 sts 다시 실행해줍니다

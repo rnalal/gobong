@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="user1">
+ 	<select id="getUserTest" parameterType="java.lang.String" resultType="kr.gobong.domain.UserDTO">
+ 	<![CDATA[
+ 		select *  from user1 where id = #{id}
+ 	]]>
+ 	</select>
+</mapper>
+ 
+ 
+<!--  	<insert id="addUserInfo" parameterType="kr.co.tjoeun.bean.UserBean">
+ 		<![CDATA[
+ 			insert into user_table values(user_seq.nextval,#{user_name},#{user_id},#{user_pw})
+ 		]]>
+ 		
+ 	</insert>
+
+ 	 <update id="modifyUserInfo" parameterType="kr.co.tjoeun.bean.UserBean">
+	 	<![CDATA[
+	 			update user_table set user_pw = #{user_pw} where user_idx = #{user_idx}
+	 	]]>
+ 	</update> -->
+
