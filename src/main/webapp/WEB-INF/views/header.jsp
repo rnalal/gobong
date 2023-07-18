@@ -4,13 +4,15 @@
 <c:set var="data_path1" value="${pageContext.request.contextPath }/resources"/>
     <nav class="navbar" role="navigation" aria-label="main navigation">
       <div class="navbar-brand">
-        <a class="navbar-item" href="index.html"><img class="logo" src="${data_path1 }/img/logo.jpg" alt="Logo"></a>
+        <a class="navbar-item" href="${path1 }/"><img class="logo" src="${data_path1 }/img/logo.jpg" alt="Logo"></a>
       </div>
       <div id="navbarBasicExample" class="navbar-menu">
         <div class="navbar-start">
           <a class="navbar-item" href="fd_content">친구 게시글</a>
-          <a class="navbar-item" href="all_content">전체 게시글</a>
-          <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-item" href="${path1 }/boardlist">전체 게시글</a>
+          <a class="navbar-item" href="all_content">글쓰기</a>
+<!--      글쓰기 화면에서 공개 여부 설정할 거면 삭제해도 되는 부분
+		  <div class="navbar-item has-dropdown is-hoverable">
             <a class="navbar-link">글쓰기</a>
             <div class="navbar-dropdown">
               <a class="navbar-item" href="all_add">전체 공개</a>
@@ -18,7 +20,8 @@
               <hr class="navbar-divider">
               <a class="navbar-item" href="me_add">나만 보기</a>
             </div>
-          </div>
+          </div> 
+-->
           <div class="level-item" style="margin: 15px;">
             <div class="field has-addons">
               <p class="control">
@@ -33,15 +36,32 @@
           </div>
         </div>
       </div>
-      <div class="navbar-end">
-        <div class="navbar-item">
-          <div class="buttons">
-            <a class="button is-warning is-hovered" id="go">
-              <strong>Let's Gobong !</strong>
-            </a>
-          </div>
-        </div>
-      </div>
+	  <div class="navbar-end">
+		<div class="navbar-item"><!-- 일단 기본 -->
+		  <div class="buttons">
+		    <a class="button is-warning is-hovered" id="go">
+		      <strong>Let's Gobong !</strong>
+		    </a></div>
+		</div>
+		<c:if test=""><!-- 로그인 전 -->
+			<div class="navbar-item">
+			  <div class="buttons">
+			    <a class="button is-warning is-hovered" id="go">
+			      <strong>Let's Gobong !</strong>
+			    </a></div>
+			</div>
+		</c:if>
+		<c:if test=""><!-- 로그인 후 -->
+	        <div class="navbar-item has-dropdown is-hoverable">
+	          <a class="navbar-link">My Page</a>
+	          <div class="navbar-dropdown">
+	            <a class="navbar-item" href="like_list">좋아요 ♥</a>
+	            <a class="navbar-item" href="user_mod">정보수정</a>
+	            <a class="navbar-item" href="logout">로그아웃</a>
+	          </div>
+	         </div>    
+      	 </c:if>
+	   </div> <!-- navbar-end -->
       <div id="bg" class="hidden"></div>
     </nav>
     <div id="popup" class="hidden">

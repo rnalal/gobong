@@ -1,0 +1,19 @@
+
+-- 7/18 --
+글 목록 보기
+
+1.BoardController, BoardRepository, BoardRepositoryImpl, BoardService, BoardServiceImpl, BoardDTO, board_mapper.xml 에 (//글 목록보기) 추가
+
+2.board_list.jsp 추가
+(white-space: nowrap; overflow: hidden; text-overflow: ellipsis; 를 style에 추가해 넘치는 content는 ...으로 생략 )
+
+3.header.jsp 에 <a class="navbar-item" href="${path1 }/boardlist">전체 게시글</a> 으로 변경
+
+4.테스트sql
+insert into board1 values (1, 'test1', '테스트내용1', '#해시태그', default, default, default, 'test1.jpg', 'img2.png', 'img3.png', default);
+insert into board1 values (2, 'test1', '테스트내용2', '#해시태그', default, default, default, 'test2.jpg', 'img2.png', 'img3.png', default);
+insert into board1 values (3, 'test1', '테스트내용3테스트내용3테스트내용3테스트내용3테스트내용3테스트내용3테스트내용3테스트내용3테스트내용3테스트내용3테스트내용3테스트내용3', '#해시태그', default, default, default, 'test3.jpg', 'img2.png', 'img3.png', default);
+
+
+
+
