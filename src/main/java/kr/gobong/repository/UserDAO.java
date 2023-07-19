@@ -1,20 +1,13 @@
 package kr.gobong.repository;
 
-import org.mybatis.spring.SqlSessionTemplate;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
-
 import kr.gobong.domain.UserDTO;
 
-@Repository
-public class UserDAO {
+
+public interface UserDAO {
+
 	
-	@Autowired
-	private SqlSessionTemplate sqlSessionTemplate;
-	
-	
-	public UserDTO getUserTest(String id) {
-		return sqlSessionTemplate.selectOne("user1.getUserTest", id);
-	}
-	
+	public UserDTO getUserTest(String id);
+	public String checkUserIdExist(String id);
+	public void addUserInfo(UserDTO joinUserDto);
+	public UserDTO getUserLogin(UserDTO tmpUserLogin);	//로그인
 }

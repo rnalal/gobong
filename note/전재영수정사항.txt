@@ -2,7 +2,7 @@
 -- 7/18 --
 글 목록 보기
 
-1.BoardController, BoardRepository, BoardRepositoryImpl, BoardService, BoardServiceImpl, BoardDTO, board_mapper.xml 에 (//글 목록보기) 추가
+1.BoardController, BoardDAO, BoardDAOImpl, BoardService, BoardServiceImpl, BoardDTO, board_mapper.xml 에 (//글 목록보기) 추가
 
 2.board_list.jsp 추가
 (white-space: nowrap; overflow: hidden; text-overflow: ellipsis; 를 style에 추가해 넘치는 content는 ...으로 생략 )
@@ -15,5 +15,21 @@ insert into board1 values (2, 'test1', '테스트내용2', '#해시태그', defa
 insert into board1 values (3, 'test1', '테스트내용3테스트내용3테스트내용3테스트내용3테스트내용3테스트내용3테스트내용3테스트내용3테스트내용3테스트내용3테스트내용3테스트내용3', '#해시태그', default, default, default, 'test3.jpg', 'img2.png', 'img3.png', default);
 
 
+-- 7/19 -- 
+글 상세보기
+
+1.BoardController, BoardRepository, BoardRepositoryImpl, BoardService, BoardServiceImpl, BoardDTO, board_mapper.xml 에 (//글 상세보기) 추가
+
+2.board_detail.jsp 추가
+
+3.board_list.jsp 에 <a href="${path }/board/boarddetail?no=${boardDTO.no}"><img src="${data_path }/upload/${boardDTO.img1 }" alt="글사진"></a> 추가
+
+
+글 수정하기
+1.oardController, BoardRepository, BoardRepositoryImpl, BoardService, BoardServiceImpl, BoardDTO, board_mapper.xml 에 (//글 수정하기) 추가
+
+2.board_edit.jsp 추가
+
+3.오류나서 수정이 안됩니다.
 
 

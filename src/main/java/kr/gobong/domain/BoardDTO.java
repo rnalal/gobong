@@ -1,5 +1,7 @@
 package kr.gobong.domain;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class BoardDTO {
 	private int no;
 	private String id;
@@ -7,13 +9,25 @@ public class BoardDTO {
 	private String hashtag;
 	private int up;
 	private String regdate;
-	private int upcheck;
+	private MultipartFile upload_img1;
+	private MultipartFile upload_img2;
+	private MultipartFile upload_img3;
 	private String img1;
 	private String img2;
 	private String img3;
 	private String name;
 	private int prv;
 	private String img;
+	
+	
+	
+	@Override
+	public String toString() {
+		return "BoardDTO [no=" + no + ", id=" + id + ", content=" + content + ", hashtag=" + hashtag + ", up=" + up
+				+ ", regdate=" + regdate + ", upload_img1=" + upload_img1 + ", upload_img2=" + upload_img2
+				+ ", upload_img3=" + upload_img3 + ", img1=" + img1 + ", img2=" + img2 + ", img3=" + img3 + ", name="
+				+ name + ", prv=" + prv + ", img=" + img + "]";
+	}
 	public int getNo() {
 		return no;
 	}
@@ -50,11 +64,23 @@ public class BoardDTO {
 	public void setRegdate(String regdate) {
 		this.regdate = regdate;
 	}
-	public int getUpcheck() {
-		return upcheck;
+	public MultipartFile getUpload_img1() {
+		return upload_img1;
 	}
-	public void setUpcheck(int upcheck) {
-		this.upcheck = upcheck;
+	public void setUpload_img1(MultipartFile upload_img1) {
+		this.upload_img1 = upload_img1;
+	}
+	public MultipartFile getUpload_img2() {
+		return upload_img2;
+	}
+	public void setUpload_img2(MultipartFile upload_img2) {
+		this.upload_img2 = upload_img2;
+	}
+	public MultipartFile getUpload_img3() {
+		return upload_img3;
+	}
+	public void setUpload_img3(MultipartFile upload_img3) {
+		this.upload_img3 = upload_img3;
 	}
 	public String getImg1() {
 		return img1;
@@ -92,7 +118,7 @@ public class BoardDTO {
 	public void setImg(String img) {
 		this.img = img;
 	}
-	
+
 	
 	
 }

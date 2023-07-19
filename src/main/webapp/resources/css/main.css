@@ -44,3 +44,22 @@
     #popup-text {
       margin: 20px 0;
     }
+    
+    @media(min-width : 150px) and (max-width:1890px) {        
+      .card-wrap, .navbar { 
+      width: 50%; 
+      margin: 0 auto; 
+      }
+      #popup {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: white;
+      padding: 20px;
+      text-align: center;
+      width: 400px;
+      height: auto;
+      z-index: 9999;
+      }
+    }

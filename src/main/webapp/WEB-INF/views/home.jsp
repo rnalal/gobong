@@ -19,12 +19,24 @@
 </h1>
 
 <P>  The time on the server is ${serverTime}. </P>
+<br>
+<h1>이미지 불러오기 테스트</h1>
 <img src="${data_path }/img/logo.jpg" >
 <img src="${data_path }/img/logo2.jpg" >
-<a href="test?id=test1">아이디값 받아오기</a>
 <br>
-<a href="">메인페이지로</a>
-
+<h1>테스트</h1>
+<a href="test/test?id=test1">아이디값 받아오기 (DB연동테스트)</a><br>
+<a href="test/validateTest">발리데이트테스트</a><br>
+<a href="test/serverDirectoryTest">서버리얼패스 테스트</a><br>
+<a href="test/serverDirectoryTest2">서버리얼패스 사용해서 파일올리기 테스트</a><br>
+<br>
+<input type="button" value="버튼테스트" onclick="joinbtn()"/>
+<script>
+	function joinbtn(){
+		alert('join회원가입 시작');
+	}
+	
+</script>
 
 </body>
 </html>

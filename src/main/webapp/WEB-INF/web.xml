@@ -44,4 +44,20 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 	
+	<!-- 김우주0718 -->
+	<!-- 파일 업로드 멀티파트리졸버 설정 -->
+	 <filter>
+	 	<display-name>springMultipartFilter</display-name>
+	 	<filter-name>springMultipartFilter</filter-name>
+	 	<filter-class>org.springframework.web.multipart.support.MultipartFilter</filter-class>
+	 	<init-param>
+	 		<param-name>multipartResolverBeanName</param-name>
+	 		<param-value>multipartResolver</param-value>
+	 	</init-param>
+	 </filter>
+	 <filter-mapping>
+	 	<filter-name>springMultipartFilter</filter-name>
+	 	<url-pattern>/*</url-pattern>
+	 </filter-mapping>
+	<!-- //김우주0718 -->	
 </web-app>

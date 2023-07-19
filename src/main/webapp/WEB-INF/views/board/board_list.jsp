@@ -30,7 +30,7 @@
 	      <div class="card">
 	        <div class="card-image">
 	          <figure class="image is-4by3">
-	            <img src="${data_path }/img/${boardDTO.img1 }" alt="글사진">
+	            <a href="${path }/board/boarddetail?no=${boardDTO.no}"><img src="${data_path }/upload/${boardDTO.img1 }" alt="글사진"></a>
 	          </figure>
 	        </div>
 	        <div class="card-content">

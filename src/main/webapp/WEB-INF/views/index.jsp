@@ -19,7 +19,7 @@
 	<link rel="stylesheet" href="${data_path }/css/main.css">
 </head>
 <body>
-<c:import url="/WEB-INF/views/header.jsp" />
+<c:import url="./header.jsp" />
   <div class="container">
     <div class="card-wrap">
       <div class="card">
@@ -111,7 +111,7 @@
   <footer class="footer">
     <div class="content has-text-centered">
       <p>
-        <strong>Bulma</strong> by <a href="https://jgthms.com">Jeremy Thomas</a>. The source code is licensed
+        <a href="test/home">테스트로 이동</a>
         <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The website content
         is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
       </p>

@@ -3,6 +3,8 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
 	
-	<!-- Root Context: defines shared resources visible to all other web components -->
-		
+		<!-- Root Context: defines shared resources visible to all other web components -->
+	<!-- 0718손승기 -->
+	<bean scope="session" id="loginUser" class="kr.gobong.domain.UserDTO"/>
+	<!-- 0718손승기 -->	
 </beans>

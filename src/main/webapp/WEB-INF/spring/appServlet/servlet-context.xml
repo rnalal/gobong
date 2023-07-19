@@ -49,4 +49,21 @@
 		<beans:constructor-arg index="0" ref="sqlSession"/>
 	</beans:bean>
 	
+	<!-- 김우주0718 -->
+		<!-- 발리데이션 메세지 작성한 프로퍼티스 등록 -->
+		<beans:bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+			<beans:property name="basenames">
+				<beans:list>
+					<beans:value>/WEB-INF/properties/validate</beans:value>
+				</beans:list>
+			</beans:property>
+		</beans:bean>
+		<!-- 메세지소스에 접근하는 접근자 등록 -->
+		<beans:bean class="org.springframework.context.support.MessageSourceAccessor">
+			<beans:constructor-arg ref="messageSource"/>
+		</beans:bean>
+		<!-- 파일업로드를 위한 멀티파트 리졸버등록 -->
+		<beans:bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver" />
+	<!-- //김우주0718 -->
+	
 </beans:beans>

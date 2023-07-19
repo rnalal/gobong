@@ -1,0 +1,14 @@
+0718손승기
+
+UserController, UserService, UserDAO와 이에 맞는 상속 받는 클래스(Impl) 생성 후 로그인, 로그아웃 구현
+
+root-context.xml에 서버가 시작됨과 동시에 생성되는 세션스코프 추가 ( <bean scope="session" id="loginUser" class="kr.gobong.domain.UserDTO"/> )
+
+UserDTO에 로그인 상태인지 아닌지 여부를 저장하는 멤버변수(userLogin) 추가
+
+HomeController 전면수정 홈컨트롤러에서 서버가 실행될때 tmpUserLogin 객체 주입 (로그인을 로그인페이지로 따로 이동해서 하지않고 index페이지에서함)
+
+kr.gobong.interceptor 패키지 생성 후 LoginCheckInterceptor 추가
+
+header.jsp form태그를 form 커스텀 태그로 수정했음.
+

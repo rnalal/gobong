@@ -1,13 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="board">
+<mapper namespace="board1">
 
 	<!-- 글 목록 보기 -->
 	<select id="getBoardList" parameterType="java.lang.Integer" resultType="kr.gobong.domain.BoardDTO">
 		<![CDATA[
-			select u.name, b.id, u.img, b.content, b.img1, b.hashtag, b.regdate from user1 u inner join board1 b on u.id=b.id order by b.no desc
+			select b.no,u.name, b.id, u.img, b.content, b.img1, b.hashtag, b.regdate from user1 u inner join board1 b on u.id=b.id order by b.no desc
 		]]>
 	</select>
+	
+	<!-- 글 작성 -->
+	 <insert id="boardInsert" parameterType="kr.gobong.domain.BoardDTO" >
+	 	<![CDATA[
+	 	insert into board1 values(#{no},#{id},#{content},#{hashtag}, default,default,#{img1,jdbcType=NULL},#{img2,jdbcType=NULL}, #{img3,jdbcType=NULL},default)
+	 	]]>
+ 	</insert>
+ 	
+ 	<!-- 글 상세보기 -->
+ 	<select id="getBoardDetail" parameterType="java.lang.Integer" resultType="kr.gobong.domain.BoardDTO">
+		<![CDATA[
+			select b.no, u.name, b.id, b.up, b.prv, u.img, b.content, b.img1, b.img2, b.img3, b.hashtag, b.regdate from user1 u inner join board1 b on u.id=b.id where no=#{no}
+		]]>
+	</select>
+	
+	<!-- 글 수정하기 -->
+	<update id="boardEdit" parameterType="kr.gobong.domain.BoardDTO">
+		<![CDATA[
+			update board1 set content=#{content}, hashtag=#{hashtag}, img1=#{img1,jdbcType=VARCHAR}, img2=#{img2,jdbcType=VARCHAR}, img3=#{img3,jdbcType=VARCHAR} where no=#{no}
+		]]>
+	</update>
 	
 </mapper>

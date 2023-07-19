@@ -1,16 +1,10 @@
 package kr.gobong.repository;
 
-import org.mybatis.spring.SqlSessionTemplate;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
+import kr.gobong.domain.TestBoardDTO;
 
-@Repository
-public class TestDAO {
-	@Autowired
-	private SqlSessionTemplate sqlSessionTemplate;
+public interface TestDAO {
+
+	public String getTest();
 	
-
-	public String getTest() {
-		return sqlSessionTemplate.selectOne("test01.getTest");
-	}
+	public void insertBoardTest(TestBoardDTO testBoardDTO);
 }

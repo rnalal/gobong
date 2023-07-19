@@ -1,0 +1,107 @@
+--0718--
+
+views에 발리데이트와 db연동을위한
+test폴더 생성하였습니다
+
+TestController와
+UserController분리하였고
+발리데이션 테스트를위한 validateTest.jsp를 만들었습니다
+
+note에 발리데이션.txt 로 각 어노테이션에대한 설명있는것을 추가했습니다
+
+servlet-context.xml 추가 (주석참고)
+
+web.xml 추가(주석참고)
+
+gobong프로젝트가 아닌
+Servers폴더의 톰캣서버(gobong 서버 돌리는 서버) -config에서
+context.xml의
+<Context> 를
+아래와 같이 설정해줍니다
+<Context allowCasualMultipartParsing="true">
+
+
+--------
+sql파일에서 수정해야할것
+
+-- 보드테이블 upcheck 삭제
+
+CREATE TABLE board1 (
+    no number primary key,
+    id varchar2(30) ,
+    content varchar2(500),
+    hashtag varchar2(100),
+    up number default 0,
+    regdate date default sysdate not null,
+    img1 varchar2(1000) not null,
+    img2 varchar2(1000),
+    img3 varchar2(1000),
+    prv number default 0 --전체공개, 친구공개, 비공개
+    ,foreign key(id) references user1(id)
+);
+
+--수정으로 컬럼제거할시
+
+alter table board1 drop column upcheck;
+
+
+-- 0719
+1)
+	join_success.jsp
+	join.jsp
+	login.jsp
+	세 파일 views>user(생성한폴더)로 옮김
+
+2)
+	header.jsp
+	          <!-- 김우주0719 -->
+	          <!-- <a href="${path1 }/user/join" class="button is-success is-light" onclick="join()">회원가입</a> -->
+	          <input type="button" class="button is-success is-light" value="회원가입" onclick="joinbtn()"/>
+	          <script>
+	          	function joinbtn(){
+	          		alert('join회원가입 시작');
+	          		window.open('${path1 }/user/join','회원가입','width=700px,height=800px,scrollbars=yes');
+	          	}
+	          	
+	          </script>
+	          <!-- //김우주0719 -->	 
+
+3)
+	UserController.java 
+	@RequestMapping("/user")추가
+
+4)
+	UserController.java
+	return (26,32,36번째줄 ) 에 user/ 추가
+	
+	*
+	1번 작업을 안하더라도 2~4번 2번의 path1작업을 안할시
+	board같은 url에서(게시판보기) join으로 들어간다면
+	gobong/join 이아닌
+	gobong/board/join이 되어 404에러가 나게됩니다
+
+5)
+	join.jsp 하단 copy라이트부분 빼버림
+	(join.jsp덮어씌우기 하면됩니다)
+
+6)
+	게시판고유번호(게시판이 없을시, 게시판이 겹칠시 등등 nextval의 기능해줄수있는것)을 추가하였습니다
+	BoardServiceImpl.java
+	31번째줄 주석
+	63번째줄 주석
+	
+	
+7) 
+	승기씨파일 합치기 작업
+	
+8)
+	header.jsp
+	73번째줄 수정
+			<form:form action="${path1 }/user/loginPro" modelAttribute="tmpUserLogin"
+			method="post" class="box">
+			
+9) 
+	form:form태그 사용시 모델어트리뷰트 충돌로인해
+			<form action="${path1 }/user/loginPro"	method="post" class="box">
+	태그 등으로 수정
+	안에 /form:form 까지 싹다 드래그해서 붙여넣기하면 될겉같음

@@ -9,19 +9,27 @@
  		select *  from user1 where id = #{id}
  	]]>
  	</select>
+
+	<select id="checkUserIdExist" parameterType="java.lang.String"
+		resultType="java.lang.String">
+    <![CDATA[
+        select name from user1 where id = #{id}
+    ]]>
+	</select>
+
+	<select id="addUserInfo"
+		parameterType="kr.gobong.domain.UserDTO">
+ 	<![CDATA[
+ 		insert into user1 values(#{id},#{name},#{pw},#{email},#{tel},default,default)
+ 	]]>
+	</select>
+	
+	 <select resultType="kr.gobong.domain.UserDTO" parameterType="kr.gobong.domain.UserDTO" id="getUserLogin">
+ 		<![CDATA[
+ 			SELECT id, name
+ 			FROM user1
+ 			WHERE id = #{id} and pw = #{pw}
+ 		]]>
+ 	</select>
 </mapper>
  
- 
-<!--  	<insert id="addUserInfo" parameterType="kr.co.tjoeun.bean.UserBean">
- 		<![CDATA[
- 			insert into user_table values(user_seq.nextval,#{user_name},#{user_id},#{user_pw})
- 		]]>
- 		
- 	</insert>
-
- 	 <update id="modifyUserInfo" parameterType="kr.co.tjoeun.bean.UserBean">
-	 	<![CDATA[
-	 			update user_table set user_pw = #{user_pw} where user_idx = #{user_idx}
-	 	]]>
- 	</update> -->
-
