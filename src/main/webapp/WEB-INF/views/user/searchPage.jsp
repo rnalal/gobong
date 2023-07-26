@@ -36,7 +36,7 @@
         <img id="profile_img" src="${data_path }/img/unknown.png" alt="profileImage" style="">
         </c:if>
         <c:if test="${!empty search[0].img }">
-        <img id="profile_img" src="${data_path }/upload/${search[0].img }" alt="profileImage" >
+        <a href='${path }/user/profile?id=${search[0].id }'><img id="profile_img" src="${data_path }/upload/${search[0].img }" alt="profileImage" ></a>
         </c:if>
       </figure>
     </div>

@@ -138,7 +138,44 @@
 						<p>${boardDTO.hashtag }</p>
 						<time datetime="2016-1-1">${boardDTO.regdate }</time>
 					</div>
+					<div class="field" style="padding-bottom:60px; margin-top: -15px;">
 					<div class="content1">
+					<div style="float: left;">
+									<c:choose>
+										<c:when test="${loginUser.userLogin == true }">
+												<input type="image" src="${data_path}/img/heart.png" onclick="like_check(${boardDTO.up },${boardDTO.no },'${loginUser.id }')" />
+										</c:when>
+										<c:otherwise>
+												<input type="image" src="${data_path}/img/heart.png" onclick="goClick()"/>			
+										</c:otherwise>
+									</c:choose>	
+							    <strong class="reload_like" >${boardDTO.up }</strong>
+								<c:if test="${boardDTO.up > 0 }">
+								<p id="like_result" style="margin-top: 3px;">이 글을 좋아하는 사람 
+								</p>
+									<script>
+					          			$.ajax({
+					          				type:"get",
+					          				dataType : "json",
+					          				url:"${path}/like/likeList.do",
+											encType:"UTF-8",
+					          				data: {no:${boardDTO.no}},
+					          				success : function(likeList){
+					          					for(var i=0 in likeList){
+					                                $("#like_result").append("<a id='like_a"+"_"+likeList[i].id+"'href='${path}/user/profile?id="+likeList[i].id+"'>"+likeList[i].id+"님</a>"+"  ");
+					                            }
+					          				},
+					          				error : function(){
+					          					alert(${boardDTO.no}+"에러");
+					          				}
+					          			});
+		          				</script>
+								</c:if>
+								<c:if test="${boardDTO.up == 0 }">
+								<p id="like_result">  </p>
+								</c:if>
+							</div>
+							</div>
 						<div class="card-body">
 							<textarea id="reply-content" class="form-control" rows="1"
 								placeholder="댓글을 입력하세요"
@@ -253,6 +290,57 @@ function replyInsert(no,id){
   </script>
   <!-- 0725김우주 -->
 	<!-- // 이미지 슬라이드 -->
+	<script>
+	          	function like_check(like,no,id){
+	          		let chk_sw;
+	          		$.ajax({
+	          			type:"get",
+	          			url:"${path}/like/likeCheck.do",
+	          			dataType:"json",
+	          			encType:"UTF-8",
+	          			async:false,
+	          			data:{no:no , id:id},
+	          			success : function(likeCheck){
+	          				chk_sw=likeCheck;
+	          			},
+	          			error : function(){
+	          				alert("like_check 에러");
+	          				
+	          			}
+	          		});
+
+		          	if(chk_sw === 0){
+ 	 	          		$.ajax({
+	 						type:"get",
+							url:"${path}/like/upLike.do",
+							dataType:"json",
+							encType:"UTF-8",
+							data: {no:no},
+							//async: false
+							complete:function(){
+								$("#like_result").append("<a href='${path}/user/profile?id="+id+"' id='like_a"+"_"+id+"'>"+id+"님 </a>"+"  ");
+								$('.reload_like').load(location.href+' .reload_like');
+							}
+		          		}); 
+ 	 	          		alert("좋아요를 눌렀습니다");
+		          	}else{
+		          		if(confirm('좋아요를 취소하시겠습니까')){
+		          			$.ajax({
+		          				type:"get",
+		          				url:"${path}/like/disLike.do",
+		          				async:false,
+		          				data:{no:no,id:id},
+		          				complete:function(){
+		          					$("#like_a"+"_"+id).remove();
+		          					$('.reload_like').load(location.href+' .reload_like');
+		          				}
+		          			});
+		          			alert('취소하였습니다.');
+		          			//좋아요취소
+		          		}
+		          	}
+	          	}
+	          </script>
 	<c:import url="/WEB-INF/views/footer.jsp" />
 </body>
 </html>

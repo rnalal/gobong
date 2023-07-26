@@ -264,7 +264,18 @@ span:hover {
 //		item.appendChild(span);
 //		item.appendChild(del_btn);
 		item.appendChild(del_btn);
-		item.appendChild(span);
+		console.log(text.substring(1));
+
+		const atag = document.createElement("a");
+ 		if(text.indexOf("#")!==-1){
+ 			atag.setAttribute("href","${path1 }/user/searchUser?id=%23"+text.substring(1));
+		}else{
+			atag.setAttribute("href","${path1 }/user/searchUser?id="+text);
+		} 
+		item.appendChild(atag).appendChild(span);
+		
+		
+		//item.appendChild(span);
 		searchList.appendChild(item);
 		
 		

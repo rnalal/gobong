@@ -61,8 +61,13 @@
 		<div class="col-sm-6">
 			<div class="card shadow">
 				<div class="card-body">
-					<form:form action="${path1 }/user/join_procedure" method="post" modelAttribute="joinUserDto" class="box" >
+					<form:form action="${path1 }/user/join_procedure" method="post" modelAttribute="joinUserDto" class="box" enctype="multipart/form-data" >
 					<%-- <form:hidden path="userIdExist" /> --%>
+						<div class="field">
+							<form:label path="img" class="label">프로필 사진</form:label>
+							<%-- <img src="${data_path1 }/upload/${userInfo.img }" alt="프로필사진" style="width:200px; height:200px;"> --%>
+							<input type="file" name="upload_img" id="upload_img" class="input" />
+						</div>
 						<div class="field">
 							<form:label path="id" class="label">아이디</form:label>
 							<!-- 0723김우주 -->

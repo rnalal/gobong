@@ -119,7 +119,7 @@
 					          				data: {no:${boardDTO.no}},
 					          				success : function(likeList){
 					          					for(var i=0 in likeList){
-					                                $("#like_result${cnt.count }").append("<a id='like_a"+${cnt.count}+"_"+likeList[i].id+"'href=''>"+likeList[i].id+'님'+"</a>"+"  ");
+					                                $("#like_result${cnt.count }").append("<a id='like_a"+${cnt.count}+"_"+likeList[i].id+"'href='${path}/user/profile?id="+likeList[i].id+"'>"+likeList[i].id+'님'+"</a>"+"  ");
 					                            }
 					          				},
 					          				error : function(){

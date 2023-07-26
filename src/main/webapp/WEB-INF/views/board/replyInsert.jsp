@@ -18,6 +18,9 @@
    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@300;400&family=Orbit&display=swap"
    rel="stylesheet">
 <title>댓글 작성</title>
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"
+	integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
+	crossorigin="anonymous"></script>
 	<link rel="stylesheet" href="${data_path }/css/main.css">
 	<link rel="stylesheet" href="${data_path }/css/footer.css">
 <style>
@@ -31,7 +34,7 @@
    <div class="warap">
       <h1 style="text-align: center; font-size: 30px;">댓글 작성</h1>
       <br>
-      <form:form class="box" action="replyInsertPro"
+      <form:form id = "submitform" class="box" action="replyInsertPro"
          modelAttribute="replyDto" method="post"
          enctype="multipart/form-data">
          <div class="field">
@@ -49,12 +52,38 @@
          <br>
          <div class="field">
             <div class="text-right">
-               <form:button class="button is-info">등록</form:button>
+               <input type="button" class="button is-info" onclick="replyInsert(${no },'${loginUser.id }')" value="등록">
                &nbsp; &nbsp; <a href="javascript:history.go(-1)" class="button is-light">취소</a>
             </div>
          </div>
       </form:form>
    </div>
+   
+<script>
+function replyInsert(no,id){
+		let replyContent = $("#comment1").val();
+		alert("replyContent");
+		if(replyContent.length>=167){
+			alert("최대글자수를 초과합니다 (현재글자수 :"+replyContent.length+") 166자 이하여야 합니다");
+		}else{
+		 	$.ajax({
+				type: "POST",
+	          url: "${path1 }/board/replyInsert.do",
+	          data: {no:no,id:id,comment1:replyContent},
+	          encType: "UTF-8",
+	          success: function(){
+	          	alert("댓글을 등록했습니다");
+	          	opener.location.reload();
+	          	window.close();
+	          },
+	          error :function (result){
+	          	alert("댓글쓰기 실패");
+	          }
+	      	});
+		}
+
+  }
+</script>
    <br>
 </body>
 </html>

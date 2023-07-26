@@ -14,7 +14,7 @@
 	<!-- 김우주0723 -->
 	<select id="getBoardListByHashtag" parameterType="java.lang.String" resultType="kr.gobong.domain.BoardDTO">
 		<![CDATA[
-			select b.no,u.name, b.id, u.img, b.content, b.img1, b.hashtag, b.regdate,b.up 
+			select b.no,u.name, b.id, u.img, b.content, b.img1, b.hashtag, b.regdate,b.up ,(select count(*) from reply where no = b.no) as reply_cnt
 		    from user1 u , board1 b where u.id=b.id and lower(b.hashtag) Like lower(#{hashtag}) order by b.no desc
 		]]>
 	</select>
