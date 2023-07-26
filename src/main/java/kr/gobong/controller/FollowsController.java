@@ -61,8 +61,8 @@ public class FollowsController {
 		followsDto.setFollowing_id(followingId);
 		followsService.unFollow(followsDto);
 		
-		System.out.println("언팔 id : " + followsDto.getId());
-		System.out.println("언팔 following_id : " + followsDto.getFollowing_id());
+//		System.out.println("언팔 id : " + followsDto.getId());
+//		System.out.println("언팔 following_id : " + followsDto.getFollowing_id());
 		
 		model.addAttribute("followingId", followingId);
 		model.addAttribute("name", name);

@@ -125,7 +125,9 @@
 					<div class="media">
 						<div class="media-left">
 							<figure class="image is-48x48">
-								<a href="${path }/user/profile?id=${boardDTO.id}"><img src="${data_path }/upload/${boardDTO.img }" alt="작성자 사진"></a>
+							<!-- 0726김우주 -->
+								<a href="${path }/user/profile?id=${boardDTO.id}"><img src="${data_path }/upload/${boardDTO.img }" alt="작성자사진"></a>
+							<!-- //0726김우주 -->
 							</figure>
 						</div>
 						<div class="media-content">
@@ -233,7 +235,9 @@ function replyInsert(no,id){
 						<div class="media">
 							<div class="media-left">
 								<figure class="image is-48x48">
-									<img src="${data_path }/img/${boardDTO.img }" alt="작성자사진">
+								<!-- 0726김우주 -->
+									<a href="${path }/user/profile?id=${replyDTO.id}"><img src="${data_path }/upload/${replyDTO.img }" alt="작성자사진"></a>
+								<!-- 0726김우주 -->
 								</figure>
 							</div>
 							<div class="media-content">

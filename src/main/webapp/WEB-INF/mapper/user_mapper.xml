@@ -13,7 +13,7 @@
 	<insert id="addUserInfo"
 		parameterType="kr.gobong.domain.UserDTO">
  	<![CDATA[
- 		insert into user1(id,name,pw,email,tel,regdate,img) values(#{id},#{name},#{pw},#{email},#{tel},default,#{img, jdbcType=NULL})
+ 				insert into user1(id,name,pw,email,tel,regdate,img) values(#{id},#{name},#{pw},#{email},#{tel},default,#{img, jdbcType=NULL})
  	]]>
 	</insert>
 	

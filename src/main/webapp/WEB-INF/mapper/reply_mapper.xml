@@ -7,10 +7,11 @@
 	<!-- 0721 박지현, 전재영 -->
 	<!-- 상세페이지에서 댓글보기 -->
 	<!-- 글 목록 보기 -->
+	<!--  select rno, no, id, comment1 from reply where no=#{no} order by rno desc -->
 	<select id="getReplyList" parameterType="java.lang.Integer"
-		resultType="kr.gobong.domain.ReplyDTO">
+		resultType="kr.gobong.domain.ReplyVO">
       <![CDATA[
-         select rno, no, id, comment1 from reply where no=#{no} order by rno desc
+        select rno, no, id, comment1,(select img from user1 where reply.id=id) as img from reply where no=#{no} order by rno desc
       ]]>
 	</select>
 	

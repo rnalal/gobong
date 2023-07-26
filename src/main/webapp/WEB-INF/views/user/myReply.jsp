@@ -50,7 +50,7 @@
 					</div>
 				</div>
 				<footer class="card-footer">
-					<a href="${path }/board/boarddetail?no=${mr.no}" class="card-footer-item">해당 글 가기</a>
+					<a href="${path }/board/boarddetail?no=${mr.no}"	class="card-footer-item">해당 글 가기</a>
 				</footer>
 
 

@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import kr.gobong.domain.BoardDTO;
-import kr.gobong.domain.ReplyDTO;
+import kr.gobong.domain.ReplyVO;
 import kr.gobong.repository.BoardDAO;
 
 @Service
@@ -138,11 +138,13 @@ public class BoardServiceImpl implements BoardService {
 	
    //박지현,전재영
    //상세페이지에서 댓글보기
+	/* 0726김우주 */
    @Override
-   public List<ReplyDTO> getReplyList(int no) {
-      List<ReplyDTO> replyList = boardDAO.getReplyList(no);
+   public List<ReplyVO> getReplyList(int no) {
+      List<ReplyVO> replyList = boardDAO.getReplyList(no);
       return replyList;
    }
+	/* 0726김우주 */
    
    /* 김우주0723 */
    	@Override

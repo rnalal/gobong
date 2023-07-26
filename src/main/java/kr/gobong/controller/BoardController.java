@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.gobong.domain.BoardDTO;
 import kr.gobong.domain.ReplyDTO;
+import kr.gobong.domain.ReplyVO;
 import kr.gobong.domain.UserDTO;
 import kr.gobong.service.BoardService;
 import kr.gobong.service.LikeService;
@@ -115,10 +116,10 @@ public class BoardController {
 	   public String boardDetail(HttpServletRequest request, Model model) {
 	      
 	      int no = Integer.parseInt(request.getParameter("no"));
-	      
+	  	/* 0726김우주 */
 	      BoardDTO boardDTO = boardService.getBoardDetail(no);
-	      List<ReplyDTO> replyList = boardService.getReplyList(no);
-	      
+	      List<ReplyVO> replyList = boardService.getReplyList(no);
+	  	/* 0726김우주 */
 	      model.addAttribute("boardDTO", boardDTO);
 	      model.addAttribute("replyList", replyList);
 	      return "board/board_detail";

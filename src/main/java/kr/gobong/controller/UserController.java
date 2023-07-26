@@ -191,7 +191,8 @@ public class UserController {
 		/* 김우주0723 해쉬태그인지 아닌지 수정했습니다	*/
 		@GetMapping("/searchUser")
 		public String searchUser(@RequestParam("id") String id, Model model) {
-			if(id.indexOf("#")==-1) {
+			System.out.println(id);
+			if(id.indexOf("#")==-1) { //&& id.indexOf("%23")==-1) {
 				List<UserVO> search = userService.searchUser(id);
 				List<UserVO> userProfile = userService.getUserProfile(id);
 				

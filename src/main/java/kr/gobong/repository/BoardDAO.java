@@ -3,7 +3,7 @@ package kr.gobong.repository;
 import java.util.List;
 
 import kr.gobong.domain.BoardDTO;
-import kr.gobong.domain.ReplyDTO;
+import kr.gobong.domain.ReplyVO;
 
 public interface BoardDAO {
 
@@ -26,8 +26,9 @@ public interface BoardDAO {
 	public void boardEdit(BoardDTO boardDTO);
    //박지현,전재영
    //상세페이지에서 댓글보기
-   public List<ReplyDTO> getReplyList(int no);
-   
+	/* 0726김우주 */
+   public List<ReplyVO> getReplyList(int no);
+   /* 0726김우주 */
    /* 김우주0723 */
    public List<BoardDTO> getBoardListByHashtag(String hashtag);
    /*//김우주0723 */

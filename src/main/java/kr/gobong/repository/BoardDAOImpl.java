@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kr.gobong.domain.BoardDTO;
-import kr.gobong.domain.ReplyDTO;
+import kr.gobong.domain.ReplyVO;
 
 @Repository
 public class BoardDAOImpl implements BoardDAO {
@@ -58,11 +58,12 @@ public class BoardDAOImpl implements BoardDAO {
 	/*//전재영0719 */
 	  //박지현,전재영
    //상세페이지에서 댓글보기
+	/* 0726김우주 */
    @Override
-   public List<ReplyDTO> getReplyList(int no) {
+   public List<ReplyVO> getReplyList(int no) {
       return sqlSessionTemplate.selectList("reply.getReplyList", no);
    }
-   
+	/* 0726김우주 */
    /* 김우주0723 */
 	@Override
 	public List<BoardDTO> getBoardListByHashtag(String hashtag) {

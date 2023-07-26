@@ -66,3 +66,5 @@
 }
 
 .obfit {object-fit:contain}
+
+.container {min-height:570px}

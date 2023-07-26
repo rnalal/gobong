@@ -45,9 +45,9 @@
 	<!-- 김우주0725 -->
 	<select id="getFriendBoardList" parameterType="java.lang.String" resultType="kr.gobong.domain.BoardDTO">
 		<![CDATA[
-		 select b.no , u.name, u.id, u.img, b.content, b.img1, b.hashtag, b.regdate,b.up, (select count(*) from reply where no = b.no) as reply_cnt
-      	 from board1 b, follows f, user1 u 
-      	 where b.id=u.id and f.following_id = u.id and b.prv<=1 and f.id=#{id} order by b.regdate desc
+			select b.no , u.name, u.id, u.img, b.content, b.img1, b.hashtag, b.regdate,b.up, (select count(*) from reply where no = b.no) as reply_cnt
+			from board1 b, follows f, user1 u 
+			where b.id=u.id and f.following_id = u.id and b.prv<=1 and f.id=#{id} order by b.regdate desc
 		]]>
 	</select>
 	<!-- 김우주0725 -->
