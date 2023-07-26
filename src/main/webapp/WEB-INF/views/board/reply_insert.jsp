@@ -1,0 +1,69 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+   pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="path1" value="${pageContext.request.contextPath }" />
+<c:set var="data_path"
+   value="${pageContext.request.contextPath }/resources" />
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet"
+   href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+   href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@300;400&family=Orbit&display=swap"
+   rel="stylesheet">
+<title>댓글 작성</title>
+<link href="/resources/css/bootstrap.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="${data_path }/css/main.css">
+<style>
+.warap {
+   width: 800px;
+   margin: 0 auto;
+}
+</style>
+</head>
+<body>
+   <c:import url="/WEB-INF/views/header.jsp" />
+   <div class="warap">
+      <h1 style="text-align: center; font-size: 30px;">댓글 작성</h1>
+      <br>
+      <form:form class="box" action="boardInsertPro" modelAttribute="boardInsert" method="post" enctype="multipart/form-data">
+         <div class="field">
+            <form:label path="id">아이디</form:label>
+            <form:input path="id" class="input" />
+         </div>
+         <br>
+         <div class="field">
+            <form:label path="content">내용</form:label>
+            <br>
+            <form:textarea path="content" class="input"
+               style="width:800px; height:250px;" />
+         </div>
+         <br>
+         <div class="field">
+            <div class="text-right">
+               <form:button class="button is-info">등록</form:button>
+               &nbsp; &nbsp; <a href="javascript:history.go(-1)" class="button is-light">취소</a>
+            </div>
+         </div>
+      </form:form>
+   </div>
+   <br>
+   <footer class="footer">
+      <div class="content has-text-centered">
+         <p>
+            <a href="test/home">테스트로 이동</a> <a
+               href="http://opensource.org/licenses/mit-license.php">MIT</a>. The
+            website content is licensed <a
+               href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY
+               NC SA 4.0</a>.
+         </p>
+      </div>
+   </footer>
+</body>
+</html>

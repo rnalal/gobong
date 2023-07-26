@@ -13,3 +13,8 @@
 @Pattern(regex=,flag=) 정규식을 만족하는지?
 @Past   과거날짜인지?
 @Size(min=,max=)  문자열 또는 배열등의 길이 만족 여부  
+
+
+https://docs.jboss.org/hibernate/validator/6.2/reference/en-US/html_single/#section-builtin-constraints
+
+참고

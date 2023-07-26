@@ -1,4 +1,4 @@
-0718손승기
+07.18 손승기
 
 UserController, UserService, UserDAO와 이에 맞는 상속 받는 클래스(Impl) 생성 후 로그인, 로그아웃 구현
 
@@ -12,3 +12,112 @@ kr.gobong.interceptor 패키지 생성 후 LoginCheckInterceptor 추가
 
 header.jsp form태그를 form 커스텀 태그로 수정했음.
 
+--작업완료 김우주
+---07.19---
+views/user 폴더안에 login_fail.jsp 에서 3번째줄에 
+<c:set var="path" value="${pageContext.request.contextPath }" />  로 바꿔주시고 6번째줄 location.href = "${path}"; 로 바꿔주세요
+
+프로필 불러오기, 마이페이지 불러오기, 마이페이지 정보수정 3가지 기능 추가
+
+새로 추가된 파일 : UserVO, mypage.jsp, profile.jsp, css/profile.css
+수정된 파일 : UserController, UserDAO, UserDAOImpl, UserService, UserServiceImpl, user_mapper.xml, header.jsp
+
+User 컨트롤러, 서비스, DAO, 맵퍼에 프로필 불러오기, 마이페이지 불러오기, 마이페이지 정보수정 기능 구현 코드 추가 되었습니다.
+user 폴더안에 profile.jsp와 css폴더안에 profile.css 파일 추가
+header.jsp 일부 수정 (53번째줄 <!-- 0719 손승기 --> 
+						<a href="${path1 }/user/profile?id=${loginUser.id}" class="navbar-item"><img src="">프로필</a> 
+						<a href="${path1 }/user/logout" class="navbar-item">로그아웃</a>
+						<!-- 0719 손승기 --> )
+						
+--작업완료 김우주						
+						
+--07.25--
+1. UserVo에 게시글 번호인 private int no; 추가
+
+
+2. user_mapper.xml의 나의 프로필 불러오기 select sql구문을
+SELECT u.id, u.name, u.img, b.img1, b.no 
+ 		FROM user1 u INNER JOIN board1 b 
+ 		ON u.id = b.id 
+ 		WHERE u.id = #{u.id} order by b.regdate desc
+로 수정하였습니다.
+
+
+3. profile.jsp
+<!-- 0720 손승기 게시글이미지 영역 -->
+	<div class="card-wrap" id="board_wrap">
+		<c:forEach var="board" items="${userProfile}">
+			<a href="${path }/board/boarddetail?no=${board.no}"><img id="board_img" src="${data_path }/upload/${board.img1 }" alt="boardPreview"></a>
+		</c:forEach>		
+	</div>
+<!-- 0720 손승기 게시글이미지 영역 -->
+로 수정하였습니다. 
+
+또한, 프로필에서 정보수정은 자신의 프로필에서만 보이게 하도록 조건문 삽입해주었습니다. 
+<!-- 0721 손승기 -->
+<c:if test="${loginUser.id == userProfile[0].id }">
+	<div>
+		<a href="${path }/user/mypage">정보 수정</a>
+	</div>
+</c:if>
+<!-- 0721 손승기 -->
+
+
+4. board_list.jsp 41번째줄을 아래와 같이 수정했습니다.
+<!-- 0721 손승기 -->
+	<a href="${path }/user/profile?id=${boardDTO.id}"><img src="${data_path }/upload/${boardDTO.img }" alt="작성자사진"></a>
+<!-- 0721 손승기 -->
+
+5. follows_mapper.xml, FollowsDAO, FollowsDAOImpl, FollowsService, FollowsServiceImpl 파일 추가(컨트롤러 제외)
+
+6.UserController의 @GetMapping (/profile)에  
+
+List<FollowsDTO> followingList = followsService.followingList(id);
+model.addAttribute("followingList", followingList);
+
+List<FollowsDTO> followerList = followsService.followerList(id);
+model.addAttribute("followerList", followerList);
+를 추가하였음.
+
+
+profile.css 스타일 추가
+
+    .followCtn, .doFollow {
+		color:black;
+		float:right;
+		margin-right:14px;
+	}
+
+	.followCtn:hover, .doFollow:hover {
+		color:#e6da5a;
+	}
+	
+profile.jsp 최하단부에 스크립트문 추가 and (0721 손승기 주석참고하거나 수정사항 없으시면 파일 복붙하시면 됩니다.)
+
+<script>
+	function followingList() {
+		$("#followingListPopup").css("display", "block");
+		if($("#followingListPopup").css("display") == "block") {
+			$("#followerListPopup").css("display", "none");
+		}
+	}
+	function followerList() {
+		$("#followerListPopup").css("display", "block");
+		console.log($("#followerListPopup").css("display"));
+		if($("#followerListPopup").css("display") == "block") {
+			$("#followingListPopup").css("display", "none");
+		}
+	}
+	function listExit() {
+		$("#followingListPopup").css("display", "none");
+		$("#followerListPopup").css("display", "none");
+	}
+	
+	$(document).mouseup(function(e){
+	    if($("#followerListPopup").has(e.target).length === 0 || $("#followingListPopup").has(e.target).length === 0) {
+			$("#followerListPopup").hide();
+			$("#followingListPopup").hide();
+	    }
+	});
+
+</script>

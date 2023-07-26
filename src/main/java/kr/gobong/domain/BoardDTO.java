@@ -1,7 +1,12 @@
 package kr.gobong.domain;
 
+import javax.validation.constraints.Pattern;
+
 import org.springframework.web.multipart.MultipartFile;
 
+import lombok.Data;
+
+@Data
 public class BoardDTO {
 	private int no;
 	private String id;
@@ -18,7 +23,9 @@ public class BoardDTO {
 	private String name;
 	private int prv;
 	private String img;
-	
+	//댓글개수
+	//0723전재영
+	private String reply_cnt;
 	
 	
 	@Override
@@ -118,7 +125,13 @@ public class BoardDTO {
 	public void setImg(String img) {
 		this.img = img;
 	}
-
+	public String getReply_cnt() {
+		return reply_cnt;
+	}
+	public void setReply_cnt(String reply_cnt) {
+		this.reply_cnt = reply_cnt;
+	}
+	
 	
 	
 }

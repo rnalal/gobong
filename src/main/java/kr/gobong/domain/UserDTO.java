@@ -1,24 +1,41 @@
 package kr.gobong.domain;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import org.springframework.web.multipart.MultipartFile;
+
+import lombok.Data;
+
+@Data
 public class UserDTO {
 	@Size(min = 4, max = 20)
 	@Pattern(regexp = "[a-zA-Z0-9]*")
 	private String id;
 
-	@Size(min = 2, max = 4)
+	/* 김우주0720	*/
+	@Size(min = 2, max = 6)
 	@Pattern(regexp = "[가-힣]*")
 	private String name;
-
+	/*//김우주0720	*/
+	
 	@Size(min = 4, max = 20)
 	@Pattern(regexp = "[a-zA-Z0-9]*")
 	private String pw;
-
+	
+	@NotBlank
+	@Email
 	private String email;
+	
 	private String tel;
 	private String regdate;
+	
+	//0719 손승기
+	private MultipartFile upload_img;
+	//0719 손승기
+	
 	private String img;
 
 	@Size(min = 4, max = 20)
@@ -77,6 +94,14 @@ public class UserDTO {
 		this.regdate = regdate;
 	}
 
+	public MultipartFile getUpload_img() {
+		return upload_img;
+	}
+
+	public void setUpload_img(MultipartFile upload_img) {
+		this.upload_img = upload_img;
+	}
+
 	public String getImg() {
 		return img;
 	}
@@ -100,6 +125,7 @@ public class UserDTO {
 	public void setUserLogin(boolean userLogin) {
 		this.userLogin = userLogin;
 	}
-    
+
+
     
 }

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="follows">
+ 	
+ 	<!-- 0721 손승기 -->
+ 	<!-- 자신이 팔로우 한 사람이 몇명인지 조회하기 -->
+ 	<select resultType="java.lang.Integer" parameterType="java.lang.String" id="followingCnt">
+ 	<![CDATA[
+ 		SELECT count(*) 
+ 		FROM follows 
+ 		WHERE id = #{id}
+ 	]]>
+ 	</select>
+ 	
+ 	<!-- 자신을 팔로우 한 사람이 몇명인지 조회하기 -->
+ 	<select resultType="java.lang.Integer" parameterType="java.lang.String" id="followerCnt">
+ 	<![CDATA[
+ 		SELECT count(*) 
+ 		FROM follows 
+ 		WHERE following_id = #{following_id}
+ 	]]>
+ 	</select>
+ 	
+ 	<!-- 자신이 팔로우 한 사람의 ID 목록 조회하기 -->
+ 	<select resultType="kr.gobong.domain.FollowsDTO" parameterType="java.lang.String" id="followingList">
+ 	<![CDATA[
+ 		SELECT following_id 
+ 		FROM follows 
+ 		WHERE id = #{id}
+ 	]]>
+ 	</select>
+ 	
+ 	<!-- 자신을 팔로우 한 사람의 ID 목록 조회하기 -->
+ 	<select resultType="kr.gobong.domain.FollowsDTO" parameterType="java.lang.String" id="followerList">
+ 	<![CDATA[
+ 		SELECT id 
+ 		FROM follows 
+ 		WHERE following_id = #{id}
+ 	]]>
+ 	</select>
+ 	<!-- 0721 손승기 -->
+ 	
+ 	
+ 	<!-- 0723 손승기  -->
+ 	<!-- 다른사용자 팔로우하기 -->
+ 	<insert parameterType="kr.gobong.domain.FollowsDTO" id="doFollow">
+ 	<![CDATA[
+ 		INSERT into follows VALUES(#{id}, #{following_id})
+ 	]]>
+ 	</insert>
+ 	
+ 	<!-- 팔로우 취소하기 -->
+ 	<delete parameterType="kr.gobong.domain.FollowsDTO" id="unFollow">
+ 	<![CDATA[
+ 		DELETE from follows WHERE id = #{id} and following_id = #{following_id}
+ 	]]>
+ 	</delete>
+ 	
+ 	<!-- 0723 손승기 -->
+</mapper>
+ 

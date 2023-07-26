@@ -1,0 +1,44 @@
+@charset "UTF-8";
+.atag {
+	color: #363636;
+}
+
+#level1 a {
+	color: #363636;
+	font-weight: 600;
+}
+
+#level2 {
+	text-align: center;
+}
+
+.fix_area {
+	position: fixed;
+	z-index: 9999;
+	bottom: 20px;
+	right: 30px;
+}
+
+.fix_area .cir_box {
+	display: block;
+	width: 47px;
+	height: 48px;
+	text-align: center;
+	color: #fff;
+	border-radius: 35px;
+	box-sizing: border-box;
+	padding: 2px;
+	font-size: 35px;
+	overflow: hidden;
+	box-shadow: 1px 1px 6px #333;
+}
+
+.fix_area .totop {
+	background-color: #48c78e;
+}
+
+.footer{
+	background-color:#ffffff;
+	clear:both;
+	padding:5rem 1.5rem 0;
+}

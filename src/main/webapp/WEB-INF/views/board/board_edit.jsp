@@ -13,9 +13,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@300;400&family=Orbit&display=swap" rel="stylesheet">
-<title>Document</title>
-<link href="/resources/css/bootstrap.min.css" rel="stylesheet" />
-<link rel="stylesheet" href="${data_path }/css/main.css">
+<title>글 수정</title>
+	<link rel="stylesheet" href="${data_path }/css/main.css">
+	<link rel="stylesheet" href="${data_path }/css/footer.css">
+<style>
+ .title {color:red}
+</style>
 </head>
 <body>
 <c:import url="/WEB-INF/views/header.jsp" />
@@ -23,7 +26,7 @@
 	<h2 style="text-align:center;">수정하기</h2>
 	<div class="card-wrap" style="padding-top:40px;">
 		<div class="card">
-			<form:form action="boardEditPro?no=${boardDTO.no}" modelAttribute="boardDTO" method="post" enctype="multipart/form-data">
+			<form:form action="${path1 }/board/boardEditPro" method="post" modelAttribute="boardDTO"  enctype="multipart/form-data">
 				<input type="hidden" id="no" name="no" value="${boardDTO.no }" />
 				<div class="card-content">
 		          	<div class="media">
@@ -37,35 +40,39 @@
 			              	<p class="subtitle is-6">${boardDTO.id}</p>
 		           		</div>
 		           	</div>	
-	           		<div class="content">		
-						<div class="form-group">
+	           		<div class="content">
+						<div class="field">
 							<form:label path="content" value="${boardDTO.content }">내용</form:label>
-							<form:input path="content" class="form-control" />
+							<form:textarea path="content" class="input"
+					style="width:800px; height:250px;resize:none" />
 						</div>
-						<div class="form-group">
+						<div class="field">
 							<form:label path="hashtag" value="${boardDTO.hashtag }">해시태그</form:label>
-							<form:input path="hashtag" class="form-control"/>
+							<form:input path="hashtag" class="input" placeholder="#따봉 #쌍따봉 #고봉" />
 						</div>
 					</div>
-					<div class="form-group">
+					<div class="field">
 						<img src="${data_path }/upload/${boardDTO.img1 }" alt="글사진1">
+						<input type="hidden" name="img1" value="${boardDTO.img1}">
 						<form:label path="upload_img1" value="${boardDTO.img1}"></form:label>
-						<form:input type="file" path="upload_img1" class="form-control" accept="image/*" />
+						<form:input type="file" path="upload_img1" class="file" accept="image/*" />
 					</div>
-					<div class="form-group">
+					<div class="field">
 						<img src="${data_path }/upload/${boardDTO.img2 }" alt="글사진2">
+						<input type="hidden" name="img2" value="${boardDTO.img2}">
 						<form:label path="upload_img2" value="${boardDTO.img2}"></form:label>
-						<form:input type="file" path="upload_img2" class="form-control" accept="image/*" />
+						<form:input type="file" path="upload_img2" class="file" accept="image/*" />
 					</div>
-					<div class="form-group">
+					<div class="field">
 						<img src="${data_path }/upload/${boardDTO.img3 }" alt="글사진3">
+						<input type="hidden" name="img3" value="${boardDTO.img3}">
 						<form:label path="upload_img3" value="${boardDTO.img3}"></form:label>
-						<form:input type="file" path="upload_img3" class="form-control"
+						<form:input type="file" path="upload_img3" class="file"
 							accept="image/*" />
 					</div>	
-					<div class="form-group">
+					<div class="field">
 						<div class="text-right">
-							<form:button>수정</form:button>
+							<form:button class="button is-primary">수정</form:button>
 						</div>
 					</div>
 				</div>	
@@ -73,15 +80,7 @@
 		</div>
 	</div>
 </div>
-<footer class="footer">
- <div class="content has-text-centered">
-   <p>
-     <strong>Bulma</strong> by <a href="https://jgthms.com">Jeremy Thomas</a>. The source code is licensed
-     <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The website content
-     is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
-   </p>
- </div>
-</footer>
+<c:import url="/WEB-INF/views/footer.jsp" />
 </body>
 </html>
 

@@ -10,19 +10,12 @@
  	]]>
  	</select>
 
-	<select id="checkUserIdExist" parameterType="java.lang.String"
-		resultType="java.lang.String">
-    <![CDATA[
-        select name from user1 where id = #{id}
-    ]]>
-	</select>
-
-	<select id="addUserInfo"
+	<insert id="addUserInfo"
 		parameterType="kr.gobong.domain.UserDTO">
  	<![CDATA[
- 		insert into user1 values(#{id},#{name},#{pw},#{email},#{tel},default,default)
+ 		insert into user1(id,name,pw,email,tel,regdate,img) values(#{id},#{name},#{pw},#{email},#{tel},default,default)
  	]]>
-	</select>
+	</insert>
 	
 	 <select resultType="kr.gobong.domain.UserDTO" parameterType="kr.gobong.domain.UserDTO" id="getUserLogin">
  		<![CDATA[
@@ -31,5 +24,51 @@
  			WHERE id = #{id} and pw = #{pw}
  		]]>
  	</select>
+ 	
+  	<!-- 0719 손승기 -->
+ 	<!-- 나의 프로필 불러오기 -->
+ 	<select resultType="kr.gobong.domain.UserVO" parameterType="java.lang.String" id="getUserProfile">
+ 	<![CDATA[
+       SELECT u.id, u.name, u.img, b.img1, b.no 
+       FROM user1 u INNER JOIN board1 b 
+       ON u.id = b.id 
+       WHERE u.id = #{u.id} order by b.regdate desc
+ 	]]>
+ 	
+ 	</select>
+ 	
+ 	<!-- 마이페이지 나의정보 불러오기 -->
+ 	<select resultType="kr.gobong.domain.UserDTO" parameterType="java.lang.String" id="getUserInfo">
+ 	<![CDATA[
+		SELECT *
+		FROM user1
+		WHERE id = #{id}
+	]]>
+ 	</select>
+ 	
+ 	<update parameterType="kr.gobong.domain.UserDTO" id="userModifyPro">
+ 	<![CDATA[
+ 		UPDATE user1 
+ 		SET pw = #{pw}, email = #{email},  img = #{img, jdbcType=NULL}, tel = #{tel} 
+ 		WHERE id = #{id}
+ 	]]>
+ 	</update>
+ 	<!-- 0719 손승기 -->
+ 	
+ 	<!-- 0721 조태정 회원탈퇴 -->
+ 	<delete id="userDel" parameterType="kr.gobong.domain.UserDTO">
+		<![CDATA[
+	 		delete from user1 where id = #{id}
+	 	]]>
+ 	</delete>
+ 	
+ 	<!-- 김우주0723 -->
+ 	<!-- 아이디중복체크 -->
+ 	<select id="duplicationCheckId" parameterType="java.lang.String" resultType="java.lang.Integer">
+    <![CDATA[
+        select count(*) from user1 where id = #{id}
+    ]]>
+	</select>
+	<!-- 김우주0723 -->
 </mapper>
  
