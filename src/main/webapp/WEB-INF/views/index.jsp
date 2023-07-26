@@ -79,57 +79,7 @@
                 <img src="${data_path }/img/logo.jpg" alt="logo">
               </figure>
             </div>
-            <div class="media-content">
-              <p class="title is-4">프로젝트 주요 기능 및 특이사항</p>
-              <p class="subtitle is-6">@admin</p>
-            </div>
-          </div>
-          <div class="content">
-          	<strong>회원가입</strong>
-          	<ul>
-          		<li>해당 기능 설명</li>
-          		<li>해당 기능 설명</li>
-          		<li>해당 기능 설명</li>
-          	</ul>
-          	<hr>
-          	<strong>게시글</strong>
-          	<ul>
-          		<li>해당 기능 설명</li>
-          		<li>해당 기능 설명</li>
-          		<li>해당 기능 설명</li>
-          	</ul>
-          	<hr>
-          	<strong>댓글</strong>
-          	<ul>
-          		<li>해당 기능 설명</li>
-          		<li>해당 기능 설명</li>
-          		<li>해당 기능 설명</li>
-          	</ul>
-          	<hr>
-          	<strong>좋아요</strong>
-          	<ul>
-          		<li>해당 기능 설명</li>
-          		<li>해당 기능 설명</li>
-          		<li>해당 기능 설명</li>
-          	</ul>
-          	<hr>
-          	<strong>팔로우</strong>
-          	<ul>
-          		<li>해당 기능 설명</li>
-          		<li>해당 기능 설명</li>
-          		<li>해당 기능 설명</li>
-          	</ul>
-          	<hr>
-          	<strong>아이디/해시태그 검색</strong>
-          	<ul>
-          		<li>해당 기능 설명</li>
-          		<li>해당 기능 설명</li>
-          		<li>해당 기능 설명</li>
-          	</ul>
-          	<hr>
-            <p style="color: blue;"> #고봉 #주요기능 #특이사항 </p>
-            <time datetime="2023-7-24">11:09 AM - 24 July 2023</time>
-          </div>
+
         </div>
       </div>
       <br>
@@ -160,7 +110,7 @@
 			</figure>
 			<h2 style="font-size:20px;">◆ 프로젝트구성도</h2>
        		<figure class="image is-4by3">
-				<img class="obfit" src="${data_path }/img/coffee.jpg" alt="글사진">
+				<img class="obfit" src="${data_path }/img/pc.png" alt="글사진">
 			</figure>
           	<hr>
             <p style="color: blue;"> #고봉 #설계 #논리적 #물리적 #클래스 #구성 </p>
