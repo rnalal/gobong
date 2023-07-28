@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <!-- 0727김우주 -->
+<mapper namespace="introduceMe1">
+	<!-- 회원테이블봐 합쳐도되지만 팀원들의 편의를 위해 따로 생성했습니다 -->
+	<!-- 먼저 자기소개가 있나검색 -->
+	<select id="getMyIntroduceInfo" parameterType="java.lang.String" resultType="java.lang.String">
+		<![CDATA[
+			select content1 from introduceMe1 where id=#{id}
+		]]>
+	</select>
+	<!-- 없을경우 인서트로 값 집어넣음 -->
+	<insert id="insertIntroduceMe1" parameterType="kr.gobong.domain.IntroduceMeDTO">
+		<![CDATA[
+			insert into introduceMe1 values(#{id}, #{content1})
+		]]>
+	</insert>
+	<!-- 있을경우 업데이트창으로바꿈 -->
+	<update id="updateIntroduceMe1" parameterType="kr.gobong.domain.IntroduceMeDTO">
+		<![CDATA[
+			update introduceMe1 set content1=#{content1} where id=#{id}
+		]]>
+	</update>
+	<!-- 회원탈퇴시에 소개페이지도 삭제 -->
+	<delete id="deleteMyIntroduceForDeleteUser" parameterType="java.lang.String" >
+		<![CDATA[
+			delete from introduceMe1 where id=#{id}
+		]]>
+	</delete>
+</mapper> 

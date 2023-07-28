@@ -35,4 +35,6 @@ public interface BoardDAO {
    	/* 김우주0724 */
 	public int getReplyNo();
 	/*//김우주0724 */
+	
+	
 }

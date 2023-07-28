@@ -349,6 +349,7 @@ INSERT INTO follows VALUES ('mori', 'tama');
 
 COMMIT;
 
+create table introduceMe1 (id varchar2(30), content1 varchar2(1000), foreign key(id) references user1(id));
 
 
 

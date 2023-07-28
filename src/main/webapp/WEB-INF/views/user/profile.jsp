@@ -34,8 +34,10 @@
 	    <div class="media-content">
 	      <div class="content">
 	        <p id="my_introduce">
-	          <strong>${search[0].name }</strong> <small>@${search[0].id }</small><br> <!-- <small>31m</small> -->
-	          자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개
+	          <strong>${search[0].name }</strong> <small>@${search[0].id }</small><br>
+	          <!-- 0727김우주 -->
+	          ${introdueMe_content1 }
+	          <!-- 0727김우주 -->
 	        </p>
 	        
 	      </div>
@@ -43,6 +45,26 @@
 	      <div>
 	      <c:if test="${loginUser.id == search[0].id }">
 	      	<a href="${path }/user/mypage" class="button">정보 수정</a>
+	      	<!-- 0727김우주 -->
+	      	<c:if test="${empty introdueMe_content1 }">
+	      	<!-- 자기소개가 없을경우 -->
+	      	<input type="button" class="button" value="자기소개 수정" onclick="introduceMe(0)">
+	      	</c:if>
+	      	<c:if test="${!empty introdueMe_content1 }">
+	      	<input type="button" class="button" value="자기소개 수정" onclick="introduceMe(1)">
+	      	</c:if>
+	      	<script>
+	      	function introduceMe(sw){
+	    		const popupWidth = 830;
+	    		const popupHeight = 510;
+	    		const popupLeft = window.screen.width/2 - popupWidth/2;
+	    		const popupTop = window.screen.height/2 - popupHeight/2;
+	      		window.open("${path }/user/introduceMe?sw="+sw, '자기소개수정',
+	    				'width=830px,height=520px,scrollbars=no,location=no,left='+popupLeft+',top='+popupTop);
+	      	}
+	      	</script>
+	      	<!-- 0727김우주 -->
+	      
 	      </c:if>
 	      <!-- href="${path }/follows/followingList?id=${userProfile[0].id}" -->
 	      <!-- href="${path }/follows/followerList?id=${userProfile[0].id}" -->

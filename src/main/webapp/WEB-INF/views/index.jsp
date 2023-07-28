@@ -57,7 +57,7 @@
 			<hr>
           	<strong>DBMS: </strong>Oracle 11 xe
 			<hr>
-          	<strong>External Library: </strong>json, cos, commons (spring security 추가 예정)
+          	<strong>External Library: </strong>json, cos, commons, spring security
 			<hr>
           	<strong>JAVA Script Plugin: </strong>JQuery
 			<hr>
@@ -71,17 +71,7 @@
         </div>
       </div>
       <br>
-      <div class="card">
-        <div class="card-content">
-          <div class="media">
-            <div class="media-left">
-              <figure class="image is-48x48">
-                <img src="${data_path }/img/logo.jpg" alt="logo">
-              </figure>
-            </div>
-
-        </div>
-      </div>
+ 
       <br>
       <div class="card">
         <div class="card-content">
@@ -98,19 +88,19 @@
 	          </div>
 	         <h2 style="font-size:20px;">◆ 테이블설계도</h2>
 	         <figure class="image is-4by3">
-	         	<img class="obfit" src="${data_path }/img/Perd.png" alt="글사진">
+	         	<img class="obfit" src="${data_path }/img/Table1.png" alt="글사진">
 			</figure>
 	        <h2 style="font-size:20px;">◆ 논리적ERD</h2>
        		<figure class="image is-4by3">
-				<img class="obfit" src="${data_path }/img/Lerd.png" alt="글사진">
+				<img class="obfit" src="${data_path }/img/Lerd1.png" alt="글사진">
 			</figure>
 			<h2 style="font-size:20px;">◆ 물리적ERD</h2>
        		<figure class="image is-4by3">
-				<img class="obfit" src="${data_path }/img/Table.png" alt="글사진">
+				<img class="obfit" src="${data_path }/img/Perd1.png" alt="글사진">
 			</figure>
 			<h2 style="font-size:20px;">◆ 프로젝트구성도</h2>
        		<figure class="image is-4by3">
-				<img class="obfit" src="${data_path }/img/pc.png" alt="글사진">
+				<img class="obfit" src="${data_path }/img/pro.png" alt="글사진">
 			</figure>
           	<hr>
             <p style="color: blue;"> #고봉 #설계 #논리적 #물리적 #클래스 #구성 </p>

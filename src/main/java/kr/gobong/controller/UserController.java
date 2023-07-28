@@ -1,5 +1,7 @@
 package kr.gobong.controller;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
+
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -24,11 +26,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.gobong.domain.BoardDTO;
 import kr.gobong.domain.FollowsDTO;
+import kr.gobong.domain.IntroduceMeDTO;
 import kr.gobong.domain.ReplyDTO;
 import kr.gobong.domain.UserDTO;
 import kr.gobong.domain.UserVO;
 import kr.gobong.service.BoardService;
 import kr.gobong.service.FollowsService;
+import kr.gobong.service.IntroduceMeService;
 import kr.gobong.service.LikeService;
 import kr.gobong.service.ReplyService;
 import kr.gobong.service.UserService;
@@ -55,6 +59,11 @@ public class UserController {
 	
 	@Autowired
 	private ReplyService replyService;
+	
+	/* 0727김우주 */
+	@Autowired
+	private IntroduceMeService introduceMeService; 
+	/* 0727김우주 */
 	
 	@Resource(name = "loginUser")
 	@Lazy
@@ -127,19 +136,24 @@ public class UserController {
 			
 			List<FollowsDTO> followingList = followsService.followingList(id);
 			model.addAttribute("followingList", followingList);
-			System.out.println(followingList);
+			//System.out.println(followingList);
 			List<FollowsDTO> followerList = followsService.followerList(id);
 			model.addAttribute("followerList", followerList);
-			System.out.println(followerList);
+			//System.out.println(followerList);
 			/* 0721 손승기 */
 			List<UserVO> userProfile = userService.getUserProfile(id);
-			System.out.println("userProfile : " + userProfile);
+			//System.out.println("userProfile : " + userProfile);
 			model.addAttribute("userProfile", userProfile);
 			
 			List<UserVO> search = userService.searchUser(id);
 			model.addAttribute("search", search);
 			
 			model.addAttribute("userInfo", userInfo);
+			
+		    /* 0727김우주*/
+		    String introdueMe_content1 = introduceMeService.getMyIntroduceInfo(id);
+		    model.addAttribute("introdueMe_content1", introdueMe_content1);
+		  /* 0727김우주*/
 			return "user/profile"; 
 		}
 		/* 0719 손승기 */
@@ -167,6 +181,10 @@ public class UserController {
 		//탈퇴
 		@GetMapping("/userDel")
 		public String userDel(@RequestParam("id") String id, Model model){
+			/* 0727김우주 */
+			//자기소개 페이지 삭제
+			introduceMeService.deleteMyIntroduceForDeleteUser(id);
+			/* 0727김우주 */
 			//모든 댓글 삭제
 			userService.deleteReplyForUserDelete(id);
 			//모든 좋아요 삭제
@@ -191,7 +209,7 @@ public class UserController {
 		/* 김우주0723 해쉬태그인지 아닌지 수정했습니다	*/
 		@GetMapping("/searchUser")
 		public String searchUser(@RequestParam("id") String id, Model model) {
-			System.out.println(id);
+			//System.out.println(id);
 			if(id.indexOf("#")==-1) { //&& id.indexOf("%23")==-1) {
 				List<UserVO> search = userService.searchUser(id);
 				List<UserVO> userProfile = userService.getUserProfile(id);
@@ -199,7 +217,10 @@ public class UserController {
 				model.addAttribute("userProfile", userProfile);
 				model.addAttribute("search", search);
 				model.addAttribute("id", id);
-				
+			    /* 0727김우주*/
+			    String introdueMe_content1 = introduceMeService.getMyIntroduceInfo(id);
+			    model.addAttribute("introdueMe_content1", introdueMe_content1);
+			    /* 0727김우주*/
 				return "user/searchPage";
 			}else {
 				String hashtag = "#%"+id.substring(1)+"%";
@@ -240,6 +261,25 @@ public class UserController {
 			model.addAttribute("myReply", myReply);
 			return "user/myReply";
 		}		
+		
+		/* 김우주0727	*/
+		@GetMapping("/introduceMe")
+		public String firstIntroduceMe(@RequestParam int sw,Model model) {
+			//sw 0 은 새로만들기 sw 1은 수정
+			model.addAttribute("sw", sw);
+			return "user/introduceMe";
+		}
+		
+		@PostMapping("/introduceMe.do")
+		public void introduceMe_procedure(@ModelAttribute IntroduceMeDTO introduceMeDTO,@RequestParam int sw) {
+			if(sw==0) {
+				introduceMeService.insertIntroduceMe1(introduceMeDTO);
+			}else {
+				introduceMeService.updateIntroduceMe1(introduceMeDTO);
+			}
+		}
+		
+		/* 김우주0727	*/
 		
 		
 		/* 김우주0724	*/

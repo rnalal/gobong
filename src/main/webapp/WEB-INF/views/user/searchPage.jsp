@@ -45,9 +45,7 @@
         <p><strong>${search[0].name }</strong> <small>@${search[0].id }</small></p>
         <c:if test="${!empty search[0].name }">
           <pre style="background-color: white;">
-여기에 자기소개 넣으면 좋을것같아요(user1 테이블에 자기소개컬럼추가하기?(나중에))
-밑에는 자신이 작성한 게시글들 이미지 나오게하고(약간 인스타처럼 한 행에 3개or4개)
-이미지 클릭하면 게시글 상세보기로 들어가게 하면 좋을듯.
+ ${introdueMe_content1 }
           </pre>
         </c:if>
         <c:if test="${empty search[0].name }">
@@ -59,6 +57,25 @@
       <div>
      	  <c:if test="${loginUser.id == userProfile[0].id }">
 	      	<a href="${path }/user/mypage" class="button">정보 수정</a>
+	      	<!-- 0727김우주 -->
+		      	<c:if test="${empty introdueMe_content1 }">
+			      	<!-- 자기소개가 없을경우 -->
+			      	<input type="button" class="button" value="자기소개 수정" onclick="introduceMe(0)">
+		      	</c:if>
+		      	<c:if test="${!empty introdueMe_content1 }">
+			      	<input type="button" class="button" value="자기소개 수정" onclick="introduceMe(1)">
+		      	</c:if>
+	      	<script>
+			      	function introduceMe(sw){
+			    		const popupWidth = 830;
+			    		const popupHeight = 510;
+			    		const popupLeft = window.screen.width/2 - popupWidth/2;
+			    		const popupTop = window.screen.height/2 - popupHeight/2;
+			      		window.open("${path }/user/introduceMe?sw="+sw, '자기소개수정',
+			    				'width=830px,height=520px,scrollbars=no,location=no,left='+popupLeft+',top='+popupTop);
+			      	}
+	      	</script>
+	      	<!-- 0727김우주 -->
 	      </c:if>
       </div>
     </div>
