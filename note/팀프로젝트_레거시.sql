@@ -222,3 +222,62 @@ commit;
 
 select * from board1;
 
+<<<<<<< HEAD
+=======
+select DISTINCT b.no, u.name, b.id as id, u.img, b.content, b.img1, b.hashtag, b.regdate,b.up, (select count(*) from reply where no = b.no) as reply_cnt
+		from board1 b, follows f, user1 u 
+		where b.id=f.following_id and u.id=f.id and u.id='test1' and b.prv<=1 order by b.regdate desc;
+        
+-- 내가 쓴 댓글보기
+
+select distinct b.no,b.id,b.content,b.hashtag,b.up,b.regdate,b.img1,b.img2,b.img3,b.prv 	from board1 b, reply r where b.no= r.no and r.id='test1';
+
+
+SELECT * FROM user1 WHERE id LIKE 'test%';
+
+select * from board1;
+insert into board1 values (16, 'test1', '테스트내용3'||CHR(13)||CHR(10)||'엔터테    시트      잘되'||CHR(13)||CHR(10)||'나', '#해시태그', default, default, 'test1.jpg', 'img2.png', 'img3.png', default);
+
+SELECT CHR(10)
+FROM dual;
+
+commit;
+
+INSERT INTO board1 VALUES
+(18, 'test1', '2010년 1월 4일에 태어난 왓섭이 육아일기를 시작하겠습니다'||CHR(13)||CHR(10)||' 매우 귀여우니 심장 조심하세요.', 
+'#2010년 #첫만남 #꼬물이', DEFAULT, DEFAULT, '00.jpg', '02.jpg', '01.jpg', DEFAULT);
+
+select * from reply where id='test1';
+select * from like1;
+select no from board1 where id='test1';
+-- 인티저 리스트로 받아와서 순회하면서 오라클구문 다 삭제
+select * from follows;
+
+desc follows;
+FOLLOWING_ID
+commit;
+
+select * from user1;
+
+--모든 댓글 삭제
+delete from reply where id=#{};
+update user1 set name='테스트이' where id = 'test2';
+update user1 set name='테스트삼' where id = 'test3';
+delete from follows where id='test1';
+commit;
+select * from reply;
+select * from follows;
+select * from board1;
+		select b.no, u.name, u.id, u.img, b.content, b.img1, b.hashtag, b.regdate,b.up, (select count(*) from reply where no = b.no) as reply_cnt
+		from board1 b, follows f, user1 u 
+		where b.id = u.id and f.following_id = u.id and b.prv<=1 and f.id=#{id} order by b.regdate desc;
+        
+        select DISTINCT b.no, u.name, b.id as id, u.img, b.content, b.img1, b.hashtag, b.regdate,b.up, (select count(*) from reply where no = b.no) as reply_cnt
+		from board1 b, follows f, user1 u 
+		where b.id=f.following_id and u.id=f.id and u.id=#{id} and b.prv<=1 order by b.regdate desc
+        
+        
+        select u.name from follows f,user1 u where f.following_id = u.id and u.id='test3';
+        
+        select rno, no, id, comment1, from reply where no=1 order by rno desc;
+>>>>>>> 8863f5b994bd097f1a308f60fd9f960d797e5e7e

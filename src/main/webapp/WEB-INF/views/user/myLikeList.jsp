@@ -33,15 +33,23 @@
 			<h2 style="font-size: 2em; margin-bottom: 3%; text-align: center;">
 				따봉 누른 게시글</h2>
 			<div class="card-wrap" id="board_wrap">
+<<<<<<< HEAD
 
 				<c:forEach items="${myLikeList }" var="like">
 					<a href="${path }/board/boarddetail?no=${like.no }"><img
 						id="board_img" src="${data_path }/upload/${like.img1 }"
 						alt="boardPreview"></a>
+=======
+				<c:forEach items="${myLikeList }" var="like">
+					<a href="${path }/board/boarddetail?no=${like.no }">
+						<img id="board_img" src="${data_path }/upload/${like.img1 }" alt="boardPreview">
+					</a>
+>>>>>>> 8863f5b994bd097f1a308f60fd9f960d797e5e7e
 				</c:forEach>
 			</div>
 			<nav class="level is-mobile">
 				<div class="level-left">
+<<<<<<< HEAD
 					<a class="level-item" aria-label="reply"> <span
 						class="icon is-small"> <i class="fas fa-reply"
 							aria-hidden="true"></i>
@@ -55,6 +63,17 @@
 							aria-hidden="true"></i>
 					</span>
 					</a>
+=======
+					<a class="level-item" aria-label="reply"> 
+					<span class="icon is-small"> <i class="fas fa-reply" aria-hidden="true"></i>
+					</span> </a> 
+					<a class="level-item" aria-label="retweet"> 
+					<span class="icon is-small"> <i class="fas fa-retweet" aria-hidden="true"></i>
+					</span> </a> 
+					<a class="level-item" aria-label="like"> 
+					<span class="icon is-small"> <i class="fas fa-heart" aria-hidden="true"></i>
+					</span> </a>
+>>>>>>> 8863f5b994bd097f1a308f60fd9f960d797e5e7e
 				</div>
 			</nav>
 			<!-- 0720 손승기 게시글이미지 영역 -->

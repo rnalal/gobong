@@ -47,6 +47,7 @@ comment1 varchar2(500), foreign key(no) references board1(no), foreign key(id) r
 1. board_mapper
  <!-- 글 목록 보기 -->
  수정하기
+<<<<<<< HEAD
 
 2. BoardDTO 
 
@@ -62,8 +63,12 @@ comment1 varchar2(500), foreign key(no) references board1(no), foreign key(id) r
 	추가하기
 	
 3. board_list.jsp 수정	
+=======
+>>>>>>> 8863f5b994bd097f1a308f60fd9f960d797e5e7e
 
+2. BoardDTO 
 
+<<<<<<< HEAD
 
 
 -- 0724
@@ -85,4 +90,18 @@ comment1 varchar2(500), foreign key(no) references board1(no), foreign key(id) r
  3. 댓글입력창
  
 
+=======
+	private String reply_cnt;
+	
+	public String getReply_cnt() {
+		return reply_cnt;
+	}
+	public void setReply_cnt(String reply_cnt) {
+		this.reply_cnt = reply_cnt;
+	}
+	
+	추가하기
+	
+3. board_list.jsp 수정	
+>>>>>>> 8863f5b994bd097f1a308f60fd9f960d797e5e7e
 	
