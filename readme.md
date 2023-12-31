@@ -18,9 +18,5 @@
 ### JAVA Script Plugin: JQuery
 ### CSS FrameWork: bulma.io v0.9.4
 
-### 프로젝트 특이 사항
-- 
--
--
 
 <br>
