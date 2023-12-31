@@ -2,7 +2,7 @@
 -- 7/18 --
 글 목록 보기
 
-1.BoardController, BoardDAO, BoardDAOImpl, BoardService, BoardServiceImpl, BoardDTO, board_mapper.xml 에 (//글 목록보기) 추가
+1.BoardController, BoardRepository, BoardRepositoryImpl, BoardService, BoardServiceImpl, BoardDTO, board_mapper.xml 에 (//글 목록보기) 추가
 
 2.board_list.jsp 추가
 (white-space: nowrap; overflow: hidden; text-overflow: ellipsis; 를 style에 추가해 넘치는 content는 ...으로 생략 )
@@ -15,21 +15,74 @@ insert into board1 values (2, 'test1', '테스트내용2', '#해시태그', defa
 insert into board1 values (3, 'test1', '테스트내용3테스트내용3테스트내용3테스트내용3테스트내용3테스트내용3테스트내용3테스트내용3테스트내용3테스트내용3테스트내용3테스트내용3', '#해시태그', default, default, default, 'test3.jpg', 'img2.png', 'img3.png', default);
 
 
--- 7/19 -- 
-글 상세보기
+-- 0724
 
-1.BoardController, BoardRepository, BoardRepositoryImpl, BoardService, BoardServiceImpl, BoardDTO, board_mapper.xml 에 (//글 상세보기) 추가
+-- 댓글 리스트 보기
 
-2.board_detail.jsp 추가
+1. 댓글 테이블 생성
+create table reply (rno number primary key, no number, id varchar2(30), 
+comment1 varchar2(500), foreign key(no) references board1(no), foreign key(id) references user1(id));
 
-3.board_list.jsp 에 <a href="${path }/board/boarddetail?no=${boardDTO.no}"><img src="${data_path }/upload/${boardDTO.img1 }" alt="글사진"></a> 추가
+2. board_mapper
+	<!-- 0721 박지현, 전재영 -->
+	<!-- 상세페이지에서 댓글보기 --> 
+	추가하기
+
+3. BoardController
+    // 박지현,전재영 0721  - 상세페이지에서 댓글보기
+	@GetMapping("/boarddetail") 
+	부분 전체 수정
+	
+4. BoardDAO, BoardDAOImpl, BoardService, BoardServiceImpl
+	//박지현,전재영
+	//상세페이지에서 댓글보기	
+	추가하기
+	
+5. board_detail.jsp 수정
 
 
-글 수정하기
-1.oardController, BoardRepository, BoardRepositoryImpl, BoardService, BoardServiceImpl, BoardDTO, board_mapper.xml 에 (//글 수정하기) 추가
 
-2.board_edit.jsp 추가
+-- 댓글개수 보기
 
-3.오류나서 수정이 안됩니다.
+1. board_mapper
+ <!-- 글 목록 보기 -->
+ 수정하기
+
+2. BoardDTO 
+
+	private String reply_cnt;
+	
+	public String getReply_cnt() {
+		return reply_cnt;
+	}
+	public void setReply_cnt(String reply_cnt) {
+		this.reply_cnt = reply_cnt;
+	}
+	
+	추가하기
+	
+3. board_list.jsp 수정	
 
 
+
+
+-- 0724
+-- 1) board_list.jsp 수정
+
+1. 좋아요,댓글 이미지로 보이게 수정
+ 좋아요 (heart.png) , 댓글 (reply.png)
+ 
+2. 좋아요한 사람
+ 
+ 
+ -- 2) board_detail.jsp 수정
+ 1. 게시글 목록 버튼 추가
+ 
+ 2. 이미지 슬라이드로 보이게 변경
+ style 추가
+ <!-- 이미지 슬라이드 --> 35번째, 119번째줄에 추가
+ 
+ 3. 댓글입력창
+ 
+
+	

@@ -1,0 +1,62 @@
+								<script>
+	          			$.ajax({
+	          				type:"get",
+	          				dataType : "json",
+	          				url:"${path}/like/likeList.do",
+							encType:"UTF-8",
+	          				data: {no:${boardDTO.no}},
+	          				success : function(likeList){
+	          					for(var i=0 in likeList){                            
+	                                console.log(likeList[i].id); 
+	                                $("#like_result${cnt.count }").append("<a href=''>"+likeList[i].id+"</a>"+"  ");
+	                            }      
+	          					 //$.each(list,function(index,item){
+	          						 //console.log(list);
+	          						/* for(const element of el){
+	          					      console.log(element)
+	          					  	} */
+	          						/* let likes = this.querySelectorAll('id');
+	          						let tmplikes;
+		          						for(let i=0; i<likes.length;i++){
+		          							console.log(i);
+		          							console.log(likes[i]);
+		          							$("id").before("<a href=''>");
+		          							tmplikes = likes[i];
+		          							$("#like_result${cnt.count }").append(tmplikes);
+		          						 	//$("#like_result${cnt.count }").append(likes[i]);
+			          						$("id").after("</a>");
+		          						} */
+	          					//}); 
+	          				
+	          				},
+	          				error : function(){
+	          					alert(${boardDTO.no}+"에러");
+	          				}
+	          			});
+
+	          		</script>
+	          		
+	          		----------------
+	          		
+	          		$.ajax({
+	          			type:"get",
+	          			url:"${path}/like/likeCheck.do",
+	          			dataType:"json",
+	          			encType:"UTF-8",
+	          			async:false,
+	          			data:{no:no , id:id},
+	          			success : function(likeCheck){
+	          				chk_sw=likeCheck;
+	          				alert('라이크체크' + chk_sw);
+	          			},
+	          			error : function(){
+	          				alert("like_check 에러");
+	          				
+	          			}
+	          		});
+		          		alert('글번호' + no);
+		          		alert('현재좋아요수' + like);
+		          		alert('체크스위치' + chk_sw);
+		          		
+		          		async를 false를주지않으면 글번호 현재좋아요수 체크스위치부터 로딩이된다
+		          		기본값ㄱ은 true이며 비동기라 빨리되는대로실행함 

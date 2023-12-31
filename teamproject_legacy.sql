@@ -17,6 +17,7 @@ CREATE TABLE user1 (
 insert into user1 values ('test1', '테스트', '1234', 'test@naver.com', 'userimg.jpg', '010-1111-1111', default);
 select * from user1;
 
+
 commit;
 
 
@@ -104,3 +105,41 @@ select * from board1;
 
 select b.no, u.name, b.id, b.up, b.prv, u.img, b.content, b.img1, b.img2, b.img3, b.hashtag, b.regdate from user1 u inner join board1 b on u.id=b.id where no=4;
 
+
+
+--좋아요 테이블추가
+--좋아요한 테이블 , 그리고 그걸 누른아이디 , 좋아요 유무
+create table like1 (no number ,id varchar2(30) , upcheck number default 0 ,foreign key(no) references board1(no), foreign key(id) references user1(id));
+
+commit;
+
+select * from like1;
+
+
+--댓글 테이블추가
+--댓글 글번호, 게시글 번호, 댓글 단 사람의 아이디, 내용
+create table reply (rno number primary key, no number, id varchar2(30), comment1 varchar2(500), foreign key(no) references board1(no), foreign key(id) references user1(id));
+
+insert into reply values ('1', '4', 'test1', '댓글테스트');
+insert into reply values ('2', '4', 'test1', '댓글테스트2');
+insert into reply values ('3', '6', 'test1', '댓글테스트3');
+insert into reply values ('4', '6', 'test1', '댓글테스트4');
+insert into reply values ('5', '4', 'test1', '댓글테스트5');
+select * from reply;
+
+select rno, no, id,comment1 from reply where no=4 order by rno desc; 
+
+-- 댓글 개수 구하기
+select count(rno) from reply where no=4;
+
+select * from board1;
+select * from reply;
+
+select (select count(*) from reply where no = b.no) as reply_cnt from board1 b;
+insert into reply values ('5', '6', 'test2', '테스트5');
+
+select b.no,u.name, b.id, u.img, b.content, b.img1, b.hashtag, b.regdate,b.up, (select count(*) from reply where no = b.no) as reply_cnt from user1 u inner join board1 b on u.id=b.id order by b.no desc;
+
+select * from like1;
+
+commit;

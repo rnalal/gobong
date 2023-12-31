@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="deleteUser">
+	<!-- 모든댓글삭제 -->
+	<delete id="deleteReplyForUserDelete" parameterType="java.lang.String">
+		<![CDATA[
+			delete from reply where id=#{id}	
+		]]>
+	</delete>
+	
+	<!-- 모든 좋아요 삭제 -->
+	<delete id="deleteLikeForUserDelete" parameterType="java.lang.String">
+		<![CDATA[
+			delete from like1 where id=#{id}		
+		]]>
+	</delete>
+	
+	<!--글 들의 번호들을 리스트로 불러와서 순회시키며 삭제 -->
+	<select id="selectBoardNoForUserDelete" resultType="java.lang.Integer" parameterType="java.lang.String">
+		<![CDATA[
+			select no from board1 where id=#{id}
+		]]>
+	</select>
+	
+	
+	<!-- 해당 게시글의 모든 좋아요 삭제 -->
+		<delete id="deleteLikeForUserDeleteToBoard" parameterType="java.lang.Integer">
+		<![CDATA[
+			delete from like1 where no=#{no}	
+		]]>
+	</delete>
+	
+	
+	<!-- 해당 게시글의 모든 댓글 삭제 -->
+	<delete id="deleteReplyForUserDeleteToBoard" parameterType="java.lang.Integer">
+		<![CDATA[
+			delete from reply where no=#{no}	
+		]]>
+	</delete>
+	
+	<!-- 모든 게시글 삭제 -->
+	<delete id="deleteBoardForUserDelete" parameterType="java.lang.String">
+		<![CDATA[
+			delete from board1 where id=#{id}		
+		]]>
+	</delete>
+	
+	<!-- 모든 팔로잉 삭제 -->
+	<delete id="deleteFollowsForUserDelete" parameterType="java.lang.String">
+		<![CDATA[
+			delete from follows where id = #{id} or following_id = #{id}
+		]]>
+	</delete>
+</mapper>

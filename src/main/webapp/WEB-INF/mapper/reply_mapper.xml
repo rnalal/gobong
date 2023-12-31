@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="reply">
+	<!-- 0721 박지현, 전재영 -->
+	<!-- 상세페이지에서 댓글보기 -->
+	<!-- 글 목록 보기 -->
+	<!--  select rno, no, id, comment1 from reply where no=#{no} order by rno desc -->
+	<select id="getReplyList" parameterType="java.lang.Integer"
+		resultType="kr.gobong.domain.ReplyVO">
+      <![CDATA[
+        select rno, no, id, comment1,(select img from user1 where reply.id=id) as img from reply where no=#{no} order by rno desc
+      ]]>
+	</select>
+	
+	<!--  0721 이재호 -->
+	<!-- 댓글쓰기,삭제 -->
+	<insert id="addReply" parameterType="kr.gobong.domain.ReplyDTO"> 
+		<![CDATA[  
+			insert into reply values(#{rno},#{no},#{id},#{comment1})
+	  	]]>
+	</insert>
+
+	<delete id="deleteReply" parameterType="java.lang.Integer">
+		<![CDATA[
+			delete from reply where rno = #{rno}
+		]]>
+	</delete>
+	<!--  //0721 이재호 -->
+	
+	<!-- 0724김우주 -->
+	<!-- 글삭제시 댓글비워주기 -->
+	<delete id="deleteReplyForBoard" parameterType="java.lang.Integer">
+		<![CDATA[
+			delete from reply where no=#{no}
+		]]>
+	</delete>
+	
+	<!-- 댓글목록 자동화 -->
+	<select id="getReplyRno" resultType="java.lang.Integer">
+      <![CDATA[
+         select rno from reply order by rno desc
+      ]]>
+	</select>
+	<!-- //0724김우주 -->
+	
+	<!-- 0725이재호 -->
+	<!-- 내가 쓴 댓글 보기 -->
+<!-- 	<select id="myReply" parameterType="java.lang.String" resultType="kr.gobong.domain.BoardDTO">
+		<![CDATA[
+			select distinct b.no,b.id,b.content,b.hashtag,b.up,b.regdate,b.img1,b.img2,b.img3,b.prv 
+			from board1 b, reply r where b.no= r.no and r.id=#{id}
+		]]>
+	
+	</select> -->
+	<!-- 0725이재호 -->
+	<!-- 0726김우주 -->
+	<select id="myReply" parameterType="java.lang.String" resultType="kr.gobong.domain.ReplyDTO">
+		<![CDATA[
+			select * from reply where id=#{id}
+		]]>
+	</select>
+	<!-- 0726김우주 -->
+</mapper>	 

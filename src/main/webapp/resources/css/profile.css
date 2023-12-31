@@ -1,0 +1,88 @@
+@charset "UTF-8";
+/* profile.jsp 스타일 */
+/* 0725김우주 */
+.container {
+	min-height: 520px
+}
+
+.image {
+	height: 160px;
+	width: 160px;
+}
+
+.media {
+	background-color: #faf5f5;
+	height: 160px;
+}
+
+.media-left, .media-content {
+	padding-top: 16px;
+	padding-left: 12px;
+}
+
+#board_wrap {
+	background-color: #faf5f5;
+}
+
+#board_img {
+	display: block;
+	float: left;
+	height: 200px;
+	width: 25%;
+	box-sizing: border-box;
+}
+
+#profile_img {
+	width: 128px;
+	height: 128px;
+}
+/* 0725김우주 */
+.followCtn, .doFollow {
+	color: black;
+	float: right;
+	margin-right: 14px;
+}
+
+.followCtn:hover, .doFollow:hover {
+	color: #e6da5a;
+}
+
+#followingListPopup, #followerListPopup {
+	position: absolute;
+	padding-top: 20px;
+	left: 50%;
+	top: 50%;
+	width: 20%;
+	height: 600px;
+	margin-left: -10%;
+	margin-top: -300px;
+	background-color: rgba(255, 255, 255, 0.5);
+	z-index: 9999;
+	text-align: center;
+	overflow: scroll;
+	border: 3px solid gray;
+	border-radius: 75px;
+}
+
+#follow-text {
+	margin-top: 20px;
+}
+
+#follow-text>a, h3 {
+	margin-bottom: 7px;
+	color: black;
+	font-weight: bold;
+}
+
+#follow-text, #followingListPopup>strong, #followerListPopup>strong {
+	font-weight: bold;
+	color: black;
+}
+
+#my_introduce {
+	overflow:hidden; 
+	text-overflow:ellipsis; 
+	white-space:nowrap; 
+	width:532px;
+	height:80px;
+}

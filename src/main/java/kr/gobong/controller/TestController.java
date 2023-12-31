@@ -1,9 +1,13 @@
 package kr.gobong.controller;
 
+import javax.annotation.Resource;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -14,6 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import kr.gobong.domain.BoardDTO;
 import kr.gobong.domain.TestBoardDTO;
 import kr.gobong.domain.TestUserDTO;
 import kr.gobong.domain.UserDTO;
@@ -31,10 +36,16 @@ public class TestController {
 	@Autowired
 	private UserService userService;
 	
-	//연동DB테스트
 	
+	@Resource(name = "loginUser")
+	@Lazy
+	private UserDTO loginUser;
+	
+	//연동DB테스트
+	/* 김우주0717 */
 	@GetMapping("/home")
 	public String testHome() {
+		System.out.println("홈으로");
 		return "home";
 	}
 	
@@ -46,7 +57,9 @@ public class TestController {
 		model.addAttribute("user", userDTO);
 		return "test";
 	}
+	/*//김우주0717 */
 	
+	/* 김우주0718 */
 	//발리데이션 테스트
 	
 	@GetMapping("validateTest")
@@ -110,4 +123,47 @@ public class TestController {
 		return "test/serverDirectoryTest2_success";
 	}
 	
+	/*//김우주0718 */
+	/* 김우주0720 */
+	
+	//세션및 쿠키 테스트
+	@GetMapping("sessionTest")
+	public String sessionTest(HttpServletRequest request,Model model) {
+		//먼저 쿠키테스트
+		//쿠키생성
+		//받아온쿠키
+		System.out.println("받아온쿠키");
+		Cookie[] cookies = request.getCookies();
+
+		String[] cookieName = new String[cookies.length];
+		String[] cookieValue = new String[cookies.length];
+		if(cookies!=null) {
+			for(int i=0; i< cookies.length; i++) {
+				System.out.println("cookiesName["+i+"] : "+cookies[i].getName());
+				System.out.println("cookiesValue["+i+"] : "+cookies[i].getValue());
+				cookieName[i]=cookies[i].getName();
+				cookieValue[i] = cookies[i].getValue();
+			}
+		}
+		
+		//세션생성
+		System.out.println("세션테스트");
+		HttpSession session  = request.getSession();
+		String sessionValue = session.getAttribute("loginUser").toString();
+		System.out.println(session.getAttribute("loginUser").toString());
+		
+		model.addAttribute("cookieName", cookieName);
+		model.addAttribute("cookieValue", cookieValue);
+		model.addAttribute("sessionValue", sessionValue);
+		
+		return "test/sessionTest";
+	}
+	
+	@GetMapping("fileReaderTest")
+	public String fileReaderTest(@ModelAttribute("boardtest") BoardDTO boardtest) {
+		
+		return "test/fileReaderTest";
+	}
+	
+	/*//김우주0720 */
 }

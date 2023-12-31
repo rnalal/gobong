@@ -12,3 +12,5 @@
 db테스트 해보셔야하는분은
 HomeController에서
 return값 index에서 home으로 변경후 런온서버 해보시면돼요
+
+

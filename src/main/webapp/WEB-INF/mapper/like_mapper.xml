@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="like1">
+
+
+	<update id="upLike" parameterType="java.lang.Integer">
+		update board1 set up=up+1 where no=#{no}
+	</update>
+	<insert id="registLike" parameterType="kr.gobong.domain.LikeDTO">
+		insert into like1 values(#{no},#{id},#{upcheck})
+	</insert>
+	<delete id="deleteLike" parameterType="java.lang.Integer">
+		delete from like1 where no=#{no}
+	</delete>
+	<!-- 김우주0720 -->
+	<update id="disLike" parameterType="java.lang.Integer">
+		update board1 set up=up-1 where no=#{no}	
+	</update>
+	
+	<select id="likeListInBoard" parameterType="java.lang.Integer" resultType="kr.gobong.domain.LikeDTO">
+		select * from like1 where no=#{no}
+	</select>
+
+	<!-- //김우주0720 -->
+	<!-- 김우주0721 -->
+	<select id="likeCheck" parameterType="kr.gobong.domain.LikeDTO" resultType="java.lang.Integer">
+		select count(*) from like1 where no=#{no} and id=#{id}
+	</select>
+	
+	<delete id="deleteLikeFromId" parameterType="kr.gobong.domain.LikeDTO">
+		delete from like1 where no=#{no} and id=#{id}
+	</delete>
+	<!-- //김우주0721 -->
+	<!-- 이재호 0724 내가 좋아요 누른 글 목록 -->
+	<select id="myLikeList" parameterType="java.lang.String" resultType="kr.gobong.domain.BoardDTO">
+	<![CDATA[
+		select b.no,b.id,b.content,b.hashtag,b.up,b.regdate,b.img1,b.img2,b.img3,b.prv from
+	    board1 b, like1 l where b.no= l.no and l.id= #{id}
+	]]>
+	</select>
+	<!-- //이재호 -->
+</mapper>
+

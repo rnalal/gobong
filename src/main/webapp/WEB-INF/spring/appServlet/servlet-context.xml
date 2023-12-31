@@ -54,7 +54,7 @@
 		<beans:bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
 			<beans:property name="basenames">
 				<beans:list>
-					<beans:value>/WEB-INF/properties/validate</beans:value>
+					<beans:value>/WEB-INF/properties/custom_vali</beans:value>
 				</beans:list>
 			</beans:property>
 		</beans:bean>

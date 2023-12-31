@@ -44,6 +44,7 @@ CREATE TABLE board1 (
 
 alter table board1 drop column upcheck;
 
+--------------------------------------------------------
 
 -- 0719
 1)
@@ -105,3 +106,506 @@ alter table board1 drop column upcheck;
 			<form action="${path1 }/user/loginPro"	method="post" class="box">
 	태그 등으로 수정
 	안에 /form:form 까지 싹다 드래그해서 붙여넣기하면 될겉같음
+	
+-----------------너무길어져서 나눔줄 추가합니다
+
+10) 
+	user_mapper.xml
+	23번째줄
+	insert into user1(id,name,pw,email,tel,regdate,img) values(#{id},#{name},#{pw},#{email},#{tel},default,default)
+	으로 변경
+	
+	(컬럼을 중간에 변경했던게 있어서 사람마다 컬럼순서가 달라 변경했습니다)
+	
+	
+11)
+	join.jsp
+	3번째줄
+	<c:set var="path1" value="${pageContext.request.contextPath }" />
+	패스뒤에 /가 잡혀있어 주소표시창에 //로 나오는 현상있고(action에서 고쳐도되지만)
+	다른 jsp들의 형식엔 콘텍스트뒤에 /를 기재하지않는 형식이라
+	join에서 삭제하였습니다
+	27번째줄
+	<form:form action="${path1 }/user/join_procedure" method="post" modelAttribute="joinUserDto" class="box">
+	views폴더에있던것을 user폴더로 옮겨 인식하지못하는걸 수정하였습니다
+	
+
+12)
+	join_success.jsp
+	6번째줄
+	   window.close()
+	로 수정하여 회원가입팝업을 닫게하였습니다
+	
+13)
+	board_list.jsp
+	33번째줄
+		            <img src="${data_path }/upload/${boardDTO.img1 }" alt="글사진">
+	로 수정하여 글 사진이 보이도록 수정했습니다
+	
+14)
+	user_mapper.xml
+	20번째줄
+	<select ~~~ 로써있는걸 <insert ~~~>로
+	25번째쭐
+	</select>인것을 </insert>로 수정했습니다
+	
+15)
+	header.jsp
+	9번째줄 제이쿼리 추가문
+	  <script
+  src="https://code.jquery.com/jquery-3.7.0.min.js"
+  integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
+  crossorigin="anonymous"></script>
+  추가
+  
+ 16)
+ 	board_list.jsp 좋아요추가
+	          <!-- 김우주0719 -->
+          <div>	          
+          	<input type="button" value="좋아요" onclick="like_check(${boardDTO.up },${boardDTO.no })"/>
+
+          </div>
+          <script>
+          	function like_check(like,no){
+          		
+          		alert('글번호' + no);
+          		alert('현재좋아요수' + like);
+          		$.ajax({
+					type:"get",
+					url:"${path}/like/upLike.do",
+					dataType:"json",
+					encType:"UTF-8",
+					data: {no:no},
+					//async: false
+          		});
+          	}
+          </script>
+          <!-- //김우주0719 -->
+          
+17)
+	좋아요 누를시 like1 테이블에 등록추가
+	like_mapper.xml , LikeDTO , LikeDAO , LikeDAOImpl , LikeService, LikeServiceImpl , LikeController추가 
+	
+18)
+	태정씨꺼랑 합친 후
+	태정씨 게시글 삭제를 실행시 좋아요 테이블에있는 참조값들 삭제	
+	
+19)
+	태정씨가 작업한
+	header.jsp
+	script간소화
+	
+20)
+	로그인안했을시 좋아요 누르면 로그인창뜨도록 유도
+	
+21)
+	부트스트랩 css폴더에 추가
+	
+22)
+	재영씨 수정페이지 작업 중
+	
+23)
+	수정페이지 수정 완료
+	
+-- 0720
+
+1)
+	세션및 쿠키 테스트페이지 추가
+	test폴더 내 sessionTest.jsp
+	그를연결하기위한 home.jsp 수정
+	TestController.java 코드추가
+	
+2)
+	UserController.java
+	로그아웃 수정
+	(세션값삭제)
+
+3)
+	로그아웃시 모든 쿠키정보도 삭제하도록함
+	
+4)
+	jsessionid형태의 쿠키를 제거할필요가 없다는걸 알게되어
+	쿠키정보 삭제에 대한걸 주석처리로함
+	혹여나 누군가 쿠키사용시 제거할때 참고
+	
+5)
+	파일올렷을시 미리보기가 되는것 테스트
+	(FileReader() 사용할것임)
+	fileReaderTest.jsp추가
+	TestController.java수정
+	--테스트컨트롤러는 저만쓰는거같으니까 그냥 덮어씌우기하세요
+	
+6)
+	미리보기 테스트완료
+	
+	FileReader()객체에서
+	메서드 궁금할수도있어서 설명 달아놔요
+		readAsArrayBuffer(~) : ArrayBuffer형식으로 파일을 읽음
+		readAsBinaryString(~) : binary형식으로 읽음
+		readAsText(~) : text형식으로
+		readAsDataURL(~) : 데이터URL형식으로
+		abort() : 일기를 중지
+		여기서 ~에 들어가는건 blob(Binary Large Objects)객체류인데
+		파일류의 불변하는 미가공 데이터 즉, 단순한 텍스트가 아닌 이미지 , 동영상 , 사운드 등 뜻함
+	FileReader 이벤트핸들러 목록 (이벤트가 작동시 실행되는거)
+		onload : 읽기 성공시 실행됨
+		onloadstart : 읽기 시작시 실행됨
+		onabort : 읽기 중단시 실행
+		onerror : 읽기 에러시 실행
+		onprogress : 읽는 중에 실행(읽는중 정기적?으로)
+		onloadend : 성공 실패와 상관없이 읽기가 끝났을때 실행
+	FileReader 의 프로퍼티
+		result : 읽기 결과가 저장됨
+		error : 읽기 실패시에 에러정보가 저장
+		readyState : 읽기 처리 상태를 나타낼수 있는 정수값
+		EMPTY : 읽기 시작전 - readyState 0
+		LOADING : 읽는중 - readyState 1
+		DONE : 읽기 완료 - readyState 2 - 성공실패 관계없이
+		
+	사용법 예
+		파일리더 객체생성
+		const READER = new FileReader();
+		파일리더 객체에서 x (함수등으로 받은값) 을 텍스트형식으로 읽기
+		READER.readAsText(x);
+		읽기 성공시 읽기결과 표시 - onload가 읽기 성공시 실행되므로
+		READER.onload = function(y){
+			let text1 = y.target.result 또는 READER.result 해도됨
+			alert(text1)
+		}
+	
+	
+7)
+	미리보기
+	boardInsert.jsp에 파일미리보기 추가했습니다
+	25번째줄 스크립트주석 , 
+	68~83 <div>태그 사이 참조
+	
+8)
+	승기씨 파일 병합작업
+	
+9)
+	
+	유저 수정은되나 fail페이지로 넘어갑니다 수정이 필요한건지 21일날 확인해봐야할듯하네요
+	
+10)
+
+	fail페이지로 넘어가는원인
+	@Size(2~4)여서 그런걸로 확인해서
+	Size를 6으로 수정했습니다
+	- UserDTO 16번째줄
+	@Size(min = 2, max = 6)
+
+	
+11)
+	좋아요작업2
+	이미 누른거 누를시 그 값 없애기
+	delete from like1 where no=2 and id='test1';
+	좋아요가 취소될시 원래 그 게시글의 값에서 좋아요 수도 -를 해줘야한다
+	
+11-1)
+	disLike 맵다서컨 추가
+
+11-2)
+	dis라이크 기능을 사용하기위해 jsp에 if판단절을 삽입해줘야함
+	그에 대한 작업
+	Board-list에 like목록을 같이 불러오게 해줘야한다
+	
+11-3)
+	list에 하나씩 넣어주고 불러주는것 비효율적인것같아
+	ajax와 자바스크립트를 혼용하여 처리
+	펑션 안넣고 c:if 좋아요 0보다 클경우 스크립트시작으로 하도록 해보아야겠다
+	
+--구현중 시간이 늦어 여기까지만 합니다
+
+0721
+	완벽히 구현해놓고 업로드하겠습니다
+0722
+	좋아요기능 대폭수정
+	동적교체와 비동기를 적절하게 사용하여
+	페이지새로고침없이 좋아요추가 및 삭제 
+	팀원들 파일 병합작업
+	
+0723
+--회원가입 비밀번호와 비밀번화 확인이 같을때만 통과하도록해야함
+--회원가입 중복체크해야함
+
+1)
+	UserContoller
+	131번째줄 searchUser 수정
+	
+	수정중 구현된 기능으로 하기가 힘듬을 느껴 2)에 커스텀 발리데이션 추가하고 다시 1)을 진행하겠습니다
+	
+2)
+	유저와 해쉬태그검색의 차이를 두기위해
+	커스텀 발리네이션 추가
+	
+2-1)
+	커스텀유효성검사를 하기위해
+	서블릿앱컨텍스트에 프로퍼티스파일 등록
+	servlet-context.xml 57번째줄 
+						<beans:value>/WEB-INF/properties/custom_vali</beans:value>
+	로 수정
+	
+2-2) 
+	kr.gobong.validator패키지 추가
+
+2-3) 
+	BoardController.java
+	191번째줄 추가
+	
+2-4)
+	WEB-INF/properties/custom_vali.properties
+	추가
+	
+3)
+	2) 기능을 추가하고 다시 3으로 시작
+	
+
+3-1)
+	search_mapper
+	14번째줄 추가
+	
+3-2)
+	BoardDAO.java
+	31번째줄 추가
+
+3-3)
+	BoardDAOImpl.java
+	66번째줄 추가
+	
+3-4)
+	BoardService.java
+	33번째줄 추가
+	
+3-5)
+	BoardServiceImpl.java
+	144번째줄 추가
+	
+3-6)
+	UserController.java
+	35번째줄 추가
+	
+4)
+	Search기능을 UserController.java에서
+	SearchController로 빼내는게 좋을거같은데
+	나중에 의견취합해서 하도록하겠습니다
+	
+
+5)
+
+	해쉬태그와 아이디로 검색 기능 구현완료
+	해쉬태그로 검색시 #를 붙이고 검색하면 검색됩니다
+	태그를 여러개 입력해도 검색을 할수있습니다
+	태그는 #로 구분짓습니다
+	
+6)
+	가로세로 비율 망치지않고 800*600유지
+	main.css
+	68번째줄
+	object-fit 추가
+	
+6-2)
+	board_list.jsp
+	47번째줄 수정
+	
+
+7)
+	회원 가입 중복 체크기능
+
+7-1)
+	checkUserIdExist 삭제
+	user_mapper , userDAO , UserDAOImpl , UserService, UserServiceImpl 에서 삭제함
+
+7-2)
+	user_mapper.xml
+	65번째줄
+	중복체크 구문 추가
+
+7-3)
+	UserDAO , UserDAOImpl , UserService, UserServiceImpl /* 0723김우주 */ 주석 참고
+	
+7-4)
+	UserController
+	160번째줄 주석달린줄 추가
+	
+7-5)
+	join.jsp
+	17번째줄 제이쿼리 추가구문추가
+	32번째줄 주석달린줄 추가
+	78번째줄 ajax 스크립트구문 추가
+	
+8)
+	회원가입창 더 매끄럽게 수정
+	
+8-1)
+	header.jsp
+	126번째줄 수정
+	회원가입창 가운데로 오게끔함
+	
+8-2)
+	알러트글 삭제함
+	8-1에 추가되어있어서 위치 기재안함
+	
+9)
+	회원가입 창 더 매끄럽게 수정
+	-발리데이션 에러가 발생할시
+	placeholder 태그 내부로 들어가게끔 수정했습니다
+	
+9-1)
+	join.jsp
+	23번째 주석줄 삽입
+	
+9-2)
+	join.jsp
+	18번째줄
+	style코드 삽입
+	
+9-3)
+	join.jsp
+	68,76,81,86,91,96 번째줄 class="er" 삽입
+	
+10)
+	비밀번호 확인 커스텀발리데이션으로 추가중에 야식먹으러감
+
+
+-------------------------------------
+	
+--0724
+
+1)
+	전재영씨 파일 합체
+	
+2)
+	board_detail.jsp
+	84번째줄 주석 추가
+	-댓글삭제
+	
+3)
+	BoardController.java
+	173번째출 댓글없애기추가
+	
+4)
+	이닛바인더를 그냥사용할시
+	모든전역변수에 이닛바인더가 먹히게되어 수정하였습니다
+	
+
+-- 자고일어나서 기능추가해야할사항
+팔로우기능 - 손승기완료
+비밀번호 , 비밀번호확인 유효성검사 6)
+댓글 번호 자동화 7)
+댓글 글쓴이 자동화 8)
+유효성검사 문구 더 매끄럽게 9)
+관리자페지이 10)
+글삭제시 댓글있으면 삭제가안됨 - 5)
+
+5)
+	 글삭제시 댓글비워주기 추가
+	reply_mapper.xml 32번째줄
+
+	
+5-2)
+	Reply-DAO,DAOImpl,Service,ServiceImpl 구문 추가
+
+5-3)
+	BoardController.java
+	89번째줄 추가
+	
+6)
+	비밀번호 , 비밀번호확인 유효성검사
+
+6-1)
+	UserCustomValidator 추가
+	
+6-2)
+	UserController.java
+	170번째줄
+	
+6-3)
+	custom_vali.properties
+	4,5번째 줄 추가
+	
+6-4)
+	수정페이지에서발리데이션 적용
+	UserController.java
+	92번째줄 수정
+	
+7)
+	댓글번호 자동화
+	
+7-1)
+	reply_mapper.xml
+	40번째줄 추가
+	
+7-2)
+	ReplyDAO
+	20번째줄
+	ReplyDAOImpl
+	38번째줄
+	ReplyServiceImpl
+	22~39줄
+7-3)
+	view딴
+	replyInsert.jsp
+	40번째줄
+	
+8)
+	댓글 글쓴이 자동화
+	replyInsert.jsp
+	41번째줄
+	<form:input type="hidden" path="id" class="input" value="${loginUser.id }"/>
+	으로 수정
+	
+9)
+	유효성 검사 수정
+9-1)
+	custom_vali.properties 수정
+	
+9-2)
+	UserDTO.java
+	28, 29번째줄
+	@NotBlank
+	@Email
+	추가
+	
+9-3)
+	join.jsp
+	31,48번째 줄 수정
+	127번째줄		alert(result); 삭제
+	
+10)
+	UserCustomValidator.java
+	19번째줄 이퀄스로 수정
+	
+11)
+	회원가입 안되던버그 수정
+	join.jsp
+	138~142번째줄 수정
+	
+12)
+	전체글 보기에서는 전체공개 글만 볼수 있도록 수정
+	
+13)
+	글번호 자동화 따로추가
+	board_mapper.xml
+	5번째줄 주석참조
+	
+13-2)
+	BoardDAO,BoardDAOImpl 0724김우주 주석
+	BoardService 37번째줄 수정
+
+14)
+	친구 글 보기에는
+	팔로우한 친구 글만 (친구공개 및 전체공개글) 볼 수 있도록 수정
+	board_mapper.xml
+	44번째줄 수정
+	
+15)
+	조태정씨 파일 합치기
+	
+16) 
+	전재영씨 파일합치기
+	-리소스폴더내 이미지
+	
+17)
+	board_list 원본 백업
+	원본에서 153번째줄 수정
