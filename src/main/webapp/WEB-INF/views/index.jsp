@@ -57,9 +57,13 @@
 			<hr>
           	<strong>DBMS: </strong>Oracle 11 xe
 			<hr>
+          	<strong>External Library: </strong>json, cos, commons (spring security 추가 예정)
+			<hr>
           	<strong>JAVA Script Plugin: </strong>JQuery
 			<hr>
           	<strong>CSS FrameWork: </strong>bulma.io v0.9.4
+			<hr>
+          	<strong>JAVA Script API: </strong>추가 예정
 			<hr>
             <p style="color: blue;"> #고봉 #프로젝트 개요 </p>
             <time datetime="2023-7-24">11:09 AM - 24 July 2023</time>
@@ -67,7 +71,6 @@
         </div>
       </div>
       <br>
-
     </div> <!-- card-wrap -->
   </div> <!-- container -->
 <c:import url="/WEB-INF/views/footer.jsp" />
