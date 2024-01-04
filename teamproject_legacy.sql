@@ -14,6 +14,7 @@ CREATE TABLE user1 (
     regdate date default sysdate not null
 );
 
+
 insert into user1 values ('test1', '테스트', '1234', 'test@naver.com', 'userimg.jpg', '010-1111-1111', default);
 select * from user1;
 insert into user1 values('test3', '테스트', '1234', 'test3@naver.com', default, '010-1234-1234', default);

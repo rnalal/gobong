@@ -194,9 +194,8 @@
 							<a href="${path }/board/boardDel?no=${boardDTO.no}"
 								class="button is-danger is-light">삭제</a>
 						</c:if>
-						<a href="${path }/board/replyInsert?no=${boardDTO.no}"
-							class="button is-warning is-light">댓글</a> <a
-							href="${path }/board/boardlist" class="button is-link is-light">목록</a>
+						
+							<a href="${path }/board/boardlist" class="button is-link is-light">목록</a>
 					</div>
 				</div>
 			</div>
