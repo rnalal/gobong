@@ -35,13 +35,13 @@ import kr.gobong.validator.BoardCustomValidator;
 public class BoardController {
 	
 	@Autowired
-	private BoardService boardService;
+	private BoardService boardService;  // 게시판서비스
 	
 	@Autowired
-	private LikeService likeService;
+	private LikeService likeService;     // 좋아요서비스
 	
 	@Autowired
-	private ReplyService replyService;
+	private ReplyService replyService;    // 댓글서비스
 	
 	@Resource(name = "loginUser")
 	@Lazy
