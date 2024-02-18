@@ -63,7 +63,8 @@ public class UserController {
 	@Resource(name = "loginUser")
 	@Lazy
 	private UserDTO loginUser;
-	
+		
+	  // 회원가입	
 	  @GetMapping("/join")
 	  public String join(@ModelAttribute("joinUserDto") UserDTO joinUserDto) {
 		return "user/join";
