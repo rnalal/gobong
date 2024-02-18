@@ -65,12 +65,12 @@ public class UserController {
 	private UserDTO loginUser;
 		
 	  // 회원가입	
-	  @GetMapping("/join")
+	  @GetMapping("/join") // GetMapping : 조회
 	  public String join(@ModelAttribute("joinUserDto") UserDTO joinUserDto) {
 		return "user/join";
 	  }
 	  
-	  @PostMapping("/join_procedure")
+	  @PostMapping("/join_procedure") // PostMapping : 저장
 	  public String joinProcedure(@Valid @ModelAttribute("joinUserDto") UserDTO joinUserDto, BindingResult result){
 		  
 	  	if(result.hasErrors()) {
