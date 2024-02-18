@@ -363,9 +363,7 @@ INSERT INTO follows VALUES ('mori', 'tama');
 COMMIT;
 
 create table introduceMe1 (id varchar2(30), content1 varchar2(1000), foreign key(id) references user1(id));
-
-
-
+select * from introduceMe1;
 
 
 >>>>>>> 8863f5b994bd097f1a308f60fd9f960d797e5e7e

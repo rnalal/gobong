@@ -15,14 +15,12 @@
   <title>회원가입</title>
 	<link rel="stylesheet" href="${data_path }/css/main.css">
 	<script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous" ></script>
-	<!-- 0723김우주 -->
 	<style>
 	.er {display:none}
 	</style>
-	<!-- 0723김우주 -->
 </head>
 <body>
-<!-- 0723김우주 -->
+
 <script>
 	$(function(){
 		let id_errors = document.getElementById('id.errors');
@@ -54,7 +52,7 @@
 
 	});
 </script>
-<!-- 0723김우주 -->
+
 <div class="container" >
 	<div class="row">
 		<div class="col-sm-3"></div>
@@ -78,7 +76,7 @@
 								</div>
 								<form:errors path="id" class="er"/>
 							</div>
-							<!-- //0723김우주 -->
+
 							
 						</div>
 						<div class="field">
@@ -117,7 +115,7 @@
 		</div>
 		<div class="col-sm-3"></div>
 	</div>
-	<!-- 0723김우주 -->
+
 	<script>
 	function duplicationCheckId(){
 		if($("#id").val().length>3){
@@ -139,12 +137,10 @@
 				alert("이미 있는 아이디 입니다");
 			}else{
 				if(confirm('사용가능한 아이디입니다 사용하시겠습니까')){
-					//예
-					/* 0724김우주 */
+					//예					
 					$("#id").attr("readonly",true);
 					$("#idChkBtn").attr("style","display:none;");
-					$("#id").attr("style","background-color:#f5f5f5;");
-					/* 0724김우주 */
+					$("#id").attr("style","background-color:#f5f5f5;");					
 				}else{
 					//아니오
 				}
@@ -157,7 +153,6 @@
 	}
 	
 	</script>
-	<!-- 0723김우주 -->
 
 </div>
 </body>

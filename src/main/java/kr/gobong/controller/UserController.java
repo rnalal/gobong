@@ -38,18 +38,15 @@ import kr.gobong.service.ReplyService;
 import kr.gobong.service.UserService;
 import kr.gobong.validator.UserCustomValidator;
 
-/* 0719김우주 */
 @Controller
 @RequestMapping("/user")
 public class UserController {
-/*//0719김우주 */	
+
 	@Autowired
 	private UserService userService;
 	
-	/* 0723김우주 */
 	@Autowired
 	private BoardService boardService;
-	/*//0723김우주 */
 	
 	@Autowired
 	private FollowsService followsService;
@@ -60,10 +57,8 @@ public class UserController {
 	@Autowired
 	private ReplyService replyService;
 	
-	/* 0727김우주 */
 	@Autowired
 	private IntroduceMeService introduceMeService; 
-	/* 0727김우주 */
 	
 	@Resource(name = "loginUser")
 	@Lazy
@@ -103,7 +98,7 @@ public class UserController {
 				return "user/login_fail";
 			}
 		}
-		/* 0719 손승기 */
+
 		//마이페이지 이동
 		@GetMapping("/mypage")
 		public String myPage(@ModelAttribute("userInfo") UserDTO userInfo) {
@@ -114,12 +109,10 @@ public class UserController {
 		//정보수정하기
 		@PostMapping("/userInfoModifyPro")
 		public String userInfoModifyPro(@Valid @ModelAttribute("userInfo") UserDTO userInfo, BindingResult result) {
-			/* 0724김우주 */
 			if(result.hasErrors()) {			
 				return "user/mypage";
 			}
 			userService.userModifyPro(userInfo);
-			/* 0724김우주 */
 			return "redirect:/user/mypage";
 		}
 		
@@ -127,7 +120,6 @@ public class UserController {
 		@GetMapping("/profile")
 		public String getUserProfile(@RequestParam("id") String id, UserDTO userInfo, Model model) {
 			model.addAttribute("id", id);
-			/* 0721 손승기 */
 			int followingCnt = followsService.followingCnt(id);
 			model.addAttribute("followingCnt", followingCnt);
 
@@ -140,7 +132,6 @@ public class UserController {
 			List<FollowsDTO> followerList = followsService.followerList(id);
 			model.addAttribute("followerList", followerList);
 			//System.out.println(followerList);
-			/* 0721 손승기 */
 			List<UserVO> userProfile = userService.getUserProfile(id);
 			//System.out.println("userProfile : " + userProfile);
 			model.addAttribute("userProfile", userProfile);
@@ -150,14 +141,12 @@ public class UserController {
 			
 			model.addAttribute("userInfo", userInfo);
 			
-		    /* 0727김우주*/
 		    String introdueMe_content1 = introduceMeService.getMyIntroduceInfo(id);
 		    model.addAttribute("introdueMe_content1", introdueMe_content1);
-		  /* 0727김우주*/
+
 			return "user/profile"; 
 		}
-		/* 0719 손승기 */
-		/* 김우주0720 */
+
 		//로그아웃
 		@GetMapping("/logout")
 		public String logout(HttpServletRequest request, HttpServletResponse response) {
@@ -174,17 +163,14 @@ public class UserController {
 			return "redirect:/";
 		}
 		
-		/*//김우주0720 */
-		
-		/*조태정 0721*/
-		/* 김우주0725 */		
+	
 		//탈퇴
 		@GetMapping("/userDel")
 		public String userDel(@RequestParam("id") String id, Model model){
-			/* 0727김우주 */
+
 			//자기소개 페이지 삭제
 			introduceMeService.deleteMyIntroduceForDeleteUser(id);
-			/* 0727김우주 */
+
 			//모든 댓글 삭제
 			userService.deleteReplyForUserDelete(id);
 			//모든 좋아요 삭제
@@ -205,8 +191,7 @@ public class UserController {
 			model.addAttribute("id", id);
 			return "user/user_del";
 		}
-		/*//김우주0725 */
-		/* 김우주0723 해쉬태그인지 아닌지 수정했습니다	*/
+
 		@GetMapping("/searchUser")
 		public String searchUser(@RequestParam("id") String id, Model model) {
 			//System.out.println(id);
@@ -217,10 +202,10 @@ public class UserController {
 				model.addAttribute("userProfile", userProfile);
 				model.addAttribute("search", search);
 				model.addAttribute("id", id);
-			    /* 0727김우주*/
+				
 			    String introdueMe_content1 = introduceMeService.getMyIntroduceInfo(id);
 			    model.addAttribute("introdueMe_content1", introdueMe_content1);
-			    /* 0727김우주*/
+
 				return "user/searchPage";
 			}else {
 				String hashtag = "#%"+id.substring(1)+"%";
@@ -229,18 +214,14 @@ public class UserController {
 				return "board/board_list";
 			}
 		}
-		/*//김우주0723	*/
-		/*조태정 0721*/
-		
-		/* 김우주0723	*/
+
 		//아이디 중복체크
 		@GetMapping("/duplicationCheckId.do")
 		@ResponseBody
 		public int duplicationCheckId(@RequestParam String id) {
 			return userService.duplicationCheckId(id);
 		}
-		/* 김우주0723	*/
-		/*0724이재호*/
+
 		//내가 좋아요 누른 글 목록
 		@GetMapping("/myLikeList")
 		public String myLikeList(Model model){
@@ -248,11 +229,8 @@ public class UserController {
 			model.addAttribute("myLikeList", myLikeList);
 			return "user/myLikeList";
 		}
-		/*//0724 이재호 */	
 		
 		
-		/*이재호0725*/
-		/* 0726김우주 댓글수정했습니다*/
 		//내가 쓴 댓글보기
 		@GetMapping("/myReply")
 		public String myReply(Model model) {
@@ -262,7 +240,6 @@ public class UserController {
 			return "user/myReply";
 		}		
 		
-		/* 김우주0727	*/
 		@GetMapping("/introduceMe")
 		public String firstIntroduceMe(@RequestParam int sw,Model model) {
 			//sw 0 은 새로만들기 sw 1은 수정
@@ -279,15 +256,12 @@ public class UserController {
 			}
 		}
 		
-		/* 김우주0727	*/
-		
-		
-		/* 김우주0724	*/
+
 		//커스텀발리데이션
 		@InitBinder({"joinUserDto","userInfo"})
 		public void initBinder(WebDataBinder binder) {
 			UserCustomValidator ucv = new UserCustomValidator();
 			binder.addValidators(ucv);
 		}
-		/* 김우주0724	*/
+
 }

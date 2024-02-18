@@ -15,11 +15,9 @@ public class UserDTO {
 	@Pattern(regexp = "[a-zA-Z0-9]*")
 	private String id;
 
-	/* 김우주0720	*/
 	@Size(min = 2, max = 6)
 	@Pattern(regexp = "[가-힣]*")
 	private String name;
-	/*//김우주0720	*/
 	
 	@Size(min = 4, max = 20)
 	@Pattern(regexp = "[a-zA-Z0-9]*")
@@ -32,9 +30,7 @@ public class UserDTO {
 	private String tel;
 	private String regdate;
 	
-	//0719 손승기
 	private MultipartFile upload_img;
-	//0719 손승기
 	
 	private String img;
 
@@ -42,9 +38,7 @@ public class UserDTO {
 	@Pattern(regexp = "[a-zA-Z0-9]*")
 	private String pw2;
 
-    //0718손승기
     private boolean userLogin; // 로그인 상태인지 아닌지 여부를 저장하는 멤버변수
-    //0718손승기
 
 	public String getId() {
 		return id;

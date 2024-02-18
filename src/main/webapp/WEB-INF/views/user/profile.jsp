@@ -16,7 +16,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@300;400&family=Orbit&display=swap" rel="stylesheet">
-    <title>Document</title>
+    <title>프로필</title>
 	<link rel="stylesheet" href="${data_path }/css/profile.css">
 	<link rel="stylesheet" href="${data_path }/css/main.css">
 	<link rel="stylesheet" href="${data_path }/css/footer.css">

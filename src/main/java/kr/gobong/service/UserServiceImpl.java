@@ -57,7 +57,7 @@ public class UserServiceImpl implements UserService {
 		}
 		userDao.addUserInfo(joinUserDto);
 	}
-	/* 0719 손승기 */
+
 	@Override
 	public void getUserInfo(UserDTO userInfo) {
 		
@@ -107,9 +107,7 @@ public class UserServiceImpl implements UserService {
 	public List<UserVO> getUserProfile(String id) {
 		return userDao.getUserProfile(id);
 	}
-	/* 0719 손승기 */
-	
-	/* 조태정0721 */
+
 	//탈퇴
 	@Override
 	public void userDel(String id) {
@@ -120,18 +118,13 @@ public class UserServiceImpl implements UserService {
 	public List<UserVO> searchUser(String id) {
 		return userDao.searchUser(id);
 	}
-	/* 조태정0721 */
-	
-	
-	/* 0723김우주 */
+
 	//아이디 중복체크
 	@Override
 	public int duplicationCheckId(String id) {
 		return userDao.duplicationCheckId(id);
 	}
-	/* 0723김우주 */
-	
-	/* 0725김우주 */
+
 	@Override
 	public void deleteReplyForUserDelete(String id) {
 		userDao.deleteReplyForUserDelete(id);
@@ -161,6 +154,6 @@ public class UserServiceImpl implements UserService {
 	public void deleteFollowsForUserDelete(String id) {
 		userDao.deleteFollowsForUserDelete(id);						
 	}
-	/* 0725김우주 */
+
 	
 }

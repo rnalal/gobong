@@ -30,7 +30,7 @@ public class UserDAOImpl implements UserDAO {
 	public void addUserInfo(UserDTO joinUserDto) {
 		sqlSessionTemplate.insert("user1.addUserInfo", joinUserDto);
 	}
-	/* 0719 손승기 */
+
 	@Override
 	public UserDTO getUserInfo(String id) {
 		return sqlSessionTemplate.selectOne("user1.getUserInfo", id);
@@ -45,9 +45,7 @@ public class UserDAOImpl implements UserDAO {
 	public List<UserVO> getUserProfile(String id) {
 		return sqlSessionTemplate.selectList("user1.getUserProfile", id);
 	}
-	/* 0719 손승기 */
 
-	/* 0721 조태정 */
 	@Override
 	public void userDel(String id) {
 		sqlSessionTemplate.delete("user1.userDel", id);
@@ -57,16 +55,12 @@ public class UserDAOImpl implements UserDAO {
 	public List<UserVO> searchUser(String id) {
 		return sqlSessionTemplate.selectList("user1.searchUser", id);
 	}
-	/* 0721 조태정 */
-	
-	/* 0723김우주 */
+
 	@Override
 	public int duplicationCheckId(String id) {
 		return sqlSessionTemplate.selectOne("user1.duplicationCheckId", id);
 	}
-	/* 0723김우주 */
-	
-	/* 0725김우주 */
+
 	@Override
 	public void deleteReplyForUserDelete(String id) {
 		sqlSessionTemplate.delete("deleteUser.deleteReplyForUserDelete", id);
@@ -95,5 +89,5 @@ public class UserDAOImpl implements UserDAO {
 	public void deleteFollowsForUserDelete(String id) {
 		sqlSessionTemplate.delete("deleteUser.deleteFollowsForUserDelete", id);						
 	}
-	/* 0725김우주 */
+
 }
