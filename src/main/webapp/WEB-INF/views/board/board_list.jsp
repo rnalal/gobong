@@ -64,27 +64,20 @@
 								<p class="subtitle is-6">${boardDTO.id}</p>
 								<span style="margin-top: -80px;">
 									<c:if test="${boardDTO.id==loginUser.id}">
-								<!-- 0724박지현 -->
 								<a href="${path }/board/boardEdit?no=${boardDTO.no}" class="button is-success is-light">수정</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								<!-- 0724박지현 -->
                   						<a href="${path }/board/boardDel?no=${boardDTO.no}" class="button is-danger is-light">삭제</a>
 									</c:if>
 								</span>
 							</div>
 						</div>
 						<div class="content">
-						<!-- 0725김우주 -->
 							<p class="content1" style="white-space: pre-wrap;">${boardDTO.content }</p>
-							<!-- 0725김우주 -->
 							<p style="color: blue;">${boardDTO.hashtag }</p>
 							<time>${boardDTO.regdate }</time>
 						</div>
 
-						<!-- 김우주0719 -->
 						<div class="field" style="padding-bottom:60px; margin-top: -15px;">
 						<div style="padding-top:5px; margin-right: 10px; float: left;">
-								<!-- 0723전재영 -->
-								<!-- 0725김우주 -->
 									<c:choose>
 										<c:when test="${loginUser.userLogin == true }">
 												<img src="${data_path}/img/reply.png" style="cursor : pointer" onclick="goReplyPage(${boardDTO.no})">
@@ -94,9 +87,6 @@
 										</c:otherwise>
 									</c:choose>	
 									<strong> ${boardDTO.reply_cnt }</strong>
-								<!-- 0725김우주 -->
-								<!-- 0723전재영 -->
-							<!-- 0720김우주 -->
 							</div>
 							<div style="float: left;">
 									<c:choose>
@@ -133,13 +123,11 @@
 								</c:if>
 							</div>
 						</div>
-						<!-- //김우주0721 -->
 					</div>
 				</div>
 			</div>
 		</c:forEach>
 	</div>
-	<!-- 0725김우주 -->
 	<script>
 	function goReplyPage(no){
 		const popupWidth = 830;
@@ -150,8 +138,6 @@
 				'width=830px,height=520px,scrollbars=no,location=no,left='+popupLeft+',top='+popupTop);
 	}
 	</script>
-	<!-- 0725김우주 -->
-	<!-- 김우주0722 -->
 	<script>
 	          	function like_check(like,no,id,cnt){
 	          		let chk_sw;
@@ -212,7 +198,6 @@
 		          	}
 	          	}
 	          </script>
-	     <!-- //김우주0722 -->
 <c:import url="/WEB-INF/views/footer.jsp" />
 </body>
 </html>

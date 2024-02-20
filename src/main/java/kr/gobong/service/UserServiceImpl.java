@@ -27,6 +27,19 @@ public class UserServiceImpl implements UserService {
 	
 	@Autowired
 	HttpServletRequest request;
+		
+	// 회원가입
+	@Override
+	public void addUserInfo(UserDTO joinUserDto) {
+		
+		MultipartFile upload_img = joinUserDto.getUpload_img();
+		
+		if(upload_img.getSize() > 0) {
+			String fileName = saveUploadFile(upload_img);
+			joinUserDto.setImg(fileName);
+		}
+		userDao.addUserInfo(joinUserDto);
+	}
 	
 	@Override
 	public void getUserLogin(UserDTO tmpUserLogin) {
@@ -46,17 +59,6 @@ public class UserServiceImpl implements UserService {
 		return userDao.getUserTest(id);
 	}
 	
-	@Override
-	public void addUserInfo(UserDTO joinUserDto) {
-		
-		MultipartFile upload_img = joinUserDto.getUpload_img();
-		
-		if(upload_img.getSize() > 0) {
-			String fileName = saveUploadFile(upload_img);
-			joinUserDto.setImg(fileName);
-		}
-		userDao.addUserInfo(joinUserDto);
-	}
 
 	@Override
 	public void getUserInfo(UserDTO userInfo) {

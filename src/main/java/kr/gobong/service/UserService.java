@@ -10,7 +10,7 @@ public interface UserService {
 
 	public UserDTO getUserTest(String id);
 
-	public void addUserInfo(UserDTO joinUserDto);
+	public void addUserInfo(UserDTO joinUserDto); // 회원가입
 	
 	public void getUserLogin(UserDTO tmpUserLogin);	//로그인
 

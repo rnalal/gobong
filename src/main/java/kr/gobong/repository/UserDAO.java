@@ -10,7 +10,7 @@ public interface UserDAO {
 
 	
 	public UserDTO getUserTest(String id);
-	public void addUserInfo(UserDTO joinUserDto);
+	public void addUserInfo(UserDTO joinUserDto); // 회원가입
 	public UserDTO getUserLogin(UserDTO tmpUserLogin);	//로그인
 
 	public UserDTO getUserInfo(String id);	//마이페이지 정보 불러오기

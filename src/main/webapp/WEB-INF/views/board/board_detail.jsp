@@ -89,7 +89,6 @@
 						<div class="img_wrap">
 							<figure class="image is-4by3 imgsize">
 								<input type="hidden" name="no" value="${boardDTO.no }" />
-								<!-- 0725김우주 -->
 								<c:set var="img_cnt" value="0" />
 								<div class="img">
 									<img src="${data_path }/upload/${boardDTO.img1 }"
@@ -110,7 +109,6 @@
 											style="left: 1600px">
 									</div>
 								</c:if>
-								<!-- //0725김우주 -->
 							</figure>
 						</div>
 						<c:if test="${!empty boardDTO.img2 }">
@@ -125,9 +123,7 @@
 					<div class="media">
 						<div class="media-left">
 							<figure class="image is-48x48">
-							<!-- 0726김우주 -->
 								<a href="${path }/user/profile?id=${boardDTO.id}"><img src="${data_path }/upload/${boardDTO.img }" alt="작성자사진"></a>
-							<!-- //0726김우주 -->
 							</figure>
 						</div>
 						<div class="media-content">
@@ -141,7 +137,18 @@
 						<time datetime="2016-1-1">${boardDTO.regdate }</time>
 					</div>
 					<div class="field" style="padding-bottom:60px; margin-top: -15px;">
-					<div class="content1">
+					<div class="content1">					
+						<div style="padding-top:5px; margin-right: 10px; float: left;">
+										<c:choose>
+											<c:when test="${loginUser.userLogin == true }">
+													<img src="${data_path}/img/reply.png" style="cursor : pointer" onclick="goReplyPage(${boardDTO.no})">
+											</c:when>
+											<c:otherwise>
+													<input type="image" src="${data_path}/img/reply.png" onclick="goClick()"/>			
+											</c:otherwise>
+										</c:choose>	
+										<strong> ${boardDTO.reply_cnt }</strong>
+						</div>			
 					<div style="float: left;">
 									<c:choose>
 										<c:when test="${loginUser.userLogin == true }">
@@ -151,10 +158,9 @@
 												<input type="image" src="${data_path}/img/heart.png" onclick="goClick()"/>			
 										</c:otherwise>
 									</c:choose>	
-							    <strong class="reload_like" >${boardDTO.up }</strong>
+							    <strong class="reload_like$" >${boardDTO.up }</strong>
 								<c:if test="${boardDTO.up > 0 }">
-								<p id="like_result" style="margin-top: 3px;">이 글을 좋아하는 사람 
-								</p>
+								<p id="like_result" style="margin-top: 3px;">이 글을 좋아하는 사람 </p>
 									<script>
 					          			$.ajax({
 					          				type:"get",
@@ -178,14 +184,19 @@
 								</c:if>
 							</div>
 							</div>
-						<div class="card-body">
-							<textarea id="reply-content" class="form-control" rows="1"
-								placeholder="댓글을 입력하세요"
-								style="width: 100%; height: 135px; resize: none; font-size: 1.3em; border: 1px solid rgba(0, 0, 0, 0.1); padding: 10px"></textarea>
-							<input type="button" class="button is-warning is-light"
-								onclick="replyInsert(${boardDTO.no },'${loginUser.id }')"
-								style="float: right" value="댓글등록">
-						</div>
+																				
+								<div class="card-body">
+									<c:choose>
+										<c:when test="${loginUser.userLogin == true }">	
+										<textarea id="reply-content" class="form-control" rows="1"
+											placeholder="댓글을 입력하세요"
+											style="width: 100%; height: 135px; resize: none; font-size: 1.3em; border: 1px solid rgba(0, 0, 0, 0.1); padding: 10px"></textarea>								
+										<input type="button" class="button is-warning is-light" 
+											onclick="replyInsert(${boardDTO.no },'${loginUser.id }')" 
+											style="float: right" value="댓글등록">		
+										</c:when>
+									</c:choose>																		
+								</div>
 					</div>
 					<div style="align: center;">
 						<c:if test="${boardDTO.id==loginUser.id}">
@@ -201,31 +212,32 @@
 			</div>
 		</div>
 	</div>
+	
 	<script>
-function replyInsert(no,id){
-		let replyContent = $("#reply-content").val();	
-		if(replyContent.length>=167){
-			alert("최대글자수를 초과합니다 (현재글자수 :"+replyContent.length+") 166자 이하여야 합니다");
-		}else{
-		 	$.ajax({
-				type: "POST",
-	          url: "${path}/board/replyInsert.do",
-	          data: {no:no,id:id,comment1:replyContent},
-	          encType: "UTF-8",
-	          success: function(){
-	          	alert("댓글을 등록했습니다");
-	          	$("#reply-content").val("");
-	          	$(".container1").load(location.href+' .container1');
-	          },
-	          error :function (result){
-	          	alert("댓글쓰기 실패");
-	          }
-	      	});
-		}
+		function replyInsert(no,id){
+				let replyContent = $("#reply-content").val();	
+				if(replyContent.length>=167){
+					alert("최대글자수를 초과합니다 (현재글자수 :"+replyContent.length+") 166자 이하여야 합니다");
+				}else{
+				 	$.ajax({
+						type: "POST",
+			          url: "${path}/board/replyInsert.do",
+			          data: {no:no,id:id,comment1:replyContent},
+			          encType: "UTF-8",
+			          success: function(){
+			          	alert("댓글을 등록했습니다");
+			          	$("#reply-content").val("");
+			          	$(".container1").load(location.href+' .container1');
+			          },
+			          error :function (result){
+			          	alert("댓글쓰기 실패");
+			          }
+			      	});
+				}
+		
+		  }
+	</script>
 
-  }
-</script>
-	<!-- 전재영0723 -->
 	<div class="container1" style="padding-top: 40px;">
 		<c:forEach items="${replyList}" var="replyDTO" varStatus="cnt">
 			<div class="card-wrap">
@@ -234,9 +246,7 @@ function replyInsert(no,id){
 						<div class="media">
 							<div class="media-left">
 								<figure class="image is-48x48">
-								<!-- 0726김우주 -->
 									<a href="${path }/user/profile?id=${replyDTO.id}"><img src="${data_path }/upload/${replyDTO.img }" alt="작성자사진"></a>
-								<!-- 0726김우주 -->
 								</figure>
 							</div>
 							<div class="media-content">
@@ -249,11 +259,9 @@ function replyInsert(no,id){
 						<div>
 							<c:if
 								test="${boardDTO.id==loginUser.id || replyDTO.id==loginUser.id}">
-								<!-- 0724김우주 -->
 								<a
 									href="${path }/board/replyDel?rno=${replyDTO.rno}&no=${boardDTO.no}"
 									class="button is-danger is-light">댓글삭제</a>
-								<!-- 0724김우주 -->
 							</c:if>
 						</div>
 					</div>
@@ -261,10 +269,8 @@ function replyInsert(no,id){
 			</div>
 		</c:forEach>
 	</div>
-	<!-- 전재영0723 -->
 
 	<!-- 이미지 슬라이드 -->
-	<!-- 0725김우주 -->
 	<script>
       $(document).ready(function(){
           // 오른쪽 화살표를 클릭하면 img_wrap이 left기준으로
@@ -291,7 +297,6 @@ function replyInsert(no,id){
             });
           });//end
   </script>
-  <!-- 0725김우주 -->
 	<!-- // 이미지 슬라이드 -->
 	<script>
 	          	function like_check(like,no,id){
