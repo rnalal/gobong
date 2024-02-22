@@ -17,7 +17,7 @@
 	<link rel="stylesheet" href="${data_path }/css/main.css">
 	<link rel="stylesheet" href="${data_path }/css/footer.css">
 <style>
- .title {color:red}
+ .title {color:black}
 </style>
 </head>
 <body>
@@ -32,7 +32,7 @@
 		          	<div class="media">
 		            	<div class="media-left">
 		              		<figure class="image is-48x48">	
-		              			<img src="${data_path }/img/${boardDTO.img }" alt="작성자사진">
+		              			<img src="${data_path }/upload/${boardDTO.img }" alt="작성자사진">
 		              		</figure>
 		              	</div>
 		              	<div class="media-content">
