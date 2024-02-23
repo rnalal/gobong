@@ -47,7 +47,6 @@ public class BoardController {
 	@Lazy
 	private UserDTO loginUser;
 	
-	/* 전재영0718 */
 	// 글 목록 보기
 	@GetMapping("/boardlist")
 	public String boardList(Model model) {
@@ -57,9 +56,7 @@ public class BoardController {
 
 		return "board/board_list";
 	}
-	/*//전재영0718 */
 	
-	/* 이재호0718 */
 	//글쓰기페이지
 	@GetMapping("/boardInsert")
 	public String boardInsert(@ModelAttribute BoardDTO boardInsert, Model model) {
@@ -79,18 +76,12 @@ public class BoardController {
 		return "index";
 	}
 
-	/*//이재호0718 */
-	
-	/* 0719 조태정*/
 	//글 삭제
 	 @GetMapping("/boardDel") 
 	 public String boardDel(@RequestParam("no") int no, Model model) {
-		 /* 0719김우주 */
+
 		 likeService.deleteLikeForBoard(no);
-		 /* 0719김우주 */
-		 /* 0724김우주 */
 		 replyService.deleteReplyForBoard(no);
-		 /* 0724김우주 */
 		 boardService.boardDel(no);
 		 model.addAttribute("no", no);
 		 return "board/board_del";
@@ -106,20 +97,16 @@ public class BoardController {
 		return "board/board_list";
 	}
 	 
-	/* 0719 조태정 */
-	
-	
-	/* 전재영0719 */
 	// 글 상세보기
-	   // 박지현,전재영 0721  - 상세페이지에서 댓글보기
+	   // 상세페이지에서 댓글보기
 	   @GetMapping("/boarddetail")
 	   public String boardDetail(HttpServletRequest request, Model model) {
 	      
 	      int no = Integer.parseInt(request.getParameter("no"));
-	  	/* 0726김우주 */
+	  	
 	      BoardDTO boardDTO = boardService.getBoardDetail(no);
 	      List<ReplyVO> replyList = boardService.getReplyList(no);
-	  	/* 0726김우주 */
+	  	
 	      model.addAttribute("boardDTO", boardDTO);
 	      model.addAttribute("replyList", replyList);
 	      return "board/board_detail";
@@ -156,7 +143,6 @@ public class BoardController {
 		//no추가
 		return "redirect:/board/boarddetail?no="+no;
 	}
-	/* //0719전재영*/
 	
 	
 	//댓글 쓰기
@@ -174,14 +160,13 @@ public class BoardController {
 		return "board/board_detail";
 	}
 	
-	/* 김우주0723 */
+	// 댓글 삭제하기
 	@GetMapping("replyDel")
 	public String replyDel(@RequestParam("rno") int rno,@RequestParam("no") int no) {
 		replyService.deleteReply(rno);
 		return "redirect:/board/boarddetail?no="+no;
 	}
 	
-	/* 김우주0724 */
 	//댓글쓰기 ajax로 사용
 	@PostMapping("/replyInsert.do")
 	@ResponseBody
@@ -190,7 +175,6 @@ public class BoardController {
 	}
 	
 	
-	/*//김우주0724 */
 	
 	
 	//커스텀밸리데이션
@@ -207,5 +191,5 @@ public class BoardController {
 		binder.addValidators(bcv);
 		
 	}
-	/* 김우주0723 */
+
 }
