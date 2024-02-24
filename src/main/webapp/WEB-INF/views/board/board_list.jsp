@@ -31,7 +31,39 @@
 }
 
 .card {
-	margin-bottom: 40px;
+	margin-bottom: 40px;	
+}
+
+.pj_wrap {
+	width: 100%;
+	height: 600px;
+	margin: 1px auto;
+	padding: 0;
+	position: relative;
+	overflow: hidden;
+}
+
+.img_wrap {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: flex;
+}
+
+.img {
+	width: 100%;
+	height: 100%;
+	font-size: 30px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	box-sizing: border-box;
+}
+
+.imgsize {
+	width: 100%;
 }
 </style>
 </head>
@@ -41,35 +73,32 @@
 		<c:forEach items="${boardList}" var="boardDTO" varStatus="cnt">
 			<div class="card-wrap">
 				<div class="card">
-					<div class="card-image">
-						<figure class="image is-4by3">
-							<a href="${path }/board/boarddetail?no=${boardDTO.no}">
-								<img class="obfit" src="${data_path }/upload/${boardDTO.img1 }" alt="글사진">
-							</a>
-						</figure>
-					</div>
-					<div class="card-content">
 						<div class="media" style="margin-bottom: 1px;">
 							<div class="media-left">
 								<figure class="image is-48x48">
 									<a href="${path }/user/profile?id=${boardDTO.id}"><img src="${data_path }/upload/${boardDTO.img }" alt="작성자 사진"></a>
-<%-- 								<img src="${data_path }${boardDTO.img }" alt="작성자사진"> 
-											user1 테이블에서 사용자 이미지 가져오기
-
---%>
 								</figure>
 							</div>
 							<div class="media-content">
 								<p class="title is-4">${boardDTO.name}</p>
 								<p class="subtitle is-6">${boardDTO.id}</p>
-								<span style="margin-top: -80px;">
-									<c:if test="${boardDTO.id==loginUser.id}">
-								<a href="${path }/board/boardEdit?no=${boardDTO.no}" class="button is-success is-light">수정</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  						<a href="${path }/board/boardDel?no=${boardDTO.no}" class="button is-danger is-light">삭제</a>
-									</c:if>
-								</span>
 							</div>
+						</div>			
+					<div class="card-image">
+					 <div class="pj_wrap">
+						<div class="img_wrap">
+							<figure class="image is-4by3 imgsize">
+							 <div class="img">
+								<a href="${path }/board/boarddetail?no=${boardDTO.no}">
+									<img src="${data_path }/upload/${boardDTO.img1 }" width="800px;" height="600px;"  alt="글사진" style="left: 0px">
+								</a>
+							 </div>	
+							</figure>
 						</div>
+					  </div>	
+					</div>
+					<div class="card-content">
+	
 						<div class="content">
 							<p class="content1" style="white-space: pre-wrap;">${boardDTO.content }</p>
 							<p style="color: blue;">${boardDTO.hashtag }</p>

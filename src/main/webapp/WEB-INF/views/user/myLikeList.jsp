@@ -30,8 +30,7 @@
 	<div class="container">
 
 		<div class="card-wrap">
-			<h2 style="font-size: 2em; margin-bottom: 3%; text-align: center;">
-				따봉 누른 게시글</h2>
+			<h2 style="font-size: 2em; margin-bottom: 3%; text-align: center;">따봉 누른 게시글</h2>
 			<div class="card-wrap" id="board_wrap">
 
 				<c:forEach items="${myLikeList }" var="like">

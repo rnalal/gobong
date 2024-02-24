@@ -25,51 +25,31 @@
 	<c:import url="/WEB-INF/views/header.jsp" />
 <div class="container">
 	<div class="card-wrap">
-	  <article class="media">
+	  <article class="media" style="background-color: #fcf9d8">
 	    <div class="media-left">
 	      <figure class="image is-128x128">
-	        <img id="profile_img" src="${data_path }/upload/${search[0].img }" alt="profileImage" style="border-radius:50%;">
+	        <img class="is-rounded" id="profile_img" src="${data_path }/upload/${search[0].img }" alt="profileImage" >
 	      </figure>
 	    </div>
 	    <div class="media-content">
 	      <div class="content">
 	        <p id="my_introduce">
-	          <strong>${search[0].name }</strong> <small>@${search[0].id }</small><br>
-	          <!-- 0727김우주 -->
+	          <strong style="font-size:30px;">${search[0].name }</strong>&nbsp;&nbsp;<small style="font-size:20px;">@${search[0].id }</small><br>
 	          ${introdueMe_content1 }
-	          <!-- 0727김우주 -->
-	        </p>
-	        
+	        </p>	        
 	      </div>
-	      <!-- 0721 손승기 -->
 	      <div>
-	      <c:if test="${loginUser.id == search[0].id }">
-	      	<a href="${path }/user/mypage" class="button">정보 수정</a>
-	      	<!-- 0727김우주 -->
-	      	<c:if test="${empty introdueMe_content1 }">
-	      	<!-- 자기소개가 없을경우 -->
-	      	<input type="button" class="button" value="자기소개 수정" onclick="introduceMe(0)">
-	      	</c:if>
-	      	<c:if test="${!empty introdueMe_content1 }">
-	      	<input type="button" class="button" value="자기소개 수정" onclick="introduceMe(1)">
-	      	</c:if>
-	      	<script>
-	      	function introduceMe(sw){
-	    		const popupWidth = 830;
-	    		const popupHeight = 510;
-	    		const popupLeft = window.screen.width/2 - popupWidth/2;
-	    		const popupTop = window.screen.height/2 - popupHeight/2;
-	      		window.open("${path }/user/introduceMe?sw="+sw, '자기소개수정',
-	    				'width=830px,height=520px,scrollbars=no,location=no,left='+popupLeft+',top='+popupTop);
-	      	}
-	      	</script>
-	      	<!-- 0727김우주 -->
-	      
-	      </c:if>
+
 	      <!-- href="${path }/follows/followingList?id=${userProfile[0].id}" -->
 	      <!-- href="${path }/follows/followerList?id=${userProfile[0].id}" -->
-	      	<a class="followCtn" onclick="followingList()"><strong>팔로잉</strong>&nbsp;<strong>${followingCnt }</strong></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	      	<a class="followCtn" onclick="followerList()"><strong>팔로워</strong>&nbsp;<strong>${followerCnt }</strong></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	      	<a class="followCtn" onclick="followingList()">
+	      		<strong>팔로잉</strong><br>&nbsp;&nbsp;&nbsp;
+	      		<strong>${followingCnt }</strong>
+      		</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	      	<a class="followCtn" onclick="followerList()">
+	      		<strong>팔로워</strong><br>&nbsp;&nbsp;&nbsp;
+	      		<strong>${followerCnt }</strong>
+      		</a>
 	      	<c:if test="${loginUser.userLogin == true && loginUser.id != search[0].id }">
 	      		<c:if test="${fn:contains(followerList ,id) == false }">
 	      			<a href="${path }/follows/doFollow?followingId=${search[0].id}&name=${search[0].name}" class="doFollow"><strong>팔로우 하기 | </strong></a>
@@ -79,16 +59,54 @@
 	      		</c:if>
 	      	</c:if>
 	      </div>
-	      <!-- 0721 손승기 -->
 	    </div>
 	  </article>
-	      <!-- 0720 손승기 게시글이미지 영역 -->
-		<div class="card-wrap" id="board_wrap">
-			<c:forEach var="board" items="${userProfile}">
-				<a href="${path }/board/boarddetail?no=${board.no}"><img id="board_img" src="${data_path }/upload/${board.img1 }" alt="boardPreview"></a>
-			</c:forEach>		
+	  	
+		  	<!-- 정보수정, 자기소개수정 버튼 - 자기소개수정은 팝업창으로 -->
+		  	<div class="buttons has-addons is-centered" style="margin-top:10px;">
+			  	 <c:if test="${loginUser.id == search[0].id }">
+			  	 	<div class="prof" style="width:300px;">
+			      		<a href="${path }/user/mypage" class="button is-fullwidth">정보수정</a>
+				    </div>
+				    <div class="prof" style="width:300px;">
+				      	<c:if test="${empty introdueMe_content1 }">
+					      	<!-- 자기소개가 없을경우 -->
+					      	<input type="button" class="button is-fullwidth" value="자기소개 입력" onclick="introduceMe(0)">
+				      	</c:if>
+				      	<c:if test="${!empty introdueMe_content1 }">
+					      	<input type="button" class="button is-fullwidth" value="자기소개 수정" onclick="introduceMe(1)">
+				     	</c:if>
+				     </div>	
+			      	<script>
+				      	function introduceMe(sw){
+				    		const popupWidth = 830;
+				    		const popupHeight = 510;
+				    		const popupLeft = window.screen.width/2 - popupWidth/2;
+				    		const popupTop = window.screen.height/2 - popupHeight/2;
+				      		window.open("${path }/user/introduceMe?sw="+sw, '자기소개수정',
+				    				'width=830px,height=520px,scrollbars=no,location=no,left='+popupLeft+',top='+popupTop);
+				      	}
+			      	</script>	      
+			      </c:if>
+			</div>
+	  
+	  
+	      <!--게시글이미지 영역 -->
+	    <div class="columns is-gapless">
+	     <div class="column" >
+			<div class="board_wrap" id="board_wrap">
+				<c:forEach var="board" items="${userProfile}">
+					<div class="proimg" style="width:700px; margin:auto;">
+						<a href="${path }/board/boarddetail?no=${board.no}">
+								<img id="board_img" src="${data_path }/upload/${board.img1 }" alt="boardPreview" style="margin-right:10px; margin-bottom:10px;">
+						</a>	
+					</div>
+				</c:forEach>		
+			</div>
+		 </div>	
 		</div>
-		<!-- 0720 손승기 게시글이미지 영역 -->
+		<!--게시글이미지 영역 -->
+		
 	      <nav class="level is-mobile">
 	        <div class="level-left">
 	          <a class="level-item" aria-label="reply">

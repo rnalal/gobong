@@ -1,6 +1,6 @@
 @charset "UTF-8";
 /* profile.jsp 스타일 */
-/* 0725김우주 */
+
 .container {
 	min-height: 520px
 }
@@ -11,7 +11,7 @@
 }
 
 .media {
-	background-color: #faf5f5;
+	background-color: #fcf9d8;
 	height: 160px;
 }
 
@@ -21,14 +21,14 @@
 }
 
 #board_wrap {
-	background-color: #faf5f5;
+	background-color: #fcf9d8;
 }
 
 #board_img {
 	display: block;
 	float: left;
 	height: 200px;
-	width: 25%;
+	width: 30%;
 	box-sizing: border-box;
 }
 
@@ -36,15 +36,15 @@
 	width: 128px;
 	height: 128px;
 }
-/* 0725김우주 */
+
 .followCtn, .doFollow {
 	color: black;
 	float: right;
-	margin-right: 14px;
+	margin-right: 40px;
 }
 
 .followCtn:hover, .doFollow:hover {
-	color: #e6da5a;
+	color: #ff8080;
 }
 
 #followingListPopup, #followerListPopup {

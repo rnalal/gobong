@@ -25,7 +25,6 @@
 <link rel="stylesheet" href="${data_path }/css/main.css">
 <link rel="stylesheet" href="${data_path }/css/footer.css">
 <style>
-/* 0725김우주 */
 /* 스타일부분 수정 */
 .pj_wrap {
 	width: 100%;
@@ -82,7 +81,18 @@
 	<c:import url="/WEB-INF/views/header.jsp" />
 	<div class="container">
 		<div class="card-wrap">
-			<div class="card">
+			<div class="card">		
+					<div class="media" >
+							<div class="media-left">
+								<figure class="image is-48x48">
+									<a href="${path }/user/profile?id=${boardDTO.id}"><img src="${data_path }/upload/${boardDTO.img }" alt="작성자사진"></a>
+								</figure>
+							</div>
+							<div class="media-content">
+								<p class="title is-4">${boardDTO.name}</p>
+								<p class="subtitle is-6">${boardDTO.id}</p>
+							</div>
+					</div>			
 				<div class="card-image">
 					<!-- 이미지 슬라이드 -->
 					<div class="pj_wrap">
@@ -120,35 +130,15 @@
 					<!-- // 이미지 슬라이드 -->
 				</div>
 				<div class="card-content">
-					<div class="media">
-						<div class="media-left">
-							<figure class="image is-48x48">
-								<a href="${path }/user/profile?id=${boardDTO.id}"><img src="${data_path }/upload/${boardDTO.img }" alt="작성자사진"></a>
-							</figure>
-						</div>
-						<div class="media-content">
-							<p class="title is-4">${boardDTO.name}</p>
-							<p class="subtitle is-6">${boardDTO.id}</p>
-						</div>
-					</div>
+
+
 					<div class="content">
 						<p class="content1">${boardDTO.content }</p>
 						<p>${boardDTO.hashtag }</p>
-						<time datetime="2016-1-1">${boardDTO.regdate }</time>
-					</div>
+											</div>
 					<div class="field" style="padding-bottom:60px; margin-top: -15px;">
 					<div class="content1">					
-						<div style="padding-top:5px; margin-right: 10px; float: left;">
-										<c:choose>
-											<c:when test="${loginUser.userLogin == true }">
-													<img src="${data_path}/img/reply.png" style="cursor : pointer" onclick="goReplyPage(${boardDTO.no})">
-											</c:when>
-											<c:otherwise>
-													<input type="image" src="${data_path}/img/reply.png" onclick="goClick()"/>			
-											</c:otherwise>
-										</c:choose>	
-										<strong> ${boardDTO.reply_cnt }</strong>
-						</div>			
+		
 					<div style="float: left;">
 									<c:choose>
 										<c:when test="${loginUser.userLogin == true }">
@@ -206,7 +196,10 @@
 								class="button is-danger is-light">삭제</a>
 						</c:if>
 						
-							<a href="${path }/board/boardlist" class="button is-link is-light">목록</a>
+							<a href="${path }/board/boardlist" class="button is-link is-light">목록</a><br>
+							<div class="content" style="float:right;">
+								<time datetime="2016-1-1">${boardDTO.regdate }</time>
+							</div>
 					</div>
 				</div>
 			</div>
