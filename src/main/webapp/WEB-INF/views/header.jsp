@@ -40,7 +40,7 @@ span:hover {
 				</c:when>
 				<c:otherwise>
 					<a class="navbar-item" onclick="goClick()">친구 게시글</a>
-					<a class="navbar-link" onclick="goClick()">글쓰기</a>
+					<a class="navbar-item" onclick="goClick()">글쓰기</a>
 				</c:otherwise>
 			</c:choose>
 			<div class="level-item" style="margin: 12px;">
