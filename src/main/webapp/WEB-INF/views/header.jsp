@@ -34,8 +34,7 @@ span:hover {
 			<a class="navbar-item" href="${path1 }/board/boardlist">전체 게시글</a>
 			<c:choose>
 				<c:when test="${loginUser.userLogin == true }">
-					<a class="navbar-item" href="${path1 }/board/friendboardlist">친구
-						게시글</a>
+					<a class="navbar-item" href="${path1 }/board/friendboardlist">친구게시글</a>
 					<a href="${path1 }/board/boardInsert" class="navbar-link">글쓰기</a>
 				</c:when>
 				<c:otherwise>
@@ -44,7 +43,7 @@ span:hover {
 				</c:otherwise>
 			</c:choose>
 			<div class="level-item" style="margin: 12px;">
-			<!-- 0726김우주 id추가 -->
+			<!-- id추가 -->
 				<form action="${path1 }/user/searchUser" method="get" id="searchForm"> <!-- action="${path1 }/user/searchUser" -->
 					<div class="field has-addons">
 						<p class="control">
@@ -56,7 +55,6 @@ span:hover {
 						</p>
 						<p class="control">
 							<button type="submit" class="button">Search</button>
-							<!--  -->
 						</p>
 						<div id="hello"
 							style="display: none; border: 1px #e1e1e1 solid; width: 284px; margin-top: 45px; padding: 5px 3px; border-top: white; position: fixed; background-color: #fff;">
@@ -70,7 +68,7 @@ span:hover {
 			</div>
 			<!-- 검색 -->
 			<div class="navbar-end">
-				<!-- 0718손승기 -->
+
 				<!-- 로그인 전 -->
 				<c:choose>
 					<c:when test="${loginUser.userLogin == true }">
@@ -78,11 +76,9 @@ span:hover {
 						<div class="navbar-item has-dropdown is-hoverable">
 							<a class="navbar-link">My Page</a>
 							<div class="navbar-dropdown">
-								<!-- 0724이재호 -->			
+			
 								<a class="navbar-item" href="${path1 }/user/myLikeList">😻♥</a>
 								<a class="navbar-item" href="${path1 }/user/myReply ">내가 쓴 댓글</a>
-								<!-- //0724 이재호 -->
-								<!-- 0719 손승기 -->
 								<a href="${path1 }/user/profile?id=${loginUser.id}"
 									class="navbar-item"><img src="">프로필</a> <a
 									href="${path1 }/user/logout" class="navbar-item">로그아웃</a>
@@ -125,11 +121,11 @@ span:hover {
 			<div class="field">
 				<input type="submit" value="로그인" class="button is-warning is-light" />
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<!-- 김우주0719 -->
+
 				<!-- <a href="${path1 }/user/join" class="button is-success is-light" onclick="join()">회원가입</a> -->
 				<input type="button" class="button is-success is-light" value="회원가입"
 					onclick="joinbtn()" />
-				<!-- 0723김우주 -->
+
 				<script>
 					function joinbtn() {
 						const popupWidth = 700;
@@ -140,15 +136,14 @@ span:hover {
 								'width=700px,height=628px,scrollbars=no,location=no,left='+popupLeft+',top='+popupTop);
 					}
 				</script>
-				<!-- //0723김우주 -->
-				<!-- //김우주0719 -->
+
 			</div>
 		</form>
-		<!-- 0718 손승기 -->
+
 	</div>
 	<button onclick="exit()" class="button">나가기</button>
 </div>
-<!-- 태정씨스크립트문 줄인것 -->
+
 <script>
 	function goClick() {
 		$("#bg").removeClass("hidden");
@@ -159,7 +154,7 @@ span:hover {
 		$("#popup").addClass("hidden");
 	}
 </script>
-<!--  -->
+
 <script>
   const gbSearch = () => {
     
@@ -192,7 +187,6 @@ span:hover {
   })
  
 
-	/* 0726김우주 */
 	//검색폼(전송)
 	//const searchForm = $("#searchForm");
 	const searchForm = document.querySelector("#searchForm");
@@ -248,12 +242,12 @@ span:hover {
 	// 다시받아서 뿌리기
 	function recent_search(newSearch){
 		const {id,text} = newSearch;
-		//태정씨 $newList 와 같은것
+		//$newList 와 같은것
 	  	const item = document.createElement('li');
-		// 태정씨 $x 와 같은것
+		// $x 와 같은것
 //		const span = document.createElement('span');
 		const del_btn = document.createElement('span');
-		// 태정시 $xText와 같은것
+		// $xText와 같은것
 //	    const del_btn = document.createTextNode('삭제');
 	    const span = document.createTextNode(text);
 		item.id = id;
@@ -299,7 +293,7 @@ span:hover {
 		searches = saved_Search;
 		saved_Search.forEach(recent_search);
 	}
-/* 0726김우주 */
+
 </script>
 
 <script>

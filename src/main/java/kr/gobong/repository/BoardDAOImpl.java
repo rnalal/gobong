@@ -24,25 +24,30 @@ public class BoardDAOImpl implements BoardDAO {
 		return sqlSessionTemplate.selectList("board1.getBoardList");
 	}
 	
-
+	@Override
+	public List<BoardDTO> getLikeboardList(){
+		return sqlSessionTemplate.selectList("board1.getLikeboardList");
+	}
+	
 	@Override
 	public void boardInsert(BoardDTO boardDTO) {
 		sqlSessionTemplate.insert("board1.boardInsert",boardDTO);
 
 	}
 	
-	//조태정 0719 글 삭제
+	//글 삭제
 	@Override
 	public void boardDel(int no) {
 		sqlSessionTemplate.delete("board1.boardDel", no);
 	}
-	//조태정 0719 친구 게시글 목록 보기
+	//친구 게시글 목록 보기
 	@Override
 	public List<BoardDTO> getFriendBoardList(String id) {
 		return sqlSessionTemplate.selectList("board1.getFriendBoardList",id);
 	}
 	
-	/* 전재영0719 */
+
+
 	// 글 상세보기
 	@Override
 	public BoardDTO getBoardDetail(int no) {
@@ -55,25 +60,22 @@ public class BoardDAOImpl implements BoardDAO {
 		sqlSessionTemplate.update("board1.boardEdit", boardDTO);
 	}
 	
-	/*//전재영0719 */
-	  //박지현,전재영
+
    //상세페이지에서 댓글보기
-	/* 0726김우주 */
+
    @Override
    public List<ReplyVO> getReplyList(int no) {
       return sqlSessionTemplate.selectList("reply.getReplyList", no);
    }
-	/* 0726김우주 */
-   /* 김우주0723 */
+
 	@Override
 	public List<BoardDTO> getBoardListByHashtag(String hashtag) {
 		return sqlSessionTemplate.selectList("user1.getBoardListByHashtag", hashtag);
 	}
-	/* 김우주0723 */
-   	/* 김우주0724 */
+
 	@Override
 	public int getReplyNo() {
 		return sqlSessionTemplate.selectOne("board1.getReplyNo");
 	}
-   	/*//김우주0724 */
+ 
 }

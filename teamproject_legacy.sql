@@ -368,3 +368,15 @@ select * from introduceMe1;
 
 >>>>>>> 8863f5b994bd097f1a308f60fd9f960d797e5e7e
 commit;
+
+
+select * from board1;
+select no, content, up from (select no, content, up from board1 order by up desc) where rownum <= 3;
+
+-- 좋아요 많은 3개 게시글 조회
+select * from (select b.no, u.name, b.id, u.img, b.content,b.img1, b.hashtag, b.regdate, b.up from user1 u inner join board1 b on u.id=b.id order by b.up desc) where rownum <=3;
+
+
+
+
+

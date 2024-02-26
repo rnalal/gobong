@@ -46,6 +46,7 @@ public class BoardController {
 	@Resource(name = "loginUser")
 	@Lazy
 	private UserDTO loginUser;
+
 	
 	// 글 목록 보기
 	@GetMapping("/boardlist")
@@ -56,6 +57,8 @@ public class BoardController {
 
 		return "board/board_list";
 	}
+	
+
 	
 	//글쓰기페이지
 	@GetMapping("/boardInsert")
@@ -96,7 +99,8 @@ public class BoardController {
 		
 		return "board/board_list";
 	}
-	 
+	
+	
 	// 글 상세보기
 	   // 상세페이지에서 댓글보기
 	   @GetMapping("/boarddetail")

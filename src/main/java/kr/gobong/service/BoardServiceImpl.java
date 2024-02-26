@@ -22,19 +22,22 @@ public class BoardServiceImpl implements BoardService {
 	@Autowired
 	private HttpServletRequest request;
 	
-	//전재영0718 글 목록 보기 
+	//글 목록 보기 
 	@Override
 	public List<BoardDTO> getBoardList(){
 		List<BoardDTO> boardList = boardDAO.getBoardList();
-		/* 김우주0719 */
-
-		/*//김우주0719 */
 		return boardList;
 	}
 	
-	/* 김우주0719 */
+	// 좋아요 많은 순 3위
+	@Override
+	public List<BoardDTO> getLikeboardList(){
+		List<BoardDTO> boardList = boardDAO.getLikeboardList();
+		return boardList;
+	}
+
+
 	private int boardNoGenerator() {
-	   	/* 김우주0724 */
 		System.out.println(boardDAO.getReplyNo());
 	   	
 		if(boardDAO.getReplyNo()==0) {
@@ -42,14 +45,10 @@ public class BoardServiceImpl implements BoardService {
 		}else {
 			return boardDAO.getReplyNo();
 		}
-		/* 김우주0724 */
 	}
-	//재호씨 boardInsert에 연계됩니다
+	//boardInsert에 연계됩니다
 	//각주 달아놓은거 참고해주세요
-	/*//김우주0719 */
 	
-	
-	/* 이재호0718 */
 	private String saveUploadFile(MultipartFile uploadFile) {
 		 
 		String fileName = System.currentTimeMillis() + "_" + uploadFile.getOriginalFilename();
@@ -64,10 +63,8 @@ public class BoardServiceImpl implements BoardService {
 	
 	@Override
 	public void boardInsert(BoardDTO boardDTO) {
-		/* 김우주0719 */
 		System.out.println(boardNoGenerator());
 		boardDTO.setNo(boardNoGenerator()+1);
-		/*//김우주0719 */
 		MultipartFile upload_img1 = boardDTO.getUpload_img1();
 		
 		if(upload_img1.getSize()>0) {
@@ -86,9 +83,9 @@ public class BoardServiceImpl implements BoardService {
 		} 
 		boardDAO.boardInsert(boardDTO);
 	}
-	/*//이재호0718 */
+
 	
-	//조태정 0719 글 삭제
+	//글 삭제
 	@Override
 	public void boardDel(int no) {
 		boardDAO.boardDel(no);
@@ -100,15 +97,12 @@ public class BoardServiceImpl implements BoardService {
 		return boardList;
 	}
 	
-	/* 전재영 0719 */
-
 	// 글 상세보기
 	@Override
 	public BoardDTO getBoardDetail(int no) {
 		return boardDAO.getBoardDetail(no);
 	}
 	
-	/* 김우주0719 */
 	
 	// 글 수정하기
 	@Override
@@ -132,25 +126,19 @@ public class BoardServiceImpl implements BoardService {
 		
 		boardDAO.boardEdit(boardDTO);
 	}
-	/*//김우주0719 */
 	
-	/*//전재영0719 */
-	
-   //박지현,전재영
+
    //상세페이지에서 댓글보기
-	/* 0726김우주 */
    @Override
    public List<ReplyVO> getReplyList(int no) {
       List<ReplyVO> replyList = boardDAO.getReplyList(no);
       return replyList;
    }
-	/* 0726김우주 */
-   
-   /* 김우주0723 */
+
    	@Override
 	public List<BoardDTO> getBoardListByHashtag(String hashtag) {
 		return boardDAO.getBoardListByHashtag(hashtag);
 		
 	}
-    /* 김우주0723 */
+
 }

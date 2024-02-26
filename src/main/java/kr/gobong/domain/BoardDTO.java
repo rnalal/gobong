@@ -24,7 +24,6 @@ public class BoardDTO {
 	private int prv;
 	private String img;
 	//댓글개수
-	//0723전재영
 	private String reply_cnt;
 	
 	

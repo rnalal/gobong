@@ -5,12 +5,20 @@
 
 	<!-- 전체공개글만 볼수있도록 수정 -->
 	<!-- 글 목록 보기 -->
-	<select id="getBoardList" parameterType="java.lang.Integer"
-		resultType="kr.gobong.domain.BoardDTO">
+	<select id="getBoardList" parameterType="java.lang.Integer" resultType="kr.gobong.domain.BoardDTO">
 		<![CDATA[
 			select b.no,u.name, b.id, u.img, b.content, b.img1, b.hashtag, b.regdate,b.up, (select count(*) from reply where no = b.no) as reply_cnt from user1 u inner join board1 b on u.id=b.id where b.prv=0 order by b.no desc
 		]]>
 	</select>
+	
+	<!-- 좋아요 순위 3위까지 글 목록 보이게 하기 (동순위는 먼저 작성한 순서대로보이게 하기) -->
+	<select id="getLikeboardList" parameterType="java.lang.Integer" resultType="kr.gobong.domain.BoardDTO">
+		<![CDATA[
+			select * from (select b.no, u.name, b.id, u.img, b.content,b.img1, b.hashtag, b.regdate, b.up from user1 u inner join board1 b on u.id=b.id order by b.up desc) where rownum <=3
+		]]>
+	</select>
+	
+	
 	<!-- 글 번호 자동화 -->
 	<select id="getReplyNo" resultType="java.lang.Integer">
 		<![CDATA[
