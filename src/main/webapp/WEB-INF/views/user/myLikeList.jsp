@@ -20,24 +20,28 @@
 <link
 	href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@300;400&family=Orbit&display=swap"
 	rel="stylesheet">
-<title>좋아요 목록 보기</title>
+<title>내가 누른 좋아요</title>
 <link rel="stylesheet" href="${data_path }/css/profile.css">
 <link rel="stylesheet" href="${data_path }/css/main.css">
 <link rel="stylesheet" href="${data_path }/css/footer.css">
 </head>
 <body>
 	<c:import url="/WEB-INF/views/header.jsp" />
-	<div class="container">
-
+<div class="container">
 		<div class="card-wrap">
-			<h2 style="font-size: 2em; margin-bottom: 3%; text-align: center;">따봉 누른 게시글</h2>
-			<div class="card-wrap" id="board_wrap">
-
-				<c:forEach items="${myLikeList }" var="like">
-					<a href="${path }/board/boarddetail?no=${like.no }"><img
-						id="board_img" src="${data_path }/upload/${like.img1 }"
-						alt="boardPreview"></a>
-				</c:forEach>
+			<h2 style="width:700px; text-align:center; margin-bottom:30px;"><input type="image" src="${data_path}/img/heart.png" style="width:70px;" /></h2>	
+			<div class="columns is-gapless">
+	     		<div class="column" style="background-color: #fcf9d8; " >
+					<div class="board_wrap" id="board_wrap" >
+						<c:forEach items="${myLikeList }" var="like">
+							<div class="proimg" style="width:700px; margin-top:20px; margin-left:40px; ">
+								<a href="${path }/board/boarddetail?no=${like.no }">
+									<img id="board_img" src="${data_path }/upload/${like.img1 }" alt="boardPreview" style="margin-right:10px; margin-bottom:10px;">
+								</a>
+							</div>		
+						</c:forEach>
+					</div>
+				</div>		
 			</div>
 			<nav class="level is-mobile">
 				<div class="level-left">
@@ -56,13 +60,12 @@
 					</a>
 				</div>
 			</nav>
-			<!-- 0720 손승기 게시글이미지 영역 -->
+			<!-- 게시글이미지 영역 -->
 		</div>
-	</div>
-	<!-- 프로필처럼 나오게 해주세요  -->
+	</div>	
 
 
-	<h2>${like.id }</h2>
+<%-- 	<h2>${like.id }</h2>
 	<h2></h2>
 	<h2>${like.content }</h2>
 	<h2>${like.hashtag }</h2>
@@ -73,7 +76,7 @@
 	<h2>${like.img3 }</h2>
 	<h2>${like.prv }</h2>
 	<br>
-	<br>
+	<br> --%>
 
 	<c:import url="/WEB-INF/views/footer.jsp" />
 </body>
