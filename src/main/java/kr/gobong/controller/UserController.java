@@ -207,7 +207,7 @@ public class UserController {
 			    String introdueMe_content1 = introduceMeService.getMyIntroduceInfo(id);
 			    model.addAttribute("introdueMe_content1", introdueMe_content1);
 
-				return "user/searchPage";
+				return "user/profile";
 			}else {
 				String hashtag = "#%"+id.substring(1)+"%";
 				List<BoardDTO> boardSearchHashList = boardService.getBoardListByHashtag(hashtag);

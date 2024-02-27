@@ -58,8 +58,7 @@ span:hover {
 						</p>
 						<div id="hello"
 							style="display: none; border: 1px #e1e1e1 solid; width: 284px; margin-top: 45px; padding: 5px 3px; border-top: white; position: fixed; background-color: #fff;">
-							<div id="last" style="color: gray; text-align: center;">최근
-								검색 기록</div>
+							<div id="last" style="color: gray; text-align: center;">최근 검색 기록</div>
 							<ul id="searchList"
 								style="list-style: none; margin-bottom: 0px; padding: 5px 3px;"></ul>
 						</div>
@@ -68,29 +67,24 @@ span:hover {
 			</div>
 			<!-- 검색 -->
 			<div class="navbar-end">
-
 				<!-- 로그인 전 -->
 				<c:choose>
 					<c:when test="${loginUser.userLogin == true }">
 						<!-- 로그인 후 -->
 						<div class="navbar-item has-dropdown is-hoverable">
 							<a class="navbar-link">My Page</a>
-							<div class="navbar-dropdown">
-			
+							<div class="navbar-dropdown">			
 								<a class="navbar-item" href="${path1 }/user/myLikeList">😻♥</a>
 								<a class="navbar-item" href="${path1 }/user/myReply ">내가 쓴 댓글</a>
-								<a href="${path1 }/user/profile?id=${loginUser.id}"
-									class="navbar-item"><img src="">프로필</a> <a
-									href="${path1 }/user/logout" class="navbar-item">로그아웃</a>
-								<!-- 0719 손승기 -->
+								<a href="${path1 }/user/profile?id=${loginUser.id}" class="navbar-item"><img src="">프로필</a> 
+								<a href="${path1 }/user/logout" class="navbar-item">로그아웃</a>
 							</div>
 						</div>
 					</c:when>
 					<c:otherwise>
 						<div class="navbar-item">
 							<div class="buttons">
-								<button type="button" class="button is-warning is-hovered"
-									onclick="goClick()">
+								<button type="button" class="button is-warning is-hovered" onclick="goClick()">
 									<strong>Let's Gobong</strong>
 								</button>
 							</div>
@@ -102,6 +96,7 @@ span:hover {
 	</div><!-- navbarBasicExample -->
 	<div id="bg" class="hidden"></div>
 </nav>
+<!-- 로그인 팝업창 -->
 <div id="popup" class="hidden">
 	<h3>로그인 또는 회원가입 후 이용해 주세요!</h3>
 	<div id="popup-text">

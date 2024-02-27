@@ -130,12 +130,6 @@
 					<!-- // 이미지 슬라이드 -->
 				</div>
 				<div class="card-content">
-
-
-					<div class="content">
-						<p class="content1">${boardDTO.content }</p>
-						<p>${boardDTO.hashtag }</p>
-											</div>
 					<div class="field" style="padding-bottom:60px; margin-top: -15px;">
 					<div class="content1">					
 		
@@ -150,7 +144,7 @@
 									</c:choose>	
 							    <strong class="reload_like$" >${boardDTO.up }</strong>
 								<c:if test="${boardDTO.up > 0 }">
-								<p id="like_result" style="margin-top: 3px;">이 글을 좋아하는 사람 </p>
+								<p id="like_result${cnt.count }" style=" margin-top: 3px; font-size:14px; box-shadow: inset 0 -20px 0 #fcf9d8">이 글을 좋아하는 사람&nbsp;&nbsp;</p>
 									<script>
 					          			$.ajax({
 					          				type:"get",
@@ -174,19 +168,11 @@
 								</c:if>
 							</div>
 							</div>
-																				
-								<div class="card-body">
-									<c:choose>
-										<c:when test="${loginUser.userLogin == true }">	
-										<textarea id="reply-content" class="form-control" rows="1"
-											placeholder="댓글을 입력하세요"
-											style="width: 100%; height: 135px; resize: none; font-size: 1.3em; border: 1px solid rgba(0, 0, 0, 0.1); padding: 10px"></textarea>								
-										<input type="button" class="button is-warning is-light" 
-											onclick="replyInsert(${boardDTO.no },'${loginUser.id }')" 
-											style="float: right" value="댓글등록">		
-										</c:when>
-									</c:choose>																		
-								</div>
+
+					</div>
+					<div class="content">
+						<p class="content1" style="white-space: pre-wrap;"><strong style="font-size:20px;">${boardDTO.id}</strong>&nbsp;&nbsp;&nbsp;${boardDTO.content }</p>
+						<p>${boardDTO.hashtag }</p>
 					</div>
 					<div style="align: center;">
 						<c:if test="${boardDTO.id==loginUser.id}">
@@ -200,7 +186,7 @@
 							<div class="content" style="float:right;">
 								<time datetime="2016-1-1">${boardDTO.regdate }</time>
 							</div>
-					</div>
+					</div>					
 				</div>
 			</div>
 		</div>
@@ -231,7 +217,21 @@
 		  }
 	</script>
 
-	<div class="container1" style="padding-top: 40px;">
+	<div class="container" style="padding-top: 40px;">
+		<div class="card-wrap">
+		<c:choose>
+		<c:when test="${loginUser.userLogin == true }">	
+			<div class="card">																														
+				<div class="card-content">
+					<div class="content" style="height:180px;">
+							<textarea id="reply-content" class="form-control" rows="1"placeholder="댓글을 입력하세요" style="width: 100%; height: 135px; resize: none; font-size: 1.1em; border: 1px solid rgba(0, 0, 0, 0.1); padding: 10px"></textarea>																										
+							<input type="button" class="button is-warning is-light" onclick="replyInsert(${boardDTO.no },'${loginUser.id }')" style="float: right" value="댓글등록">
+					</div>	
+				</div>				
+			</div>
+		</c:when>
+		</c:choose>		
+		</div>
 		<c:forEach items="${replyList}" var="replyDTO" varStatus="cnt">
 			<div class="card-wrap">
 				<div class="card">
@@ -250,11 +250,8 @@
 							<p class="content1">${replyDTO.comment1 }</p>
 						</div>
 						<div>
-							<c:if
-								test="${boardDTO.id==loginUser.id || replyDTO.id==loginUser.id}">
-								<a
-									href="${path }/board/replyDel?rno=${replyDTO.rno}&no=${boardDTO.no}"
-									class="button is-danger is-light">댓글삭제</a>
+							<c:if test="${boardDTO.id==loginUser.id || replyDTO.id==loginUser.id}">
+								<a href="${path }/board/replyDel?rno=${replyDTO.rno}&no=${boardDTO.no}" class="button is-danger is-light">댓글삭제</a>
 							</c:if>
 						</div>
 					</div>

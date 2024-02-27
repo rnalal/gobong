@@ -98,12 +98,6 @@
 					  </div>	
 					</div>
 					<div class="card-content">
-	
-						<div class="content">
-							<p class="content1" style="white-space: pre-wrap;">${boardDTO.content }</p>
-							<p style="color: blue;">${boardDTO.hashtag }</p>
-							<time>${boardDTO.regdate }</time>
-						</div>
 
 						<div class="field" style="padding-bottom:60px; margin-top: -15px;">
 						<div style="padding-top:5px; margin-right: 10px; float: left;">
@@ -128,7 +122,7 @@
 									</c:choose>	
 							    <strong class="reload_like${cnt.count }" >${boardDTO.up }</strong>
 								<c:if test="${boardDTO.up > 0 }">
-								<p id="like_result${cnt.count }" style="margin-left: -55px; margin-top: 3px;">이 글을 좋아하는 사람 </p>
+								<p id="like_result${cnt.count }" style="margin-left: -55px; margin-top: 3px; font-size:14px; box-shadow: inset 0 -20px 0 #fcf9d8 ">이 글을 좋아하는 사람&nbsp;&nbsp;</p>
 									<script>
 					          			$.ajax({
 					          				type:"get",
@@ -151,6 +145,14 @@
 								<p id="like_result${cnt.count }" style="margin-left: -55px; margin-top: 3px;">  </p>
 								</c:if>
 							</div>
+						</div>							
+						<div class="content">
+							<p class="content1" style="white-space: pre-wrap;"><strong style="font-size:20px;">${boardDTO.id}</strong>&nbsp;&nbsp;&nbsp;${boardDTO.content }</p>
+							<p style="color: blue;">${boardDTO.hashtag }</p>
+						</div>
+						
+						<div class="content" style="float:right;">
+							<time>${boardDTO.regdate }</time>
 						</div>
 					</div>
 				</div>

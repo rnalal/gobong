@@ -26,7 +26,6 @@
 </head>
 <body>
 <c:import url="../header.jsp" />
-<!-- 0724 박지현 -->
 <div class="container">
 <div class="card-wrap">
   <article class="media">
@@ -44,39 +43,14 @@
       <div class="content">
         <p><strong>${search[0].name }</strong> <small>@${search[0].id }</small></p>
         <c:if test="${!empty search[0].name }">
-          <pre style="background-color: white;">
- ${introdueMe_content1 }
-          </pre>
+          <pre style="background-color: white;">${introdueMe_content1 }</pre>
         </c:if>
         <c:if test="${empty search[0].name }">
-	        <pre style="background-color: white;">
-검색과 일치하는 사용자가 없습니다
-	          </pre>
+	        <pre style="background-color: white;">검색과 일치하는 사용자가 없습니다 </pre>
         </c:if>
       </div>
       <div>
-     	  <c:if test="${loginUser.id == userProfile[0].id }">
-	      	<a href="${path }/user/mypage" class="button">정보 수정</a>
-	      	<!-- 0727김우주 -->
-		      	<c:if test="${empty introdueMe_content1 }">
-			      	<!-- 자기소개가 없을경우 -->
-			      	<input type="button" class="button" value="자기소개 수정" onclick="introduceMe(0)">
-		      	</c:if>
-		      	<c:if test="${!empty introdueMe_content1 }">
-			      	<input type="button" class="button" value="자기소개 수정" onclick="introduceMe(1)">
-		      	</c:if>
-	      	<script>
-			      	function introduceMe(sw){
-			    		const popupWidth = 830;
-			    		const popupHeight = 510;
-			    		const popupLeft = window.screen.width/2 - popupWidth/2;
-			    		const popupTop = window.screen.height/2 - popupHeight/2;
-			      		window.open("${path }/user/introduceMe?sw="+sw, '자기소개수정',
-			    				'width=830px,height=520px,scrollbars=no,location=no,left='+popupLeft+',top='+popupTop);
-			      	}
-	      	</script>
-	      	<!-- 0727김우주 -->
-	      </c:if>
+
       </div>
     </div>
   </article>
@@ -107,6 +81,5 @@
 </div>
 </div>
 <c:import url="../footer.jsp" />
-<!-- 0724 박지현 -->
 </body>
 </html>

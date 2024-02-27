@@ -20,7 +20,7 @@
 <link
 	href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@300;400&family=Orbit&display=swap"
 	rel="stylesheet">
-<title>좋아요 목록 보기</title>
+<title>내가 쓴 댓글</title>
 <link rel="stylesheet" href="${data_path }/css/profile.css">
 <link rel="stylesheet" href="${data_path }/css/main.css">
 <link rel="stylesheet" href="${data_path }/css/footer.css">

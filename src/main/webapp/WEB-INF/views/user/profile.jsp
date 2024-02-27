@@ -28,18 +28,26 @@
 	  <article class="media" style="background-color: #fcf9d8">
 	    <div class="media-left">
 	      <figure class="image is-128x128">
-	        <img class="is-rounded" id="profile_img" src="${data_path }/upload/${search[0].img }" alt="profileImage" >
+		    <c:if test="${empty search[0].img }">
+	       	 	<img id="profile_img" src="${data_path }/img/unknown.png" alt="profileImage" style="">
+	        </c:if>
+	        <c:if test="${!empty search[0].img }">
+	        	<img class="is-rounded" id="profile_img" src="${data_path }/upload/${search[0].img }" alt="profileImage" >
+	        </c:if>
 	      </figure>
 	    </div>
 	    <div class="media-content">
+	    	<c:if test="${empty search[0].name }">
+	       	 <pre style="background-color:#fcf9d8;"><strong>검색과 일치하는 사용자가 없습니다</strong></pre>
+        	</c:if>	
+        <c:if test="${!empty search[0].name }">
 	      <div class="content">
-	        <p id="my_introduce">
-	          <strong style="font-size:30px;">${search[0].name }</strong>&nbsp;&nbsp;<small style="font-size:20px;">@${search[0].id }</small><br>
-	          ${introdueMe_content1 }
-	        </p>	        
-	      </div>
+	         <p id="my_introduce">
+	           <strong style="font-size:30px;">${search[0].name }</strong>&nbsp;&nbsp;<small style="font-size:20px;">@${search[0].id }</small><br>
+	           ${introdueMe_content1 }
+	         </p>        
+	      </div>  
 	      <div>
-
 	      <!-- href="${path }/follows/followingList?id=${userProfile[0].id}" -->
 	      <!-- href="${path }/follows/followerList?id=${userProfile[0].id}" -->
 	      	<a class="followCtn" onclick="followingList()">
@@ -60,8 +68,7 @@
 	      	</c:if>
 	      </div>
 	    </div>
-	  </article>
-	  	
+	  </article>	  	
 		  	<!-- 정보수정, 자기소개수정 버튼 - 자기소개수정은 팝업창으로 -->
 		  	<div class="buttons has-addons is-centered" style="margin-top:10px;">
 			  	 <c:if test="${loginUser.id == search[0].id }">
@@ -89,8 +96,7 @@
 			      	</script>	      
 			      </c:if>
 			</div>
-	  
-	  
+		</c:if>	
 	      <!--게시글이미지 영역 -->
 	    <div class="columns is-gapless">
 	     <div class="column" >
