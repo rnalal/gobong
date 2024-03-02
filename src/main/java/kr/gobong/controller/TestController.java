@@ -42,7 +42,6 @@ public class TestController {
 	private UserDTO loginUser;
 	
 	//연동DB테스트
-	/* 김우주0717 */
 	@GetMapping("/home")
 	public String testHome() {
 		System.out.println("홈으로");
@@ -57,11 +56,8 @@ public class TestController {
 		model.addAttribute("user", userDTO);
 		return "test";
 	}
-	/*//김우주0717 */
-	
-	/* 김우주0718 */
+
 	//발리데이션 테스트
-	
 	@GetMapping("validateTest")
 	public String validateTest(TestUserDTO testUserDTO) {
 
@@ -123,8 +119,6 @@ public class TestController {
 		return "test/serverDirectoryTest2_success";
 	}
 	
-	/*//김우주0718 */
-	/* 김우주0720 */
 	
 	//세션및 쿠키 테스트
 	@GetMapping("sessionTest")
@@ -164,6 +158,5 @@ public class TestController {
 		
 		return "test/fileReaderTest";
 	}
-	
-	/*//김우주0720 */
+
 }
