@@ -1,4 +1,4 @@
-!<데이터 검증을 위한 기본제공 Annotation>
+<데이터 검증을 위한 기본제공 Annotation>
 어노테이션 설명
 @AssertFalse  거짓인지?
 @AssertTrue 참인지?
