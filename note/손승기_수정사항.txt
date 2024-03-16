@@ -12,7 +12,6 @@ kr.gobong.interceptor 패키지 생성 후 LoginCheckInterceptor 추가
 
 header.jsp form태그를 form 커스텀 태그로 수정했음.
 
---작업완료 김우주
 ---07.19---
 views/user 폴더안에 login_fail.jsp 에서 3번째줄에 
 <c:set var="path" value="${pageContext.request.contextPath }" />  로 바꿔주시고 6번째줄 location.href = "${path}"; 로 바꿔주세요
