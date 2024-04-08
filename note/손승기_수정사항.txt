@@ -1,4 +1,4 @@
---07.18 손승기
+-- 07.18 손승기
 
 UserController, UserService, UserDAO와 이에 맞는 상속 받는 클래스(Impl) 생성 후 로그인, 로그아웃 구현
 
