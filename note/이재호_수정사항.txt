@@ -7,7 +7,7 @@ BoardController 글 쓰기 작성 (62번째 줄)
 boardInsert.jsp 작성
 
 
---0721
+-- 0721
 
 board_mapper.xml에서 14번째 줄 insert구문 수정
 
@@ -21,7 +21,7 @@ boardInsert.jsp 99번째 줄 prv 공개여부 type="radio" 버튼으로 추가
 replyInsert.jsp 43번째 줄 input구문 수정
 
 
---0724
+-- 0724
 
 header.jsp 78번째 줄 (좋아요,내가 쓴 댓글) 링크 수정
 like_mapper.xml에 내가 좋아요 누른 글 보기 select문 추가
