@@ -16,7 +16,7 @@ insert into board1 values (3, 'test1', '테스트내용3테스트내용3테스�
 
 -- 0724
 
--- 댓글 리스트 보기
+댓글 리스트 보기
 
 1. 댓글 테이블 생성
 create table reply (rno number primary key, no number, id varchar2(30), 
