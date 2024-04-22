@@ -42,7 +42,6 @@ comment1 varchar2(500), foreign key(no) references board1(no), foreign key(id) r
 
 
 -- 댓글개수 보기
-
 1. board_mapper
  <!-- 글 목록 보기 -->
  수정하기
