@@ -13,7 +13,6 @@ insert into board1 values (1, 'test1', '테스트내용1', '#해시태그', defa
 insert into board1 values (2, 'test1', '테스트내용2', '#해시태그', default, default, default, 'test2.jpg', 'img2.png', 'img3.png', default);
 insert into board1 values (3, 'test1', '테스트내용3테스트내용3테스트내용3테스트내용3테스트내용3테스트내용3테스트내용3테스트내용3테스트내용3테스트내용3테스트내용3테스트내용3', '#해시태그', default, default, default, 'test3.jpg', 'img2.png', 'img3.png', default);
 
-
 -- 0724
 
 댓글 리스트 보기
