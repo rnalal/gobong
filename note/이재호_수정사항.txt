@@ -6,7 +6,6 @@ boardService에 MultipartFile 작성 (50번째 줄)
 BoardController 글 쓰기 작성 (62번째 줄)
 boardInsert.jsp 작성
 
-
 -- 0721
 
 board_mapper.xml에서 14번째 줄 insert구문 수정
@@ -19,7 +18,6 @@ replyInsert.jsp 연동
 boardInsert.jsp 58번째 줄 id hidden 처리
 boardInsert.jsp 99번째 줄 prv 공개여부 type="radio" 버튼으로 추가
 replyInsert.jsp 43번째 줄 input구문 수정
-
 
 -- 0724
 
