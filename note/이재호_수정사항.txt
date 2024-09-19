@@ -1,4 +1,3 @@
- 
 -- 0718
 
 board_mapper.xml에 글 쓰기 insert문
