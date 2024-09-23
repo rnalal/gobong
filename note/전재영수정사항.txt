@@ -1,4 +1,4 @@
--- 7/18 
+  -- 7/18 
 글 목록 보기
 
 1.BoardController, BoardRepository, BoardRepositoryImpl, BoardService, BoardServiceImpl, BoardDTO, board_mapper.xml 에 (//글 목록보기) 추가
