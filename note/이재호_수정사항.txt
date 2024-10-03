@@ -1,4 +1,5 @@
 -- 0718
+
 board_mapper.xml에 글 쓰기 insert문
 BoardDAO,DTO,Service 생성
 boardService에 MultipartFile 작성 (50번째 줄)
