@@ -1,4 +1,4 @@
-  -- 07.19
+-- 07.19
 * Board 게시글 삭제, test1이 팔로우한 글 목록 보기(친구 게시글)
 	board_mapper.xml
 	BoardDAO.java > BoardDAOImpl.java
