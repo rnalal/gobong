@@ -30,13 +30,13 @@
 
 ## 📷 ERD설계 및 테이블 설계도
 <p align="center">
-  <img src="image1/Perd1.png" width="40%" />
-  <img src="image1/Table1.png" width="40%" />
+  <img src="image1/Perd1.png" width="100%" />
+  <img src="image1/Table1.png" width="100%" />
 </p>
 
 ## 📷 프로젝트 주요 화면
 <p align="center">
-  <img src="image1/main.png" width="40%" />
+  <img src="image1/main.png" width="100%" />
 </p>
 
 #### 👉 기타 화면은 PDF 참고해주세요!
