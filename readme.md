@@ -40,4 +40,4 @@
 </p>
 
 #### 👉 기타 화면은 PDF 참고해주세요!
-🔗[PDF 파일 다운로드](images/project_detail.pdf) 
+🔗[PDF 파일 다운로드](image1/project_detail.pdf) 

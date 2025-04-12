@@ -23,6 +23,13 @@
 	<link rel="stylesheet" href="${data_path }/css/main.css">
 	<link rel="stylesheet" href="${data_path }/css/footer.css">
 <style>
+
+.container {
+  width: 100%;
+  max-width: 900px; 
+  margin: auto;
+}
+
 .content .content1 {
 	width: 750px;
 	white-space: nowrap;
@@ -32,11 +39,12 @@
 
 .card {
 	margin-bottom: 40px;	
+	width: 100%;
 }
 
 .pj_wrap {
 	width: 100%;
-	height: 600px;
+	height: auto;
 	margin: 1px auto;
 	padding: 0;
 	position: relative;
@@ -45,16 +53,14 @@
 
 .img_wrap {
 	width: 100%;
-	height: 100%;
-	position: absolute;
-	top: 0;
-	left: 0;
+	height: auto;
+	position: relative;
 	display: flex;
 }
 
 .img {
 	width: 100%;
-	height: 100%;
+	height: auto;
 	font-size: 30px;
 	display: flex;
 	justify-content: center;
