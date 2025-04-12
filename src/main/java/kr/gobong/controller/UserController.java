@@ -43,20 +43,15 @@ import kr.gobong.validator.UserCustomValidator;
 public class UserController {
 
 	@Autowired
-	private UserService userService;
-	
+	private UserService userService;	
 	@Autowired
-	private BoardService boardService;
-	
+	private BoardService boardService;	
 	@Autowired
-	private FollowsService followsService;
-	
+	private FollowsService followsService;	
 	@Autowired
-	private LikeService likeService;
-	
+	private LikeService likeService;	
 	@Autowired
-	private ReplyService replyService;
-	
+	private ReplyService replyService;	
 	@Autowired
 	private IntroduceMeService introduceMeService; 
 	
@@ -68,8 +63,7 @@ public class UserController {
 	  @GetMapping("/join") // GetMapping : 조회
 	  public String join(@ModelAttribute("joinUserDto") UserDTO joinUserDto) {
 		return "user/join";
-	  }
-	  
+	  }	  
 	  @PostMapping("/join_procedure") // PostMapping : 저장
 	  public String joinProcedure(@Valid @ModelAttribute("joinUserDto") UserDTO joinUserDto, BindingResult result){
 		  
@@ -164,7 +158,6 @@ public class UserController {
 			return "redirect:/";
 		}
 		
-	
 		//탈퇴
 		@GetMapping("/userDel")
 		public String userDel(@RequestParam("id") String id, Model model){
@@ -230,8 +223,7 @@ public class UserController {
 			model.addAttribute("myLikeList", myLikeList);
 			return "user/myLikeList";
 		}
-		
-		
+				
 		//내가 쓴 댓글보기
 		@GetMapping("/myReply")
 		public String myReply(Model model) {
@@ -257,7 +249,6 @@ public class UserController {
 			}
 		}
 		
-
 		//커스텀발리데이션
 		@InitBinder({"joinUserDto","userInfo"})
 		public void initBinder(WebDataBinder binder) {

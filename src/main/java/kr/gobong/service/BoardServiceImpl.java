@@ -36,7 +36,6 @@ public class BoardServiceImpl implements BoardService {
 		return boardList;
 	}
 
-
 	private int boardNoGenerator() {
 		System.out.println(boardDAO.getReplyNo());
 	   	
@@ -46,8 +45,6 @@ public class BoardServiceImpl implements BoardService {
 			return boardDAO.getReplyNo();
 		}
 	}
-	//boardInsert에 연계됩니다
-	//각주 달아놓은거 참고해주세요
 	
 	private String saveUploadFile(MultipartFile uploadFile) {
 		 
@@ -84,7 +81,6 @@ public class BoardServiceImpl implements BoardService {
 		boardDAO.boardInsert(boardDTO);
 	}
 
-	
 	//글 삭제
 	@Override
 	public void boardDel(int no) {
@@ -127,7 +123,6 @@ public class BoardServiceImpl implements BoardService {
 		boardDAO.boardEdit(boardDTO);
 	}
 	
-
    //상세페이지에서 댓글보기
    @Override
    public List<ReplyVO> getReplyList(int no) {

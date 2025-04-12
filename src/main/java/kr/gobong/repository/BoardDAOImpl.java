@@ -20,7 +20,6 @@ public class BoardDAOImpl implements BoardDAO {
 	
 	@Override
 	public List<BoardDTO> getBoardList(){
-
 		return sqlSessionTemplate.selectList("board1.getBoardList");
 	}
 	
@@ -40,13 +39,12 @@ public class BoardDAOImpl implements BoardDAO {
 	public void boardDel(int no) {
 		sqlSessionTemplate.delete("board1.boardDel", no);
 	}
+	
 	//친구 게시글 목록 보기
 	@Override
 	public List<BoardDTO> getFriendBoardList(String id) {
 		return sqlSessionTemplate.selectList("board1.getFriendBoardList",id);
 	}
-	
-
 
 	// 글 상세보기
 	@Override
@@ -59,10 +57,8 @@ public class BoardDAOImpl implements BoardDAO {
 	public void boardEdit(BoardDTO boardDTO) {
 		sqlSessionTemplate.update("board1.boardEdit", boardDTO);
 	}
-	
 
    //상세페이지에서 댓글보기
-
    @Override
    public List<ReplyVO> getReplyList(int no) {
       return sqlSessionTemplate.selectList("reply.getReplyList", no);

@@ -27,8 +27,6 @@ public class LikeController {
 	@Lazy
 	private UserDTO loginUser;
 	
-	
-	
 	@GetMapping("/upLike.do")
 	public void upLike(@RequestParam("no") int no,LikeDTO likeDto) {
 		likeService.upLike(no);
@@ -43,9 +41,7 @@ public class LikeController {
 		likeService.deleteLikeFromId(no, id);
 		
 	}
-	
-	
-	//펑션 안넣고 c:if 좋아요 0보다 클경우 스크립트시작으로 하면될듯
+		
 	@GetMapping("/likeList.do")
 	@ResponseBody
 	public List<LikeDTO> likeList(@RequestParam("no") int no){
@@ -60,7 +56,6 @@ public class LikeController {
 		
 		return likeService.likeCheck(no,id);
 	}
-	
 	
 	
 }

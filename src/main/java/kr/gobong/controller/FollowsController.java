@@ -51,7 +51,7 @@ public class FollowsController {
 	      model.addAttribute("name", name);
 	      
 	      followsService.doFollow(followsDto);
-	      return "follows/follow_success";   //임시
+	      return "follows/follow_success";  
 	   } 
 	
 	@GetMapping("/unFollow")
@@ -66,8 +66,7 @@ public class FollowsController {
 		
 		model.addAttribute("followingId", followingId);
 		model.addAttribute("name", name);
-		
-		
+			
 		return "follows/unfollow_success";
 	}
 	

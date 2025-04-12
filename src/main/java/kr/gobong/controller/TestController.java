@@ -31,11 +31,9 @@ import kr.gobong.service.UserService;
 public class TestController {
 	
 	@Autowired
-	private TestService testService;
-	
+	private TestService testService;	
 	@Autowired
-	private UserService userService;
-	
+	private UserService userService;	
 	
 	@Resource(name = "loginUser")
 	@Lazy
@@ -47,8 +45,7 @@ public class TestController {
 		System.out.println("홈으로");
 		return "home";
 	}
-	
-	
+		
 	@GetMapping("/test")
 	public String test1(@RequestParam String id , Model model) {
 		

@@ -28,9 +28,7 @@ public class BoardCustomValidator implements Validator{
 			if(boardDTO.getUpload_img1().getSize()==0) {
 				errors.rejectValue("upload_img1", "NotUploadImg1");
 			}
-			
-			
-		}
-		
+						
+		}		
 	}
 }

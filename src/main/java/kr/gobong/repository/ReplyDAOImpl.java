@@ -13,10 +13,7 @@ public class ReplyDAOImpl implements ReplyDAO {
 
 	@Autowired
 	public SqlSessionTemplate sqlSessionTemplate;
-
-
 	
-	// 이재호0721
 	// 댓글 쓰기
 	@Override
 	public void addReply(ReplyDTO replyDto) {
@@ -29,7 +26,6 @@ public class ReplyDAOImpl implements ReplyDAO {
 
 	}
 
-	/* 0724김우주 */
 	//글삭제시 댓글비워주기
 	@Override
 	public void deleteReplyForBoard(int no) {
@@ -40,21 +36,10 @@ public class ReplyDAOImpl implements ReplyDAO {
 	public List<Integer> getReplyRno() {
 		return sqlSessionTemplate.selectList("reply.getReplyRno");
 	}
-	/* 0724김우주 */
-	
 
-	//이재호0725
-	//내가 쓴 댓글보기
-	/*
-	 * @Override public List<BoardDTO> myReply(String id){ return
-	 * sqlSessionTemplate.selectList("reply.myReply", id); }
-	 */
-	
-	/* 0726김우주 */
 	//내가 쓴 댓글보기
 	@Override
 	public List<ReplyDTO> myReply(String id){
 		return sqlSessionTemplate.selectList("reply.myReply", id);
 	}
-	/* 0726김우주 */
 }

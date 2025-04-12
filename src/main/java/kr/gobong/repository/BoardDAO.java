@@ -34,8 +34,6 @@ public interface BoardDAO {
 
    public List<BoardDTO> getBoardListByHashtag(String hashtag);
 
-	public int getReplyNo();
-
-	
+   public int getReplyNo();
 	
 }

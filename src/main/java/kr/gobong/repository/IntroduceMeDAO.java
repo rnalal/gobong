@@ -7,5 +7,4 @@ public interface IntroduceMeDAO {
 	public void insertIntroduceMe1(IntroduceMeDTO introduceMeDTO);
 	public void updateIntroduceMe1(IntroduceMeDTO introduceMeDTO);
 	public void deleteMyIntroduceForDeleteUser(String id);
-	
 }

@@ -35,18 +35,14 @@ import kr.gobong.validator.BoardCustomValidator;
 public class BoardController {
 	
 	@Autowired
-	private BoardService boardService;  // 게시판서비스
-	
+	private BoardService boardService;  // 게시판서비스	
 	@Autowired
-	private LikeService likeService;     // 좋아요서비스
-	
+	private LikeService likeService;     // 좋아요서비스	
 	@Autowired
-	private ReplyService replyService;    // 댓글서비스
-	
+	private ReplyService replyService;    // 댓글서비스	
 	@Resource(name = "loginUser")
 	@Lazy
 	private UserDTO loginUser;
-
 	
 	// 글 목록 보기
 	@GetMapping("/boardlist")
@@ -58,17 +54,13 @@ public class BoardController {
 		return "board/board_list";
 	}
 	
-
-	
-	//글쓰기페이지
+	//글쓰기
 	@GetMapping("/boardInsert")
 	public String boardInsert(@ModelAttribute BoardDTO boardInsert, Model model) {
 		
 		model.addAttribute("boardInsert",boardInsert);
 		return "board/boardInsert";
 	}
-	
-	//글쓰기
 	@PostMapping("/boardInsertPro")
 	public String boardInsertPro(@Valid @ModelAttribute("boardInsert") BoardDTO boardInsert,BindingResult result) {
 		if(result.hasErrors()) {
@@ -100,42 +92,33 @@ public class BoardController {
 		return "board/board_list";
 	}
 	
-	
 	// 글 상세보기
-	   // 상세페이지에서 댓글보기
-	   @GetMapping("/boarddetail")
-	   public String boardDetail(HttpServletRequest request, Model model) {
+	@GetMapping("/boarddetail")
+	public String boardDetail(HttpServletRequest request, Model model) {
 	      
-	      int no = Integer.parseInt(request.getParameter("no"));
+	    int no = Integer.parseInt(request.getParameter("no"));
 	  	
-	      BoardDTO boardDTO = boardService.getBoardDetail(no);
-	      List<ReplyVO> replyList = boardService.getReplyList(no);
+	    BoardDTO boardDTO = boardService.getBoardDetail(no);
+	    List<ReplyVO> replyList = boardService.getReplyList(no);
 	  	
-	      model.addAttribute("boardDTO", boardDTO);
-	      model.addAttribute("replyList", replyList);
-	      return "board/board_detail";
-	   }
+	    model.addAttribute("boardDTO", boardDTO);
+	    model.addAttribute("replyList", replyList);
+	    return "board/board_detail";
+	}
 	
 	// 글 수정하기
 	@GetMapping("/boardEdit")
-	public String boardEdit(@RequestParam("no") int no, 
-													@ModelAttribute("boardEdit") BoardDTO boardEdit,
-                    			Model model) {
+	public String boardEdit(@RequestParam("no") int no, @ModelAttribute("boardEdit") BoardDTO boardEdit, Model model) {
 		
 		model.addAttribute("no", no);
 		
 		BoardDTO boardDTO = boardService.getBoardDetail(no);
 		model.addAttribute("boardDTO", boardDTO);
-		
-		
+				
 		return "board/board_edit";
-	}
-	
+	}	
 	@PostMapping("/boardEditPro")
-	public String boardEditPro(@RequestParam("no") int no, 
-							               @ModelAttribute("boardEdit") BoardDTO boardEdit,
-							               BindingResult result,
-							               Model model) {
+	public String boardEditPro(@RequestParam("no") int no, @ModelAttribute("boardEdit") BoardDTO boardEdit, BindingResult result, Model model) {
 		
 		model.addAttribute("no", no);
 		
@@ -147,16 +130,13 @@ public class BoardController {
 		//no추가
 		return "redirect:/board/boarddetail?no="+no;
 	}
-	
-	
+		
 	//댓글 쓰기
 	@GetMapping("/replyInsert")
 	public String replyInsert(@ModelAttribute("replyDto") ReplyDTO replyDto,@RequestParam("no") int no,Model model) {
 		model.addAttribute("no", no);
 		return "board/replyInsert";
 	}
-
-	
 	@PostMapping("/replyInsertPro")
 	public String replyInsertPro(@RequestParam("no") int no,@ModelAttribute("replyDto") ReplyDTO replyDto,Model model) {
 		replyService.addReply(replyDto);
@@ -177,10 +157,7 @@ public class BoardController {
 	public void replyInsertAjax(@ModelAttribute("replyDto") ReplyDTO replyDto) {
 		replyService.addReply(replyDto);
 	}
-	
-	
-	
-	
+
 	//커스텀밸리데이션
 	/* 
 	 * 발리데이션에 여러개 등록할 시

@@ -20,8 +20,7 @@ public class LikeDAOImpl implements LikeDAO{
 	
 	@Override
 	public void registLike(LikeDTO likeDto) {
-		sqlSessionTemplate.insert("like1.registLike", likeDto);
-		
+		sqlSessionTemplate.insert("like1.registLike", likeDto);	
 	}
 	
 	@Override
@@ -46,10 +45,9 @@ public class LikeDAOImpl implements LikeDAO{
 		sqlSessionTemplate.delete("like1.deleteLikeFromId", likeDto);
 		
 	}
-	//내가 좋아요 누른 글 목록 0724이재호
+	//내가 좋아요 누른 글 목록
 	@Override
 	public List<BoardDTO> myLikeList(String id) {
 		return sqlSessionTemplate.selectList("like1.myLikeList",id);
 	}
-	//내가 좋아요 누른 글 목록 0724이재호
 }
