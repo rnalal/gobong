@@ -3,7 +3,7 @@
 
 <mapper namespace="board1">
 
-	<!-- 전체공개글만 볼수있도록 수정 -->
+	<!-- 전체공개글만 볼수있음 -->
 	<!-- 글 목록 보기 -->
 	<select id="getBoardList" parameterType="java.lang.Integer" resultType="kr.gobong.domain.BoardDTO">
 		<![CDATA[
