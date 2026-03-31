@@ -5,7 +5,6 @@
   
 <mapper namespace="follows">
  	
- 	<!-- 0721 손승기 -->
  	<!-- 자신이 팔로우 한 사람이 몇명인지 조회하기 -->
  	<select resultType="java.lang.Integer" parameterType="java.lang.String" id="followingCnt">
  	<![CDATA[
@@ -41,10 +40,8 @@
  		WHERE following_id = #{id}
  	]]>
  	</select>
- 	<!-- 0721 손승기 -->
  	
  	
- 	<!-- 0723 손승기  -->
  	<!-- 다른사용자 팔로우하기 -->
  	<insert parameterType="kr.gobong.domain.FollowsDTO" id="doFollow">
  	<![CDATA[
@@ -59,6 +56,5 @@
  	]]>
  	</delete>
  	
- 	<!-- 0723 손승기 -->
 </mapper>
  

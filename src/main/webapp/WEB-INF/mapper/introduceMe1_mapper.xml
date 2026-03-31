@@ -3,7 +3,6 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
- <!-- 0727김우주 -->
 <mapper namespace="introduceMe1">
 	<!-- 회원테이블봐 합쳐도되지만 팀원들의 편의를 위해 따로 생성했습니다 -->
 	<!-- 먼저 자기소개가 있나검색 -->
